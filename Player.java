@@ -8,19 +8,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends SuperSmoothMover
 {
-    //declaring the player's dimensions
+    //declaring the player's dimensions and image
     private GreenfootImage image;
-    public static final int PLAYER_WIDTH = GameWorld.WORLD_WIDTH / 10;
+    public static final int PLAYER_WIDTH = GameWorld.WORLD_WIDTH / 20;
     public static final int PLAYER_HEIGHT = PLAYER_WIDTH;
     
     //declaring constants
     public static final int PLAYER_MAX_HP = 100;
+    public static final int SPEED = 5;
+    public static final int SHOOT_CD = 10;
     
     //declaring actors
     private StatBar hpBar;
     
+    //declaring instance variables
+    private int currShootCD = 0;
     //declaring mouse tracker
     private MouseInfo mouse;
+    private boolean mouseDown = false;
     
     //declaring stats
     private int playerHp = PLAYER_MAX_HP;
@@ -44,10 +49,26 @@ public class Player extends SuperSmoothMover
         mouse = Greenfoot.getMouseInfo(); //setting variable to track the mouse
         if(mouse != null) turnTowards(mouse.getX(), mouse.getY()); //making the player face the mouse
         //movement
-        if(Greenfoot.isKeyDown("w")) setLocation(getX(), getY() - 5);
-        if(Greenfoot.isKeyDown("a")) setLocation(getX() - 5, getY());
-        if(Greenfoot.isKeyDown("s")) setLocation(getX(), getY() + 5);
-        if(Greenfoot.isKeyDown("d")) setLocation(getX() + 5, getY());
+        if(Greenfoot.isKeyDown("w")) setLocation(getX(), getY() - SPEED);
+        if(Greenfoot.isKeyDown("a")) setLocation(getX() - SPEED, getY());
+        if(Greenfoot.isKeyDown("s")) setLocation(getX(), getY() + SPEED);
+        if(Greenfoot.isKeyDown("d")) setLocation(getX() + SPEED, getY());
+        
+        //checks if the mouse is down (from "danpost" on Greenfoot)
+        if(Greenfoot.mousePressed(null)){
+            mouseDown = true;
+        }
+        else if(Greenfoot.mouseClicked(null)){
+            mouseDown = false;
+        }
+        currShootCD--;
+        if(currShootCD <= 0 && mouseDown){
+            Bullet bullet = new Bullet();
+            bullet.setRotation(getRotation());
+            getWorld().addObject(bullet, getX(), getY());
+            bullet.move(PLAYER_WIDTH / 2 + bullet.BULLET_WIDTH / 2);
+            currShootCD = SHOOT_CD;
+        }
     }
     
     //method to draw the player
