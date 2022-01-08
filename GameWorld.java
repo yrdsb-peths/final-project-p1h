@@ -15,12 +15,8 @@ public class GameWorld extends World
     //declaring actors
     private Player player;
     
-    /**
-     * Constructor for objects of class MyWorld.
-     * 
-     */
     public GameWorld()
-    {    
+    {   
         // Create a new world with WORLD_WIDTH * WORLD_HEIGHT    cells with a cell size of 1x1 pixels.
         super(WORLD_WIDTH, WORLD_HEIGHT, 1);
         

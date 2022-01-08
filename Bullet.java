@@ -10,9 +10,10 @@ public class Bullet extends SuperSmoothMover
 {
     //declaring the bullet's dimensions and image
     private GreenfootImage image;
-    public static final int BULLET_WIDTH = GameWorld.WORLD_WIDTH / 50;
+    public static final int BULLET_WIDTH = GameWorld.WORLD_WIDTH / 15;
     public static final int BULLET_HEIGHT = 10;
     
+    //declaring bullet constants
     public static final int SPEED = 20;
     public static final int DMG = 4;
     
@@ -22,13 +23,9 @@ public class Bullet extends SuperSmoothMover
         setImage(image);
     }
     
-    /**
-     * Act - do whatever the Bullet wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public void act() 
     {
-        move(SPEED);
+        move(SPEED); //moves the bullet forward
         if(/*collisionDetection() || */isAtEdge()){ //removes bullet if when it hits an object or leaves the screen
             getWorld().removeObject(this);
         }
@@ -38,5 +35,4 @@ public class Bullet extends SuperSmoothMover
     private void drawBullet(int width, int height){
         image.drawLine(0, height / 2, width, height / 2);
     }
-    
 }

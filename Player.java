@@ -16,13 +16,21 @@ public class Player extends SuperSmoothMover
     //declaring constants
     public static final int PLAYER_MAX_HP = 100;
     public static final int SPEED = 5;
+    public static final int MAG_SIZE = 15;
     public static final int SHOOT_CD = 10;
+    public static final int RELOAD_TIME = 90; //(number of acts)
     
     //declaring actors
     private StatBar hpBar;
+    private ScoreDisplay scoreDisplay;
+    private AmmoDisplay ammoDisplay;
     
     //declaring instance variables
+    private int score;
+    private int ammo;
     private int currShootCD = 0;
+    private boolean reloading;
+    private int reloadTimer = 0;
     //declaring mouse tracker
     private MouseInfo mouse;
     private boolean mouseDown = false;
@@ -36,14 +44,23 @@ public class Player extends SuperSmoothMover
         drawPlayer(PLAYER_WIDTH, PLAYER_HEIGHT);
         setImage(image);
         
-        //creating the player's hp bar
-        hpBar = new StatBar(100, playerHp, GameWorld.WORLD_WIDTH / 10, GameWorld.WORLD_HEIGHT / 50, 0, Color.GREEN, Color.RED, false, Color.BLUE, GameWorld.WORLD_HEIGHT / 180);
+        //resetting player score
+        score = 0;
+        ammo = MAG_SIZE;
+        
+        //creating the player's hp bar and score display
+        hpBar = new StatBar(100, playerHp, GameWorld.WORLD_WIDTH / 5, GameWorld.WORLD_HEIGHT / 30, PLAYER_HEIGHT, null, Color.GREEN, Color.RED, false, Color.BLUE, GameWorld.WORLD_HEIGHT / 180);
+        scoreDisplay = new ScoreDisplay(score);
+        ammoDisplay = new AmmoDisplay(ammo);
     }
     
-    /**
-     * Act - do whatever the Player wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    public void addedToWorld(World world){ //(from Mr. Cohen)
+        //adding player hp bar, score display, and ammo display to the world
+        world.addObject(hpBar, GameWorld.WORLD_WIDTH / 6, GameWorld.WORLD_HEIGHT / 15);
+        world.addObject(scoreDisplay, GameWorld.WORLD_WIDTH * 57 / 320, GameWorld.WORLD_HEIGHT / 8);
+        world.addObject(ammoDisplay, GameWorld.WORLD_WIDTH * 6 / 7, GameWorld.WORLD_HEIGHT * 19 / 20);
+    }
+    
     public void act() 
     {
         mouse = Greenfoot.getMouseInfo(); //setting variable to track the mouse
@@ -61,13 +78,27 @@ public class Player extends SuperSmoothMover
         else if(Greenfoot.mouseClicked(null)){
             mouseDown = false;
         }
-        currShootCD--;
-        if(currShootCD <= 0 && mouseDown){
+        currShootCD--; //update shoot cooldown
+        /*if(ammo <= 0 || Greenfoot.getKey().equals("r")){
+            reloading = true;
+            reloadTimer = RELOAD_TIME;
+        }
+        if(reloading){
+            reloadTimer--;
+            if(reloadTimer == 0){
+                reloading = false;
+                ammo = MAG_SIZE;
+            }
+        }*/
+        //shoots a bullet if the use presses the mouse button and the shoot cooldown has expired
+        if(ammo > 0 && currShootCD <= 0 && mouseDown && !reloading){
             Bullet bullet = new Bullet();
             bullet.setRotation(getRotation());
             getWorld().addObject(bullet, getX(), getY());
             bullet.move(PLAYER_WIDTH / 2 + bullet.BULLET_WIDTH / 2);
             currShootCD = SHOOT_CD;
+            ammo--;
+            ammoDisplay.update(ammo);
         }
     }
     

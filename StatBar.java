@@ -33,6 +33,7 @@ public class StatBar extends Actor
     private int[] filledBarSize;
     private boolean hideAtMax;
     private boolean hasBorder;
+    private Actor owner;
 
     // for multiple bars
     private int barCount;
@@ -58,7 +59,7 @@ public class StatBar extends Actor
      */
     public StatBar()
     {
-        this(100, 100, 48, 6, 36);
+        this(100, 100, 48, 6, 36, null);
     }
 
     /**
@@ -68,7 +69,7 @@ public class StatBar extends Actor
      * @param maxVal    The maximum value for this stat, which will also be the starting value for this stat
      */
     public StatBar (int maxVal){
-        this(maxVal, maxVal, 48, 4, 36);
+        this(maxVal, maxVal, 48, 4, 36, null);
     }
 
     /**
@@ -81,8 +82,8 @@ public class StatBar extends Actor
      *  @param height   the height of the stat bar
      *  @param offset   the y-offset for positioning this bar in relation to it's owner
      */
-    public StatBar (int maxVal, int currVal, int width, int height, int offset){
-        this (maxVal, currVal, width, height, offset, Color.GREEN, Color.RED);
+    public StatBar (int maxVal, int currVal, int width, int height, int offset, Actor owner){
+        this (maxVal, currVal, width, height, offset, owner, Color.GREEN, Color.RED);
     }
 
     /**
@@ -96,8 +97,8 @@ public class StatBar extends Actor
      *  @param filledColor  the color to be used to represent the current value
      *  @param missingColor the color to be used to represent the missing value
      */
-    public StatBar (int maxVal,  int currVal, int width, int height, int offset, Color filledColor, Color missingColor){
-        this (maxVal, currVal, width, height, offset, filledColor, missingColor, true);
+    public StatBar (int maxVal,  int currVal, int width, int height, int offset, Actor owner, Color filledColor, Color missingColor){
+        this (maxVal, currVal, width, height, offset, owner, filledColor, missingColor, true);
     }
 
     /**
@@ -112,8 +113,8 @@ public class StatBar extends Actor
      *  @param missingColor the color to be used to represent the missing value
      *  @param  hideAtMax   set to true to have this statBar hide itself when currVal == maxVal
      */
-    public StatBar (int maxVal,  int currVal, int width, int height, int offset, Color filledColor, Color missingColor, boolean hideAtMax){
-        this (maxVal, currVal, width, height, offset, filledColor, missingColor, true, null, 0);
+    public StatBar (int maxVal,  int currVal, int width, int height, int offset, Actor owner, Color filledColor, Color missingColor, boolean hideAtMax){
+        this (maxVal, currVal, width, height, offset, owner, filledColor, missingColor, true, null, 0);
     }
 
     /**
@@ -130,8 +131,8 @@ public class StatBar extends Actor
      *  @param borderColor  the Color of the border
      *  @param borderThickness  the thickness of the border. This value should be at least 1.
      */
-    public StatBar (int maxVal,  int currVal, int width, int height, int offset, Color filledColor, Color missingColor, boolean hideAtMax, Color borderColor, int borderThickness){
-        this (new int[]{maxVal}, new int[]{currVal}, width, height, offset, new Color[] {filledColor}, new Color[] {missingColor}, hideAtMax, borderColor, borderThickness);
+    public StatBar (int maxVal,  int currVal, int width, int height, int offset, Actor owner, Color filledColor, Color missingColor, boolean hideAtMax, Color borderColor, int borderThickness){
+        this (new int[]{maxVal}, new int[]{currVal}, width, height, offset, owner, new Color[] {filledColor}, new Color[] {missingColor}, hideAtMax, borderColor, borderThickness);
 
     }
 
@@ -151,7 +152,7 @@ public class StatBar extends Actor
      *  @param borderColor  the Color of the border
      *  @param borderThickness  the thickness of the border. This value should be at least 1.
      */
-    public StatBar (int maxVal[],  int currVal[], int width, int height, int offset, Color filledColor[], Color missingColor[], boolean hideAtMax, Color borderColor, int borderThickness){
+    public StatBar (int maxVal[],  int currVal[], int width, int height, int offset, Actor owner, Color filledColor[], Color missingColor[], boolean hideAtMax, Color borderColor, int borderThickness){
         this.barCount = maxVal.length;
         this.barHeight = (height - (2* borderThickness))/barCount;
 
@@ -159,6 +160,7 @@ public class StatBar extends Actor
         this.height = height;
         this.offset = offset;
         this.hideAtMax = hideAtMax;
+        this.owner = owner;
 
         this.maxVal = maxVal;
         this.currVal = currVal;
@@ -179,6 +181,13 @@ public class StatBar extends Actor
 
         update(currVal);
 
+    }
+    
+    public void act(){
+        if (owner != null && owner.getWorld() != null)
+        {
+            setLocation (owner.getX(), owner.getY() - offset);
+        }
     }
     
     public void update (int newCurrVal){
@@ -261,6 +270,7 @@ public class StatBar extends Actor
         }
     }
     
+    //getter methods
     public int getWidth(){
         return width;
     }
