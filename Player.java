@@ -18,7 +18,7 @@ public class Player extends SuperSmoothMover
     public static final int SPEED = 5;
     public static final int MAG_SIZE = 15;
     public static final int SHOOT_CD = 10;
-    public static final int RELOAD_TIME = 90; //(number of acts)
+    public static final int RELOAD_TIME = 60; //(number of acts)
     
     //declaring actors
     private StatBar hpBar;
@@ -30,7 +30,7 @@ public class Player extends SuperSmoothMover
     private int ammo;
     private int currShootCD = 0;
     private boolean reloading;
-    private int reloadTimer = 0;
+    private int reloadTimer = RELOAD_TIME;
     //declaring mouse tracker
     private MouseInfo mouse;
     private boolean mouseDown = false;
@@ -78,18 +78,7 @@ public class Player extends SuperSmoothMover
         else if(Greenfoot.mouseClicked(null)){
             mouseDown = false;
         }
-        currShootCD--; //update shoot cooldown
-        /*if(ammo <= 0 || Greenfoot.getKey().equals("r")){
-            reloading = true;
-            reloadTimer = RELOAD_TIME;
-        }
-        if(reloading){
-            reloadTimer--;
-            if(reloadTimer == 0){
-                reloading = false;
-                ammo = MAG_SIZE;
-            }
-        }*/
+        
         //shoots a bullet if the use presses the mouse button and the shoot cooldown has expired
         if(ammo > 0 && currShootCD <= 0 && mouseDown && !reloading){
             Bullet bullet = new Bullet();
@@ -99,6 +88,19 @@ public class Player extends SuperSmoothMover
             currShootCD = SHOOT_CD;
             ammo--;
             ammoDisplay.update(ammo);
+        }
+        currShootCD--; //update shoot cooldown
+        
+        if(ammo <= 0 || Greenfoot.isKeyDown("r")) reloading = true; //reloads weapon if ammo runs out or if user presses "r"
+        //reloads weapon
+        if(reloading){
+            reloadTimer--;
+            if(reloadTimer == 0){
+                reloading = false;
+                reloadTimer = RELOAD_TIME;
+                ammo = MAG_SIZE;
+                ammoDisplay.update(ammo);
+            }
         }
     }
     
