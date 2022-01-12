@@ -37,7 +37,6 @@ public class GameWorld extends World
     }
     
     public void act() {
-        handlePowerupCollision();
         handlePowerups();
     }
     
