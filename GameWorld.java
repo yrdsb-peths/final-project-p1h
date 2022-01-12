@@ -37,7 +37,6 @@ public class GameWorld extends World
     }
     
     public void act() {
-        handlePowerupCollision();
         handlePowerups();
     }
     
@@ -91,9 +90,6 @@ public class GameWorld extends World
             // Spawn powerup
             addObject(powerupsInPlay.get(powerupsInPlay.size()-1), Greenfoot.getRandomNumber(WORLD_WIDTH), Greenfoot.getRandomNumber(WORLD_HEIGHT));
         }
-    }
-    
-    private void handlePowerupCollision() {
     }
     
 }
