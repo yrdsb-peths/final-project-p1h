@@ -93,7 +93,4 @@ public class GameWorld extends World
         }
     }
     
-    private void handlePowerupCollision() {
-    }
-    
 }
