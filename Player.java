@@ -15,10 +15,11 @@ public class Player extends SuperSmoothMover
     
     //declaring constants
     public static final int PLAYER_MAX_HP = 100;
-    public static final int SPEED = 5;
-    public static final int MAG_SIZE = 15;
-    public static final int SHOOT_CD = 10;
-    public static final int RELOAD_TIME = 60; //(number of acts)
+    public static final int PLAYER_SPEED = 5;
+    public static final int PLAYER_MAG_SIZE = 15;
+    public static final int PLAYER_SHOOT_CD = 10;
+    public static final int PLAYER_RELOAD_TIME = 60; //(number of acts)
+    public static final int PLAYER_DMG = 4;
     
     //declaring actors
     private StatBar hpBar;
@@ -30,13 +31,13 @@ public class Player extends SuperSmoothMover
     private int ammo;
     private int currShootCD = 0;
     private boolean reloading;
-    private int reloadTimer = RELOAD_TIME;
+    private int reloadTimer = PLAYER_RELOAD_TIME;
     //declaring mouse tracker
     private MouseInfo mouse;
     private boolean mouseDown = false;
     
     //declaring stats
-    private int playerHp = PLAYER_MAX_HP;
+    private int currHP = PLAYER_MAX_HP;
     
     public Player(){
         image = new GreenfootImage(PLAYER_WIDTH + 1, PLAYER_HEIGHT + 1); //creating the blank GreenfootImage used for the player
@@ -46,10 +47,10 @@ public class Player extends SuperSmoothMover
         
         //resetting player score
         score = 0;
-        ammo = MAG_SIZE;
+        ammo = PLAYER_MAG_SIZE;
         
         //creating the player's hp bar and score display
-        hpBar = new StatBar(100, playerHp, GameWorld.WORLD_WIDTH / 5, GameWorld.WORLD_HEIGHT / 30, PLAYER_HEIGHT, null, Color.GREEN, Color.RED, false, Color.BLUE, GameWorld.WORLD_HEIGHT / 180);
+        hpBar = new StatBar(100, currHP, GameWorld.WORLD_WIDTH / 5, GameWorld.WORLD_HEIGHT / 30, PLAYER_HEIGHT, null, Color.GREEN, Color.RED, false, Color.BLUE, GameWorld.WORLD_HEIGHT / 180);
         scoreDisplay = new ScoreDisplay(score);
         ammoDisplay = new AmmoDisplay(ammo);
     }
@@ -66,10 +67,10 @@ public class Player extends SuperSmoothMover
         mouse = Greenfoot.getMouseInfo(); //setting variable to track the mouse
         if(mouse != null) turnTowards(mouse.getX(), mouse.getY()); //making the player face the mouse
         //movement
-        if(Greenfoot.isKeyDown("w")) setLocation(getX(), getY() - SPEED);
-        if(Greenfoot.isKeyDown("a")) setLocation(getX() - SPEED, getY());
-        if(Greenfoot.isKeyDown("s")) setLocation(getX(), getY() + SPEED);
-        if(Greenfoot.isKeyDown("d")) setLocation(getX() + SPEED, getY());
+        if(Greenfoot.isKeyDown("w")) setLocation(getX(), getY() - PLAYER_SPEED);
+        if(Greenfoot.isKeyDown("a")) setLocation(getX() - PLAYER_SPEED, getY());
+        if(Greenfoot.isKeyDown("s")) setLocation(getX(), getY() + PLAYER_SPEED);
+        if(Greenfoot.isKeyDown("d")) setLocation(getX() + PLAYER_SPEED, getY());
         
         //checks if the mouse is down (from "danpost" on Greenfoot)
         if(Greenfoot.mousePressed(null)){
@@ -85,7 +86,7 @@ public class Player extends SuperSmoothMover
             bullet.setRotation(getRotation());
             getWorld().addObject(bullet, getX(), getY());
             bullet.move(PLAYER_WIDTH / 2 + bullet.BULLET_WIDTH / 2);
-            currShootCD = SHOOT_CD;
+            currShootCD = PLAYER_SHOOT_CD;
             ammo--;
             ammoDisplay.update(ammo);
         }
@@ -97,8 +98,8 @@ public class Player extends SuperSmoothMover
             reloadTimer--;
             if(reloadTimer == 0){
                 reloading = false;
-                reloadTimer = RELOAD_TIME;
-                ammo = MAG_SIZE;
+                reloadTimer = PLAYER_RELOAD_TIME;
+                ammo = PLAYER_MAG_SIZE;
                 ammoDisplay.update(ammo);
             }
         }
