@@ -50,4 +50,8 @@ public class Damage extends Powerup
         return true;
     }
     
+    public Color getColour() {
+        return Color.RED;
+    }
+    
 }

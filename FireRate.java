@@ -51,4 +51,8 @@ public class FireRate extends Powerup
         return true;
     }
     
+    public Color getColour() {
+        return Color.BLUE;
+    }
+    
 }

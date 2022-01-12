@@ -34,7 +34,7 @@ public class PowerupIcon extends Actor
         image.setFont(COURIER_NEW);
         image.setColor(Color.GRAY);
         image.fillRect(0, 0, Powerup.WIDTH, Powerup.HEIGHT);
-        image.setColor(Color.RED);
+        image.setColor(powerup.getColour());
         image.fillRect(2, 2, 16, 16);
         image.setColor(Color.BLACK);
         String text = String.valueOf(timeLeft);

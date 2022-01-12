@@ -28,4 +28,9 @@ public class Powerup extends Actor
     public boolean needsIcon() {
         return true;
     }
+    
+    public Color getColour() {
+        return null;
+    }
+    
 }

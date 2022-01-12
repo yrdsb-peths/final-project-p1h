@@ -46,4 +46,8 @@ public class Healing extends Powerup
         return false;
     }
     
+    public Color getColour() {
+        return Color.GREEN;
+    }
+    
 }

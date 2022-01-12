@@ -51,4 +51,8 @@ public class MovementSpeed extends Powerup
         return true;
     }
     
+    public Color getColour() {
+        return Color.MAGENTA;
+    }
+    
 }

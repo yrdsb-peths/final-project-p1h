@@ -46,4 +46,8 @@ public class Reload extends Powerup
         return false;
     }
     
+    public Color getColour() {
+        return Color.ORANGE;
+    }
+    
 }

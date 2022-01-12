@@ -51,4 +51,8 @@ public class MaxHealth extends Powerup
         return true;
     }
     
+    public Color getColour() {
+        return Color.YELLOW;
+    }
+    
 }
