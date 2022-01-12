@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class Player here.
@@ -14,10 +15,7 @@ public class Player extends SuperSmoothMover
     public static final int PLAYER_HEIGHT = PLAYER_WIDTH;
     
     //declaring constants
-    public static final int PLAYER_MAX_HP = 100;
-    public static final int SPEED = 5;
     public static final int MAG_SIZE = 15;
-    public static final int SHOOT_CD = 10;
     public static final int RELOAD_TIME = 60; //(number of acts)
     
     //declaring actors
@@ -27,7 +25,7 @@ public class Player extends SuperSmoothMover
     
     //declaring instance variables
     private int score;
-    private int ammo;
+    public int ammo;
     private int currShootCD = 0;
     private boolean reloading;
     private int reloadTimer = RELOAD_TIME;
@@ -36,7 +34,11 @@ public class Player extends SuperSmoothMover
     private boolean mouseDown = false;
     
     //declaring stats
-    private int playerHp = PLAYER_MAX_HP;
+    public int playerMaxHp = 100;
+    public int speed = 5;
+    public int playerHp = playerMaxHp;
+    public int damage = 5;
+    public int shootCd = 10;
     
     public Player(){
         image = new GreenfootImage(PLAYER_WIDTH + 1, PLAYER_HEIGHT + 1); //creating the blank GreenfootImage used for the player
@@ -66,10 +68,10 @@ public class Player extends SuperSmoothMover
         mouse = Greenfoot.getMouseInfo(); //setting variable to track the mouse
         if(mouse != null) turnTowards(mouse.getX(), mouse.getY()); //making the player face the mouse
         //movement
-        if(Greenfoot.isKeyDown("w")) setLocation(getX(), getY() - SPEED);
-        if(Greenfoot.isKeyDown("a")) setLocation(getX() - SPEED, getY());
-        if(Greenfoot.isKeyDown("s")) setLocation(getX(), getY() + SPEED);
-        if(Greenfoot.isKeyDown("d")) setLocation(getX() + SPEED, getY());
+        if(Greenfoot.isKeyDown("w")) setLocation(getX(), getY() - speed);
+        if(Greenfoot.isKeyDown("a")) setLocation(getX() - speed, getY());
+        if(Greenfoot.isKeyDown("s")) setLocation(getX(), getY() + speed);
+        if(Greenfoot.isKeyDown("d")) setLocation(getX() + speed, getY());
         
         //checks if the mouse is down (from "danpost" on Greenfoot)
         if(Greenfoot.mousePressed(null)){
@@ -85,7 +87,7 @@ public class Player extends SuperSmoothMover
             bullet.setRotation(getRotation());
             getWorld().addObject(bullet, getX(), getY());
             bullet.move(PLAYER_WIDTH / 2 + bullet.BULLET_WIDTH / 2);
-            currShootCD = SHOOT_CD;
+            currShootCD = shootCd;
             ammo--;
             ammoDisplay.update(ammo);
         }
@@ -110,4 +112,14 @@ public class Player extends SuperSmoothMover
         int[] yVertices = {0, height / 2, height};
         image.fillPolygon(xVertices, yVertices, 3);
     }
+    
+    public List<Powerup> getIntersectingObjects() {
+        return getIntersectingObjects(Powerup.class);
+    }
+    
+    public void instantReload() {
+        ammo = MAG_SIZE;
+        ammoDisplay.update(ammo);
+    }
+    
 }
