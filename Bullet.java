@@ -17,6 +17,9 @@ public class Bullet extends SuperSmoothMover
     public static final int SPEED = 20;
     public static final int DMG = 4;
     
+    //declaring instance variables
+    protected Class targetClass; //target class tracking (from Mr. Cohen)
+    
     public Bullet(){
         image = new GreenfootImage(BULLET_WIDTH + 1, BULLET_HEIGHT + 1); //creating the blank GreenfootImage used for the bullet
         drawBullet(BULLET_WIDTH, BULLET_HEIGHT);
@@ -26,9 +29,34 @@ public class Bullet extends SuperSmoothMover
     public void act() 
     {
         move(SPEED); //moves the bullet forward
-        if(/*collisionDetection() || */isAtEdge()){ //removes bullet if when it hits an object or leaves the screen
-            getWorld().removeObject(this);
+        if(collisionDetection() || isAtEdge()) getWorld().removeObject(this); //removes bullet if when it hits an object or leaves the screen
+    }
+    
+    //method to check if the laser has collided with another actor (from Mr. Cohen)
+    private boolean collisionDetection(){
+        Actor target = getOneIntersectingObject(targetClass);
+        if(target != null){
+            /*if(target instanceof Player){ //deals damage to player if the laser hits the player
+                Player player = (Player) target;
+                player.dealDmg(dmg);
+            }
+            else */if(target instanceof Enemy){
+                Enemy enemy;
+                /*if(explosive){ //deals damage to all enemies in the area of the torpedo if it is a torpedo
+                    List<Enemy> enemies = getObjectsInRange(explosionRange, Enemy.class); //(from "danpost" on Greenfoot)
+                    for(var i = 0; i < enemies.size(); i++){
+                        enemy = enemies.get(i);
+                        enemy.dealDmg(dmg);
+                    }
+                }*/
+                //else{ //deals damage to the enemy if the laser hits the enemy
+                    enemy = (Enemy) target;
+                    enemy.dealDmg(DMG);
+                //}
+            }
+            return true;
         }
+        return false;
     }
     
     //method to draw the bullet

@@ -25,5 +25,10 @@ public class Enemy extends SuperSmoothMover
         player = getWorld().getObjects(Player.class).get(0); //(from Mr. Cohen)
         turnTowards(player.getX(), player.getY());
         move(speed);
+        if(currHP <= 0) getWorld().removeObject(this);
+    }
+    
+    public void dealDmg(int dmg){
+        currHP -= dmg;
     }
 }
