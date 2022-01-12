@@ -17,6 +17,7 @@ public class FastEnemy extends Enemy
     public static final int FAST_HP = 8;
     public static final int FAST_DMG = 3;
     public static final int FAST_SPEED = 8;
+    public static final int FAST_DELAY = 10;
     
     public FastEnemy(){
         super();
@@ -28,6 +29,8 @@ public class FastEnemy extends Enemy
         currHP = FAST_HP;
         dmg = FAST_DMG;
         speed = FAST_SPEED;
+        DELAY = FAST_DELAY;
+        currDelay = 0;
     }
     
     public void act() 

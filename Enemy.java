@@ -12,8 +12,8 @@ public class Enemy extends SuperSmoothMover
     protected GreenfootImage image;
     
     //declaring instance variables
-    protected Player player;
-    protected int score, currHP, dmg, speed; //enemy stats
+    protected Actor target;
+    protected int score, currHP, dmg, speed, DELAY, currDelay; //enemy stats
     
     public Enemy(){
         
@@ -21,13 +21,28 @@ public class Enemy extends SuperSmoothMover
     
     public void act() 
     {
-        //turn towards the player
-        player = getWorld().getObjects(Player.class).get(0); //(from Mr. Cohen)
-        turnTowards(player.getX(), player.getY());
-        move(speed);
         if(currHP <= 0) getWorld().removeObject(this);
+        else{
+            target = getOneIntersectingObject(Player.class);
+            if(target != null && currDelay == 0){
+                Player player = (Player) target;
+                player.dealDmg(dmg);
+                currDelay = DELAY;
+            }
+            else if(currDelay == 0){
+                //turn towards the player
+                target = getWorld().getObjects(Player.class).get(0); //(from Mr. Cohen)
+                Player player = (Player) target;
+                turnTowards(player.getX(), player.getY());
+                move(speed);
+            }
+            else currDelay--;
+            if(currHP <= 0) getWorld().removeObject(this);
+        }
     }
     
+    //setter methods
+    //method to deal damage to the enemy
     public void dealDmg(int dmg){
         currHP -= dmg;
     }

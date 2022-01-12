@@ -17,6 +17,7 @@ public class NormalEnemy extends Enemy
     public static final int NORM_HP = 4;
     public static final int NORM_DMG = 3;
     public static final int NORM_SPEED = 2;
+    public static final int NORM_DELAY = 30;
     
     public NormalEnemy(){
         super();
@@ -28,6 +29,8 @@ public class NormalEnemy extends Enemy
         currHP = NORM_HP;
         dmg = NORM_DMG;
         speed = NORM_SPEED;
+        DELAY = NORM_DELAY;
+        currDelay = 0;
     }
     
     public void act() 

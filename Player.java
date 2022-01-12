@@ -28,6 +28,7 @@ public class Player extends SuperSmoothMover
     
     //declaring instance variables
     private int score;
+    private int currHP = PLAYER_MAX_HP;
     private int ammo;
     private int currShootCD = 0;
     private boolean reloading;
@@ -35,9 +36,6 @@ public class Player extends SuperSmoothMover
     //declaring mouse tracker
     private MouseInfo mouse;
     private boolean mouseDown = false;
-    
-    //declaring stats
-    private int currHP = PLAYER_MAX_HP;
     
     public Player(){
         image = new GreenfootImage(PLAYER_WIDTH + 1, PLAYER_HEIGHT + 1); //creating the blank GreenfootImage used for the player
@@ -73,12 +71,8 @@ public class Player extends SuperSmoothMover
         if(Greenfoot.isKeyDown("d")) setLocation(getX() + PLAYER_SPEED, getY());
         
         //checks if the mouse is down (from "danpost" on Greenfoot)
-        if(Greenfoot.mousePressed(null)){
-            mouseDown = true;
-        }
-        else if(Greenfoot.mouseClicked(null)){
-            mouseDown = false;
-        }
+        if(Greenfoot.mousePressed(null)) mouseDown = true;
+        else if(Greenfoot.mouseClicked(null)) mouseDown = false;
         
         //shoots a bullet if the use presses the mouse button and the shoot cooldown has expired
         if(ammo > 0 && currShootCD <= 0 && mouseDown && !reloading){
@@ -103,6 +97,14 @@ public class Player extends SuperSmoothMover
                 ammoDisplay.update(ammo);
             }
         }
+    }
+    
+    //getter methods
+    //method to deal damage to the player
+    public void dealDmg(int dmg){
+        currHP -= dmg;
+        if(currHP < 0) currHP = 0;
+        hpBar.update(currHP);
     }
     
     //method to draw the player
