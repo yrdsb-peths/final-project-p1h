@@ -8,46 +8,32 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Healing extends Powerup
 {
-    private GreenfootImage image;
-    private Player player;
+    //declaring constant
+    public static final Color HEALING_COLOR = Color.GREEN;
     
-    public Healing(Player player) {
+    public Healing(Player player){
         this.player = player;
-        draw();
+        super.draw(HEALING_COLOR);
     }
     
-    /**
-     * Act - do whatever the Healing wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
+    public void act()
     {
-        // Add your action code here.
-    }    
-    
-    public void activate() {
-        player.playerHp = player.playerMaxHp;
+        
     }
     
-    public void draw() {
-        image = new GreenfootImage(Powerup.WIDTH, Powerup.HEIGHT);
-        image.setColor(Color.GRAY);
-        image.fillRect(0, 0, Powerup.WIDTH, Powerup.HEIGHT);
-        image.setColor(Color.GREEN);
-        image.fillRect(2, 2, 16, 16);
-        setImage(image);
+    public void activate(){
+        player.setCurrHP(player.getMaxHP());
     }
     
-    public String toString() {
-        return "Healing Boost";
+    public String toString(){
+        return "Instant Healing";
     }
     
-    public boolean needsIcon() {
+    public boolean needsIcon(){
         return false;
     }
     
-    public Color getColour() {
-        return Color.GREEN;
+    public Color getColor(){
+        return HEALING_COLOR;
     }
-    
 }

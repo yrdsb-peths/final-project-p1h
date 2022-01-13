@@ -17,21 +17,17 @@ public class GameWorld extends World
     
     private ArrayList<Powerup> powerupsInPlay = new ArrayList<Powerup>();
     private ArrayList<PowerupIcon> powerupIconsInPlay = new ArrayList<PowerupIcon>();
-    private PowerupDisplay powerupDisplay = new PowerupDisplay();
+    private PowerupNotification powerupNotification = new PowerupNotification();
     
     private MouseInfo mouseInfo;
     
     private Player player = new Player();
     
-    /**
-     * Constructor for objects of class MyWorld.
-     * 
-     */
     public GameWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(WORLD_WIDTH, WORLD_HEIGHT, 1);
-        addObject(powerupDisplay, 480, 270);
+        addObject(powerupNotification, 480, 270);
         
         addObject(player, WORLD_WIDTH/2, WORLD_HEIGHT/2);
     }
@@ -40,19 +36,37 @@ public class GameWorld extends World
         handlePowerups();
     }
     
+    //method to handle the powerups
     private void handlePowerups() {
+        // Decide whether or not to spawn a powerup
+        if (Greenfoot.getRandomNumber(POWERUP_FREQUENCY) == 0) {
+            int rdnPowerup = Greenfoot.getRandomNumber(6);
+            Powerup powerup = new Powerup();
+            if (rdnPowerup == 0) powerup = new Damage(player);
+            else if (rdnPowerup == 1) powerup = new FireRate(player);
+            else if (rdnPowerup == 2) powerup = new Healing(player);
+            else if (rdnPowerup == 3) powerup = new MaxHP(player);
+            else if (rdnPowerup == 4) powerup = new MovementSpeed(player);
+            else powerup = new UnlimitedAmmo(player);
+            powerupsInPlay.add(powerup);
+            if(powerup.needsIcon()) powerupIconsInPlay.add(new PowerupIcon(powerup));
+            
+            // Spawn powerup
+            addObject(powerupsInPlay.get(powerupsInPlay.size() - 1), Greenfoot.getRandomNumber(WORLD_WIDTH), Greenfoot.getRandomNumber(WORLD_HEIGHT));
+        }
+        
         // Handle powerup collision with player
-        List<Powerup> lst = player.getIntersectingObjects();
-        for (Powerup i : lst) {
+        List<Powerup> puList = player.getIntersectingObjects();
+        for (Powerup i: puList) {
             i.activate();
-            powerupDisplay.setText(i.toString());
+            powerupNotification.setDisplay(i);
             removeObject(i);
         }
         
         // Spawn powerup icons
         for (int i = 0; i < powerupIconsInPlay.size(); i++) {
-            if (lst.contains(powerupIconsInPlay.get(i).powerup)) {
-                addObject(powerupIconsInPlay.get(i), (int)(WORLD_WIDTH-Powerup.WIDTH*(i+1)*1.5), 100);
+            if (puList.contains(powerupIconsInPlay.get(i).powerup)) {
+                addObject(powerupIconsInPlay.get(i), (int)(WORLD_WIDTH - Powerup.PU_WIDTH * (i + 1) * 1.5), 100);
             }
         }
         // Remove icon if timer reached 0
@@ -64,32 +78,5 @@ public class GameWorld extends World
                 powerupIconsInPlay.remove(i);
             }
         }
-        
-        // Decide whether or not to spawn a powerup
-        if (Greenfoot.getRandomNumber(POWERUP_FREQUENCY) == 0) {
-            int x = Greenfoot.getRandomNumber(6);
-            Powerup powerup = new Powerup();
-            if (x == 0) {
-                powerup = new Damage(player);
-            } else if (x == 1) {
-                powerup = new FireRate(player);
-            } else if (x == 2) {
-                powerup = new Healing(player);
-            } else if (x == 3) {
-                powerup = new MaxHealth(player);
-            } else if (x == 4) {
-                powerup = new MovementSpeed(player);
-            } else if (x == 5) {
-                powerup = new Reload(player);
-            }
-            powerupsInPlay.add(powerup);
-            if (powerup.needsIcon()) {
-                powerupIconsInPlay.add(new PowerupIcon(powerup));
-            }
-            
-            // Spawn powerup
-            addObject(powerupsInPlay.get(powerupsInPlay.size()-1), Greenfoot.getRandomNumber(WORLD_WIDTH), Greenfoot.getRandomNumber(WORLD_HEIGHT));
-        }
     }
-    
 }

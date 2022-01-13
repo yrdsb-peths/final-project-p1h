@@ -8,51 +8,33 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class FireRate extends Powerup
 {
-    private GreenfootImage image;
-    private Player player;
-    private int value = 2;
+    //declaring constants
+    public static final int FR_BOOST = 2;
+    public static final Color FR_BOOST_COLOR = Color.BLUE;
     
-    public FireRate(Player player) {
+    public FireRate(Player player){
         this.player = player;
-        draw();
+        super.draw(FR_BOOST_COLOR);
     }
     
-    /**
-     * Act - do whatever the FireRate wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public void act() 
     {
-        // Add your action code here.
+        
     }    
     
-    public void activate() {
-        player.shootCd -= value;
+    public void activate(){
+        player.setShootCD(FR_BOOST);
     }
     
-    public void deactivate() {
-        player.shootCd += value;
+    public void deactivate(){
+        player.setShootCD(-FR_BOOST);
     }
     
-    public void draw() {
-        image = new GreenfootImage(Powerup.WIDTH, Powerup.HEIGHT);
-        image.setColor(Color.GRAY);
-        image.fillRect(0, 0, Powerup.WIDTH, Powerup.HEIGHT);
-        image.setColor(Color.BLUE);
-        image.fillRect(2, 2, 16, 16);
-        setImage(image);
-    }
-    
-    public String toString() {
+    public String toString(){
         return "Fire Rate Boost";
     }
     
-    public boolean needsIcon() {
-        return true;
+    public Color getColor(){
+        return FR_BOOST_COLOR;
     }
-    
-    public Color getColour() {
-        return Color.BLUE;
-    }
-    
 }

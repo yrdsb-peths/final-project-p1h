@@ -8,50 +8,33 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Damage extends Powerup
 {
-    private GreenfootImage image;
-    private Player player;
-    private int value = 2;
+    //declaring constants
+    public static final int DMG_BOOST = 2;
+    public static final Color DMG_BOOST_COLOR = Color.RED;
     
-    public Damage(Player player) {
+    public Damage(Player player){
         this.player = player;
-        draw();
+        super.draw(DMG_BOOST_COLOR);
     }
-    /**
-     * Act - do whatever the Damage wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     public void act() 
     {
-        // Add your action code here.
+        
     }    
     
-    public void activate() {
-        player.damage += value;
+    public void activate(){
+        player.setDmg(DMG_BOOST);
     }
     
-    public void deactivate() {
-        player.damage -= value;
+    public void deactivate(){
+        player.setDmg(-DMG_BOOST);
     }
     
-    public void draw() {
-        image = new GreenfootImage(Powerup.WIDTH, Powerup.HEIGHT);
-        image.setColor(Color.GRAY);
-        image.fillRect(0, 0, Powerup.WIDTH, Powerup.HEIGHT);
-        image.setColor(Color.RED);
-        image.fillRect(2, 2, 16, 16);
-        setImage(image);
-    }
-    
-    public String toString() {
+    public String toString(){
         return "Damage Boost";
     }
     
-    public boolean needsIcon() {
-        return true;
+    public Color getColor(){
+        return DMG_BOOST_COLOR;
     }
-    
-    public Color getColour() {
-        return Color.RED;
-    }
-    
 }

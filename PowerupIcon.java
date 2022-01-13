@@ -8,37 +8,39 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PowerupIcon extends Actor
 {
-    public static final Font COURIER_NEW = new Font("Courier New", 10);
+    //declaring the powerup icon's dimensions and image variables
+    public static final int PU_ICON_WIDTH = Powerup.PU_WIDTH;
+    public static final int PU_ICON_HEIGHT = PU_ICON_WIDTH;
+    public static final Font PU_ICON_FONT = new Font("Courier New", true, false, 10);
+    private GreenfootImage image;
     
-    GreenfootImage image = new GreenfootImage(Powerup.WIDTH, Powerup.HEIGHT+20);
+    //declaring instance variables
     public int timeLeft;
     public Powerup powerup;
     
-    public PowerupIcon(Powerup powerup) {
+    public PowerupIcon(Powerup powerup){
+        image = new GreenfootImage(PU_ICON_WIDTH, PU_ICON_HEIGHT);
         timeLeft = Powerup.LIFESPAN;
         this.powerup = powerup;
     }
     
-    /**
-     * Act - do whatever the PowerupIcon wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public void act() 
     {
         timeLeft -= 1;
-        draw();
+        drawPowerupIcon();
     }
     
-    private void draw() {
+    //method to draw the powerup icon
+    private void drawPowerupIcon(){
         image.clear();
-        image.setFont(COURIER_NEW);
+        image.setFont(PU_ICON_FONT);
         image.setColor(Color.GRAY);
-        image.fillRect(0, 0, Powerup.WIDTH, Powerup.HEIGHT);
-        image.setColor(powerup.getColour());
+        image.fillRect(0, 0, PU_ICON_WIDTH, PU_ICON_HEIGHT);
+        image.setColor(powerup.getColor());
         image.fillRect(2, 2, 16, 16);
         image.setColor(Color.BLACK);
-        String text = String.valueOf(timeLeft);
-        image.drawString(text, (image.getWidth() - (int)(text.length() * COURIER_NEW.getSize() * 0.58)) / 2, 30);
+        String text = String.valueOf(timeLeft / 60);
+        image.drawString(text, (image.getWidth() - (int)(text.length() * PU_ICON_FONT.getSize() * 0.58)) / 2, (image.getHeight() + PU_ICON_FONT.getSize() / 2) / 2);
         setImage(image);
     }
 }
