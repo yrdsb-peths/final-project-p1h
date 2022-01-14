@@ -14,7 +14,7 @@ public class Damage extends Powerup
     
     public Damage(Player player){
         this.player = player;
-        super.draw(DMG_BOOST_COLOR);
+        super.draw(PU_WIDTH, PU_HEIGHT, DMG_BOOST_COLOR);
     }
     
     public void act() 

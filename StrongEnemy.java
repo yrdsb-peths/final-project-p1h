@@ -15,7 +15,7 @@ public class StrongEnemy extends Enemy
     //initializing constants
     public static final int STR_SCORE = 200; //score the player gets after killing this enemy
     public static final int STR_HP = 20;
-    public static final int STR_DMG = 3;
+    public static final int STR_DMG = 6;
     public static final int STR_SPEED = 4;
     public static final int STR_DELAY = 45;
     

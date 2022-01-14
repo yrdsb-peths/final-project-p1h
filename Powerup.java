@@ -37,16 +37,6 @@ public class Powerup extends Actor
         
     }
     
-    //method to draw the powerup
-    public void draw(Color color){
-        image = new GreenfootImage(PU_WIDTH + 1, PU_HEIGHT + 1);
-        image.setColor(Color.GRAY);
-        image.fillRect(0, 0, PU_WIDTH + 1, PU_HEIGHT + 1);
-        image.setColor(color);
-        image.fillRect(2, 2, 16, 16);
-        setImage(image);
-    }
-    
     //returns the powerup notification name of the powerup
     public String toString(){
         return "";
@@ -60,5 +50,14 @@ public class Powerup extends Actor
     //returns the color of the powerup
     public Color getColor(){
         return null;
+    }
+    
+    //method to draw the powerup
+    public void draw(int width, int height, Color color){
+        image.setColor(Color.GRAY);
+        image.fillRect(0, 0, width, height);
+        image.setColor(color);
+        image.fillRect(width / 10, height / 10, width * 8 / 10, height * 8 / 10);
+        setImage(image);
     }
 }

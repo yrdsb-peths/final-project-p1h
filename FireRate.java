@@ -10,11 +10,11 @@ public class FireRate extends Powerup
 {
     //declaring constants
     public static final int FR_BOOST = 2;
-    public static final Color FR_BOOST_COLOR = Color.BLUE;
+    public static final Color FR_BOOST_COLOR = Color.YELLOW;
     
     public FireRate(Player player){
         this.player = player;
-        super.draw(FR_BOOST_COLOR);
+        super.draw(PU_WIDTH, PU_HEIGHT, FR_BOOST_COLOR);
     }
     
     public void act() 

@@ -13,10 +13,10 @@ public class UnlimitedAmmo extends Powerup
     
     public UnlimitedAmmo(Player player){
         this.player = player;
-        super.draw(UNLIMITED_AMMO_COLOR);
+        super.draw(PU_WIDTH, PU_HEIGHT, UNLIMITED_AMMO_COLOR);
     }
     
-    public void act() 
+    public void act()
     {
         
     }    

@@ -67,10 +67,10 @@ public class Player extends SuperSmoothMover
         mouse = Greenfoot.getMouseInfo(); //setting variable to track the mouse
         if(mouse != null) turnTowards(mouse.getX(), mouse.getY()); //making the player face the mouse
         //movement
-        if(Greenfoot.isKeyDown("w")) setLocation(getX(), getY() - PLAYER_SPEED);
-        if(Greenfoot.isKeyDown("a")) setLocation(getX() - PLAYER_SPEED, getY());
-        if(Greenfoot.isKeyDown("s")) setLocation(getX(), getY() + PLAYER_SPEED);
-        if(Greenfoot.isKeyDown("d")) setLocation(getX() + PLAYER_SPEED, getY());
+        if(Greenfoot.isKeyDown("w")) setLocation(getX(), getY() - speed);
+        if(Greenfoot.isKeyDown("a")) setLocation(getX() - speed, getY());
+        if(Greenfoot.isKeyDown("s")) setLocation(getX(), getY() + speed);
+        if(Greenfoot.isKeyDown("d")) setLocation(getX() + speed, getY());
         
         //checks if the mouse is down (from "danpost" on Greenfoot)
         if(Greenfoot.mousePressed(null)) mouseDown = true;
@@ -82,7 +82,7 @@ public class Player extends SuperSmoothMover
             bullet.setRotation(getRotation());
             getWorld().addObject(bullet, getX(), getY());
             bullet.move(PLAYER_WIDTH / 2 + bullet.BULLET_WIDTH / 2);
-            currShootCD = PLAYER_SHOOT_CD;
+            currShootCD = shootCD;
             if(!unlimitedAmmo){
                 ammo--;
                 ammoDisplay.update(ammo);
@@ -125,24 +125,26 @@ public class Player extends SuperSmoothMover
     
     //setter methods
     
-    public void setMaxHP(int increase){
-        this.maxHP += increase;
+    public void setScore(int points){
+        score += points;
+        scoreDisplay.update(score);
     }
     
     public void setCurrHP(int currHP){
         this.currHP = currHP;
+        hpBar.update(currHP);
     }
     
     public void setSpeed(int increase){
-        this.speed += increase;
+        speed += increase;
     }
     
     public void setDmg(int increase){
-        this.dmg += increase;
+        dmg += increase;
     }
     
     public void setShootCD(int decrease){
-        this.shootCD -= decrease;
+        shootCD -= decrease;
     }
     
     public void setAmmo(int ammo){

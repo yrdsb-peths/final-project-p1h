@@ -28,8 +28,9 @@ public class GameWorld extends World
     private PowerupNotification powerupNotification;
     
     //declaring lists for the powerups
-    private ArrayList<Powerup> powerupsInPlay = new ArrayList<Powerup>();
-    private ArrayList<PowerupIcon> powerupIconsInPlay = new ArrayList<PowerupIcon>();
+    private ArrayList<Powerup> powerupDrops = new ArrayList<Powerup>();
+    private ArrayList<Powerup> activePowerups = new ArrayList<Powerup>();
+    private ArrayList<PowerupIcon> powerupIcons = new ArrayList<PowerupIcon>();
     
     //declaring instance variables
     private int numPool,decrTimer;
@@ -86,42 +87,66 @@ public class GameWorld extends World
     private void handlePowerups() {
         // Decide whether or not to spawn a powerup
         if (Greenfoot.getRandomNumber(POWERUP_FREQUENCY) == 0) {
-            int rdnPowerup = Greenfoot.getRandomNumber(6);
+            int rdnPowerup = Greenfoot.getRandomNumber(5);
             Powerup powerup = new Powerup();
             if (rdnPowerup == 0) powerup = new Damage(player);
             else if (rdnPowerup == 1) powerup = new FireRate(player);
             else if (rdnPowerup == 2) powerup = new Healing(player);
-            else if (rdnPowerup == 3) powerup = new MaxHP(player);
-            else if (rdnPowerup == 4) powerup = new MovementSpeed(player);
+            else if (rdnPowerup == 3) powerup = new MovementSpeed(player);
             else powerup = new UnlimitedAmmo(player);
-            powerupsInPlay.add(powerup);
-            if(powerup.needsIcon()) powerupIconsInPlay.add(new PowerupIcon(powerup));
+            powerupDrops.add(powerup);
+            //if(powerup.needsIcon()) powerupIcons.add(new PowerupIcon(powerup));
             
             // Spawn powerup
-            addObject(powerupsInPlay.get(powerupsInPlay.size() - 1), Greenfoot.getRandomNumber(getWidth()), Greenfoot.getRandomNumber(getHeight()));
+            addObject(powerupDrops.get(powerupDrops.size() - 1), Greenfoot.getRandomNumber(getWidth()), Greenfoot.getRandomNumber(getHeight()));
         }
         
         // Handle powerup collision with player
-        List<Powerup> puList = player.getIntersectingObjects();
-        for (Powerup i: puList) {
-            i.activate();
+        List<Powerup> powerupsPickedUp = player.getIntersectingObjects();
+        for (Powerup i: powerupsPickedUp) {
+            //checks if the powerup picked up is already active
+            String name = i.toString();
+            boolean active = false;
+            for(Powerup j: activePowerups){
+                if(j.toString().equals(name)){
+                    active = true;
+                    break;
+                }
+            }
+            if(active){ //if it is active, update its timer
+                for(PowerupIcon j: powerupIcons){
+                    if(j.getPowerup().toString().equals(name)){
+                        j.setTimeLeft(Powerup.LIFESPAN);
+                        break;
+                    }
+                }
+            }
+            else{ //if it is not active, activate it
+                if(i.needsIcon()){
+                    powerupIcons.add(new PowerupIcon(i));
+                    activePowerups.add(i);
+                }
+                i.activate();
+            }
             powerupNotification.setDisplay(i);
+            powerupDrops.remove(i);
             removeObject(i);
         }
         
-        // Spawn powerup icons
-        for (int i = 0; i < powerupIconsInPlay.size(); i++) {
-            if (puList.contains(powerupIconsInPlay.get(i).powerup)) {
-                addObject(powerupIconsInPlay.get(i), (int)(getWidth() - Powerup.PU_WIDTH * (i + 1) * 1.5), 100);
+        // Display powerup icons
+        for (int i = 0; i < powerupIcons.size(); i++) {
+            if (powerupsPickedUp.contains(powerupIcons.get(i).getPowerup())) {
+                addObject(powerupIcons.get(i), (int)(getWidth() - Powerup.PU_WIDTH * (i + 1) * 1.5), 100);
             }
         }
         // Remove icon if timer reached 0
-        for (PowerupIcon i : new ArrayList<PowerupIcon>(powerupIconsInPlay)) {
-            if (i.timeLeft == 0) {
+        for (PowerupIcon i : new ArrayList<PowerupIcon>(powerupIcons)) {
+            if (i.getTimeLeft() == 0) {
                 removeObject(i);
-                i.powerup.deactivate();
-                powerupsInPlay.remove(i.powerup);
-                powerupIconsInPlay.remove(i);
+                i.getPowerup().deactivate();
+                activePowerups.remove(i.getPowerup());
+                //powerupsInPlay.remove(i.getPowerup());
+                powerupIcons.remove(i);
             }
         }
     }

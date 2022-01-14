@@ -10,11 +10,11 @@ public class MovementSpeed extends Powerup
 {
     //declaring constants
     public static final int MS_BOOST = 2;
-    public static final Color MS_BOOST_COLOR = Color.MAGENTA;
+    public static final Color MS_BOOST_COLOR = Color.CYAN;
     
     public MovementSpeed(Player player){
         this.player = player;
-        super.draw(MS_BOOST_COLOR);
+        super.draw(PU_WIDTH, PU_HEIGHT, MS_BOOST_COLOR);
     }
     
     public void act() 

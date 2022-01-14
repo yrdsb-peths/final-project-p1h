@@ -21,10 +21,15 @@ public class Enemy extends SuperSmoothMover
     
     public void act() 
     {
-        if(currHP <= 0) getWorld().removeObject(this);
+        if(currHP <= 0){
+            target = getWorld().getObjects(Player.class).get(0); //(from Mr. Cohen)
+            Player player = (Player) target;
+            player.setScore(score); //give points to player
+            getWorld().removeObject(this); //enemy dies
+        }
         else{
             target = getOneIntersectingObject(Player.class);
-            if(target != null && currDelay == 0){
+            if(target != null && currDelay == 0){ //attack the player
                 Player player = (Player) target;
                 player.dealDmg(dmg);
                 currDelay = DELAY;
@@ -37,7 +42,6 @@ public class Enemy extends SuperSmoothMover
                 move(speed);
             }
             else currDelay--;
-            if(currHP <= 0) getWorld().removeObject(this);
         }
     }
     

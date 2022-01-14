@@ -13,7 +13,7 @@ public class Healing extends Powerup
     
     public Healing(Player player){
         this.player = player;
-        super.draw(HEALING_COLOR);
+        super.draw(PU_WIDTH, PU_HEIGHT, HEALING_COLOR);
     }
     
     public void act()
