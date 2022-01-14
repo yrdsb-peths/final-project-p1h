@@ -15,10 +15,13 @@ public class Bullet extends SuperSmoothMover
     
     //declaring bullet constants
     public static final int SPEED = 20;
-    public static final int DMG = 4;
+    
+    //declaring actors
+    Player player;
     
     //declaring instance variables
-    protected Class targetClass; //target class tracking (from Mr. Cohen)
+    private Class targetClass; //target class tracking (from Mr. Cohen)
+    private int dmg;
     
     public Bullet(){
         image = new GreenfootImage(BULLET_WIDTH + 1, BULLET_HEIGHT + 1); //creating the blank GreenfootImage used for the bullet
@@ -28,6 +31,8 @@ public class Bullet extends SuperSmoothMover
     
     public void act() 
     {
+        player = getWorld().getObjects(Player.class).get(0); //(from Mr. Cohen)
+        dmg = player.getDmg();
         move(SPEED); //moves the bullet forward
         if(collisionDetection() || isAtEdge()) getWorld().removeObject(this); //removes bullet if when it hits an object or leaves the screen
     }
@@ -51,10 +56,11 @@ public class Bullet extends SuperSmoothMover
                 }*/
                 //else{ //deals damage to the enemy if the laser hits the enemy
                     enemy = (Enemy) target;
-                    enemy.dealDmg(DMG);
+                    enemy.dealDmg(dmg);
+                    return true;
                 //}
             }
-            return true;
+            
         }
         return false;
     }

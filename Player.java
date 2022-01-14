@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class Player here.
@@ -16,10 +17,10 @@ public class Player extends SuperSmoothMover
     //declaring constants
     public static final int PLAYER_MAX_HP = 100;
     public static final int PLAYER_SPEED = 5;
+    public static final int PLAYER_DMG = 4;
     public static final int PLAYER_MAG_SIZE = 15;
     public static final int PLAYER_SHOOT_CD = 10;
     public static final int PLAYER_RELOAD_TIME = 60; //(number of acts)
-    public static final int PLAYER_DMG = 4;
     
     //declaring actors
     private StatBar hpBar;
@@ -27,10 +28,15 @@ public class Player extends SuperSmoothMover
     private AmmoDisplay ammoDisplay;
     
     //declaring instance variables
-    private int score;
-    private int currHP = PLAYER_MAX_HP;
-    private int ammo;
+    private int score = 0;
+    private int maxHP = PLAYER_MAX_HP;
+    private int currHP = maxHP;
+    private int speed = PLAYER_SPEED;
+    private int dmg = PLAYER_DMG;
+    private int shootCD = PLAYER_SHOOT_CD;
     private int currShootCD = 0;
+    private int ammo = PLAYER_MAG_SIZE;
+    private boolean unlimitedAmmo = false;
     private boolean reloading;
     private int reloadTimer = PLAYER_RELOAD_TIME;
     //declaring mouse tracker
@@ -42,10 +48,6 @@ public class Player extends SuperSmoothMover
         //drawing the player then setting the image for the player
         drawPlayer(PLAYER_WIDTH, PLAYER_HEIGHT);
         setImage(image);
-        
-        //resetting player score
-        score = 0;
-        ammo = PLAYER_MAG_SIZE;
         
         //creating the player's hp bar and score display
         hpBar = new StatBar(100, currHP, GameWorld.WORLD_WIDTH / 5, GameWorld.WORLD_HEIGHT / 30, PLAYER_HEIGHT, null, Color.GREEN, Color.RED, false, Color.BLUE, GameWorld.WORLD_HEIGHT / 180);
@@ -81,8 +83,10 @@ public class Player extends SuperSmoothMover
             getWorld().addObject(bullet, getX(), getY());
             bullet.move(PLAYER_WIDTH / 2 + bullet.BULLET_WIDTH / 2);
             currShootCD = PLAYER_SHOOT_CD;
-            ammo--;
-            ammoDisplay.update(ammo);
+            if(!unlimitedAmmo){
+                ammo--;
+                ammoDisplay.update(ammo);
+            }
         }
         currShootCD--; //update shoot cooldown
         
@@ -105,6 +109,49 @@ public class Player extends SuperSmoothMover
         currHP -= dmg;
         if(currHP < 0) currHP = 0;
         hpBar.update(currHP);
+    }
+    
+    public List<Powerup> getIntersectingObjects() {
+        return getIntersectingObjects(Powerup.class);
+    }
+    
+    public int getMaxHP(){
+        return maxHP;
+    }
+    
+    public int getDmg(){
+        return dmg;
+    }
+    
+    //setter methods
+    
+    public void setMaxHP(int increase){
+        this.maxHP += increase;
+    }
+    
+    public void setCurrHP(int currHP){
+        this.currHP = currHP;
+    }
+    
+    public void setSpeed(int increase){
+        this.speed += increase;
+    }
+    
+    public void setDmg(int increase){
+        this.dmg += increase;
+    }
+    
+    public void setShootCD(int decrease){
+        this.shootCD -= decrease;
+    }
+    
+    public void setAmmo(int ammo){
+        this.ammo = ammo;
+        ammoDisplay.update(ammo);
+    }
+    
+    public void setUnlimitedAmmo(boolean unlimitedAmmo){
+        this.unlimitedAmmo = unlimitedAmmo;
     }
     
     //method to draw the player
