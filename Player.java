@@ -9,12 +9,12 @@ import java.util.List;
  */
 public class Player extends SuperSmoothMover
 {
-    //declaring the player's dimensions and image
-    private GreenfootImage image;
-    public static final int PLAYER_WIDTH = GameWorld.WORLD_WIDTH / 20;
-    public static final int PLAYER_HEIGHT = PLAYER_WIDTH;
+    //declaring the player's dimensions and image to reference width and height
+    private static GreenfootImage image = new GreenfootImage("rifle/move/survivor-move_rifle_0.png");
+    public static final int PLAYER_WIDTH = image.getWidth() / 2;
+    public static final int PLAYER_HEIGHT = image.getHeight() / 2;
     
-    //declaring constants
+    //initializing constants
     public static final int PLAYER_MAX_HP = 100;
     public static final int PLAYER_SPEED = 5;
     public static final int PLAYER_DMG = 4;
@@ -43,11 +43,27 @@ public class Player extends SuperSmoothMover
     private MouseInfo mouse;
     private boolean mouseDown = false;
     
+    //declaring sprites
+    private GreenfootImage[] rifleMovingSprites = new GreenfootImage[20];
+    private GreenfootImage[] rifleReloadingSprites = new GreenfootImage[20];
+    
+    //declaring sprite information
+    private int rifleMovingSpriteNumber = 0;
+    private int rifleReloadingSpriteNumber = 0;
+    private boolean isMoving = false;
+    
     public Player(){
-        image = new GreenfootImage(PLAYER_WIDTH + 1, PLAYER_HEIGHT + 1); //creating the blank GreenfootImage used for the player
-        //drawing the player then setting the image for the player
-        drawPlayer(PLAYER_WIDTH, PLAYER_HEIGHT);
-        setImage(image);
+        //initialize sprites
+        for (int i = 0; i < rifleMovingSprites.length; i++) {
+            rifleMovingSprites[i] = new GreenfootImage("rifle/move/survivor-move_rifle_"+i+".png");
+            rifleMovingSprites[i].scale(rifleMovingSprites[i].getWidth() / 2, rifleMovingSprites[i].getHeight() / 2);
+        }
+        for (int i = 0; i < rifleReloadingSprites.length; i++) {
+            rifleReloadingSprites[i] = new GreenfootImage("rifle/reload/survivor-reload_rifle_"+i+".png");
+            rifleReloadingSprites[i].scale(rifleReloadingSprites[i].getWidth() / 2, rifleReloadingSprites[i].getHeight() / 2);
+        }
+        
+        setImage(rifleMovingSprites[0]); //setting the player's image
         
         //creating the player's hp bar and score display
         hpBar = new StatBar(100, currHP, GameWorld.WORLD_WIDTH / 5, GameWorld.WORLD_HEIGHT / 30, PLAYER_HEIGHT, null, Color.GREEN, Color.RED, false, Color.BLUE, GameWorld.WORLD_HEIGHT / 180);
@@ -66,31 +82,57 @@ public class Player extends SuperSmoothMover
     {
         mouse = Greenfoot.getMouseInfo(); //setting variable to track the mouse
         if(mouse != null) turnTowards(mouse.getX(), mouse.getY()); //making the player face the mouse
+        
         //movement
-        if(Greenfoot.isKeyDown("w")) setLocation(getX(), getY() - speed);
-        if(Greenfoot.isKeyDown("a")) setLocation(getX() - speed, getY());
-        if(Greenfoot.isKeyDown("s")) setLocation(getX(), getY() + speed);
-        if(Greenfoot.isKeyDown("d")) setLocation(getX() + speed, getY());
+        isMoving = false;
+        if(Greenfoot.isKeyDown("w")){
+            setLocation(getX(), getY() - speed);
+            isMoving = true;
+        }
+        if(Greenfoot.isKeyDown("a")) {
+            setLocation(getX() - speed, getY());
+            isMoving = true;
+        }
+        if(Greenfoot.isKeyDown("s")) {
+            setLocation(getX(), getY() + speed);
+            isMoving = true;
+        }
+        if(Greenfoot.isKeyDown("d")) {
+            setLocation(getX() + speed, getY());
+            isMoving = true;
+        }
         
         //checks if the mouse is down (from "danpost" on Greenfoot)
         if(Greenfoot.mousePressed(null)) mouseDown = true;
         else if(Greenfoot.mouseClicked(null)) mouseDown = false;
         
-        //shoots a bullet if the use presses the mouse button and the shoot cooldown has expired
+        //shoots a bullet and adds muzzle flash if the use presses the mouse button
         if(ammo > 0 && currShootCD <= 0 && mouseDown && !reloading){
-            Bullet bullet = new Bullet();
-            bullet.setRotation(getRotation());
-            getWorld().addObject(bullet, getX(), getY());
-            bullet.move(PLAYER_WIDTH / 2 + bullet.BULLET_WIDTH / 2);
             currShootCD = shootCD;
             if(!unlimitedAmmo){
                 ammo--;
                 ammoDisplay.update(ammo);
             }
+            //adds bullet
+            Bullet bullet = new Bullet();
+            bullet.setRotation(getRotation());
+            getWorld().addObject(bullet, getX(), getY());
+            bullet.move(PLAYER_WIDTH / 2 + bullet.BULLET_WIDTH / 3);
+            bullet.setRotation(bullet.getRotation() + 90);
+            bullet.move(30);
+            bullet.setRotation(bullet.getRotation() - 90);
+            //adds muzzle flash
+            MuzzleFlash muzzleFlash = new MuzzleFlash();
+            muzzleFlash.setRotation(getRotation());
+            getWorld().addObject(muzzleFlash, getX(), getY());
+            muzzleFlash.move(PLAYER_WIDTH / 2 + muzzleFlash.MUZZLE_FLASH_WIDTH / 3);
+            muzzleFlash.setRotation(muzzleFlash.getRotation() + 90);
+            muzzleFlash.move(30);
+            muzzleFlash.setRotation(muzzleFlash.getRotation() - 90);
         }
         currShootCD--; //update shoot cooldown
         
-        if(ammo <= 0 || Greenfoot.isKeyDown("r")) reloading = true; //reloads weapon if ammo runs out or if user presses "r"
+        if(ammo <= 0 || (Greenfoot.isKeyDown("r") && ammo < PLAYER_MAG_SIZE)) reloading = true; //reloads weapon if ammo runs out or if user presses "r"
         //reloads weapon
         if(reloading){
             reloadTimer--;
@@ -100,6 +142,27 @@ public class Player extends SuperSmoothMover
                 ammo = PLAYER_MAG_SIZE;
                 ammoDisplay.update(ammo);
             }
+        }
+        
+        handleSprites();
+    }
+    
+    //method to handle sprites
+    private void handleSprites() {
+        //adds reload animation
+        if (reloading) {
+            if (reloadTimer % 3 == 0) {
+                rifleReloadingSpriteNumber++;
+                if (rifleReloadingSpriteNumber == 20) rifleReloadingSpriteNumber = 0;
+            }
+            setImage(rifleReloadingSprites[rifleReloadingSpriteNumber]);
+            return;
+        }
+        //adds moving animation
+        if (isMoving) {
+            rifleMovingSpriteNumber++;
+            if (rifleMovingSpriteNumber == rifleMovingSprites.length) rifleMovingSpriteNumber = 0;
+            setImage(rifleMovingSprites[rifleMovingSpriteNumber]);
         }
     }
     
@@ -154,12 +217,5 @@ public class Player extends SuperSmoothMover
     
     public void setUnlimitedAmmo(boolean unlimitedAmmo){
         this.unlimitedAmmo = unlimitedAmmo;
-    }
-    
-    //method to draw the player
-    private void drawPlayer(int width, int height){
-        int[] xVertices = {0, width, 0};
-        int[] yVertices = {0, height / 2, height};
-        image.fillPolygon(xVertices, yVertices, 3);
     }
 }

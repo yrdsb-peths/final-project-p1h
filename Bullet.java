@@ -9,11 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Bullet extends SuperSmoothMover
 {
     //declaring the bullet's dimensions and image
-    private GreenfootImage image;
-    public static final int BULLET_WIDTH = GameWorld.WORLD_WIDTH / 15;
-    public static final int BULLET_HEIGHT = 10;
+    private static GreenfootImage image = new GreenfootImage("rifle/bullet.png");
+    public static final int BULLET_WIDTH = image.getWidth() / 6;
+    public static final int BULLET_HEIGHT = image.getHeight() / 6;
     
-    //declaring bullet constants
+    //initializing declaring bullet constants
     public static final int SPEED = 20;
     
     //declaring actors
@@ -24,8 +24,8 @@ public class Bullet extends SuperSmoothMover
     private int dmg;
     
     public Bullet(){
-        image = new GreenfootImage(BULLET_WIDTH + 1, BULLET_HEIGHT + 1); //creating the blank GreenfootImage used for the bullet
-        drawBullet(BULLET_WIDTH, BULLET_HEIGHT);
+        //setting the image of the bullet
+        image.scale(BULLET_WIDTH, BULLET_HEIGHT);
         setImage(image);
     }
     
@@ -63,10 +63,5 @@ public class Bullet extends SuperSmoothMover
             
         }
         return false;
-    }
-    
-    //method to draw the bullet
-    private void drawBullet(int width, int height){
-        image.drawLine(0, height / 2, width, height / 2);
     }
 }
