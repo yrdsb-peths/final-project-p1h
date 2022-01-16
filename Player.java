@@ -119,7 +119,7 @@ public class Player extends SuperSmoothMover
             getWorld().addObject(bullet, getX(), getY());
             bullet.move(PLAYER_WIDTH / 2 + bullet.BULLET_WIDTH / 3);
             bullet.setRotation(bullet.getRotation() + 90);
-            bullet.move(30);
+            bullet.move(PLAYER_HEIGHT * 29 / 100);
             bullet.setRotation(bullet.getRotation() - 90);
             //adds muzzle flash
             MuzzleFlash muzzleFlash = new MuzzleFlash();
@@ -127,7 +127,7 @@ public class Player extends SuperSmoothMover
             getWorld().addObject(muzzleFlash, getX(), getY());
             muzzleFlash.move(PLAYER_WIDTH / 2 + muzzleFlash.MUZZLE_FLASH_WIDTH / 3);
             muzzleFlash.setRotation(muzzleFlash.getRotation() + 90);
-            muzzleFlash.move(30);
+            muzzleFlash.move(PLAYER_HEIGHT * 3 / 10);
             muzzleFlash.setRotation(muzzleFlash.getRotation() - 90);
         }
         currShootCD--; //update shoot cooldown
