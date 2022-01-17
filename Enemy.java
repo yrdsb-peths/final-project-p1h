@@ -8,16 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Enemy extends SuperSmoothMover
 {
-    //declaring the player's image
-    protected GreenfootImage image;
-    
     //declaring instance variables
     protected Actor target;
     protected int score, currHP, dmg, speed, DELAY, currDelay; //enemy stats
-    protected int movingSpriteNum;
-    protected int attackingSpriteNum;
+    //sprites
     protected GreenfootImage[] movingSprites;
     protected GreenfootImage[] attackingSprites;
+    //sprite info
+    protected int movingSpriteNum = 0;
+    protected int attackingSpriteNum = 0;
+    
     public Enemy(){
         
     }
@@ -54,6 +54,7 @@ public class Enemy extends SuperSmoothMover
     }
     
     //setter methods
+    
     //method to deal damage to the enemy
     public void dealDmg(int dmg){
         currHP -= dmg;

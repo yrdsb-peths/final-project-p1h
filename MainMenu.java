@@ -33,9 +33,6 @@ public class MainMenu extends World
         addObject(playButton, getWidth() * 3 / 4, getHeight() * 2 / 3);
         instructionsButton = new Button("How to Play");
         addObject(instructionsButton, getWidth() * 3 / 4, getHeight() * 5 / 6);
-        
-        //initialize enemy sprites
-        EnemySprites.initializeSprites();
     }
     
     public void act()

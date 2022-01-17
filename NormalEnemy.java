@@ -8,9 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class NormalEnemy extends Enemy
 {
-    //declaring the normal enemy's dimensions
-    public static final int NORM_WIDTH = Player.PLAYER_WIDTH;
-    public static final int NORM_HEIGHT = Player.PLAYER_HEIGHT;
+    //declaring dimensions and image to reference width and height
+    private static GreenfootImage refImage = new GreenfootImage("normal/move/saunter0.png");
+    public static final int NORM_WIDTH = refImage.getWidth() * 2;
+    public static final int NORM_HEIGHT = refImage.getHeight() * 2;
     
     //initializing constants
     public static final int NORM_SCORE = 50; //score the player gets after killing this enemy
@@ -19,18 +20,25 @@ public class NormalEnemy extends Enemy
     public static final int NORM_SPEED = 2;
     public static final int NORM_DELAY = 30;
     
-    //initializing sprites
-    public static final GreenfootImage[] MOVING_SPRITES = EnemySprites.normalEnemyMovingSprites;
-    public static final GreenfootImage[] ATTACKING_SPRITES = EnemySprites.normalEnemyAttackingSprites;
-    public static final int MOVING_SPRITE_NUM = 0;
-    public static final int ATTACKING_SPRITE_NUM = 0;
+    //declaring sprites
+    private GreenfootImage[] normMovingSprites = new GreenfootImage[32];
+    private GreenfootImage[] normAttackingSprites = new GreenfootImage[20];
     
     public NormalEnemy(){
         super();
-        //setting the image for the normal enemy
-        //image = drawNormalEnemy(NORM_WIDTH, NORM_HEIGHT);
-        image = MOVING_SPRITES[0];
-        setImage(image);
+        
+        //initializing sprites
+        for (int i = 0; i < normMovingSprites.length; i++) {
+            normMovingSprites[i] = new GreenfootImage("normal/move/saunter" + i + ".png");
+            normMovingSprites[i].scale(NORM_WIDTH, NORM_HEIGHT);
+        }
+        for (int i = 0; i < normAttackingSprites.length; i++) {
+            normAttackingSprites[i] = new GreenfootImage("normal/attack1/attack01_" + i + ".png");
+            normAttackingSprites[i].scale(NORM_WIDTH, NORM_HEIGHT);
+        }
+        
+        setImage(normMovingSprites[0]); //setting the normal enemy's image
+        
         //setting variables
         score = NORM_SCORE;
         currHP = NORM_HP;
@@ -38,10 +46,8 @@ public class NormalEnemy extends Enemy
         speed = NORM_SPEED;
         DELAY = NORM_DELAY;
         currDelay = 0;
-        movingSprites = MOVING_SPRITES;
-        attackingSprites = ATTACKING_SPRITES;
-        movingSpriteNum = MOVING_SPRITE_NUM;
-        attackingSpriteNum = ATTACKING_SPRITE_NUM;
+        movingSprites = normMovingSprites;
+        attackingSprites = normAttackingSprites;
     }
     
     public void act() 
