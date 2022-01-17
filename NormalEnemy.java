@@ -19,10 +19,17 @@ public class NormalEnemy extends Enemy
     public static final int NORM_SPEED = 2;
     public static final int NORM_DELAY = 30;
     
+    //initializing sprites
+    public static final GreenfootImage[] MOVING_SPRITES = EnemySprites.normalEnemyMovingSprites;
+    public static final GreenfootImage[] ATTACKING_SPRITES = EnemySprites.normalEnemyAttackingSprites;
+    public static final int MOVING_SPRITE_NUM = 0;
+    public static final int ATTACKING_SPRITE_NUM = 0;
+    
     public NormalEnemy(){
         super();
         //setting the image for the normal enemy
-        image = drawNormalEnemy(NORM_WIDTH, NORM_HEIGHT);
+        //image = drawNormalEnemy(NORM_WIDTH, NORM_HEIGHT);
+        image = MOVING_SPRITES[0];
         setImage(image);
         //setting variables
         score = NORM_SCORE;
@@ -31,6 +38,10 @@ public class NormalEnemy extends Enemy
         speed = NORM_SPEED;
         DELAY = NORM_DELAY;
         currDelay = 0;
+        movingSprites = MOVING_SPRITES;
+        attackingSprites = ATTACKING_SPRITES;
+        movingSpriteNum = MOVING_SPRITE_NUM;
+        attackingSpriteNum = ATTACKING_SPRITE_NUM;
     }
     
     public void act() 

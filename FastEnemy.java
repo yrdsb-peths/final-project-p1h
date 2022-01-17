@@ -19,10 +19,17 @@ public class FastEnemy extends Enemy
     public static final int FAST_SPEED = 8;
     public static final int FAST_DELAY = 10;
     
+    //initializing sprites
+    private static final GreenfootImage[] MOVING_SPRITES = EnemySprites.fastEnemyMovingSprites;
+    private static final GreenfootImage[] ATTACKING_SPRITES = EnemySprites.fastEnemyAttackingSprites;
+    private static final int MOVING_SPRITE_NUM = 0;
+    private static final int ATTACKING_SPRITE_NUM = 0;
+    
     public FastEnemy(){
         super();
         //setting the image for the fast enemy
-        image = drawFastEnemy(FAST_WIDTH, FAST_HEIGHT);
+        //image = drawFastEnemy(FAST_WIDTH, FAST_HEIGHT);
+        image = MOVING_SPRITES[0];
         setImage(image);
         //setting variables
         score = FAST_SCORE;
@@ -31,6 +38,10 @@ public class FastEnemy extends Enemy
         speed = FAST_SPEED;
         DELAY = FAST_DELAY;
         currDelay = 0;
+        movingSprites = MOVING_SPRITES;
+        attackingSprites = ATTACKING_SPRITES;
+        movingSpriteNum = MOVING_SPRITE_NUM;
+        attackingSpriteNum = ATTACKING_SPRITE_NUM;
     }
     
     public void act() 

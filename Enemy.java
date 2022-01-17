@@ -14,7 +14,10 @@ public class Enemy extends SuperSmoothMover
     //declaring instance variables
     protected Actor target;
     protected int score, currHP, dmg, speed, DELAY, currDelay; //enemy stats
-    
+    protected int movingSpriteNum;
+    protected int attackingSpriteNum;
+    protected GreenfootImage[] movingSprites;
+    protected GreenfootImage[] attackingSprites;
     public Enemy(){
         
     }
@@ -39,7 +42,12 @@ public class Enemy extends SuperSmoothMover
                 target = getWorld().getObjects(Player.class).get(0); //(from Mr. Cohen)
                 Player player = (Player) target;
                 turnTowards(player.getX(), player.getY());
+                movingSpriteNum++;
                 move(speed);
+                if (movingSpriteNum == movingSprites.length) {
+                    movingSpriteNum = 0;
+                }
+                setImage(movingSprites[movingSpriteNum]);
             }
             else currDelay--;
         }

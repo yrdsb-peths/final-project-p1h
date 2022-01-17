@@ -19,10 +19,17 @@ public class StrongEnemy extends Enemy
     public static final int STR_SPEED = 4;
     public static final int STR_DELAY = 45;
     
+    //initializing sprites
+    private static final GreenfootImage[] MOVING_SPRITES = EnemySprites.strongEnemyMovingSprites;
+    private static final GreenfootImage[] ATTACKING_SPRITES = EnemySprites.strongEnemyAttackingSprites;
+    private static final int MOVING_SPRITE_NUM = 0;
+    private static final int ATTACKING_SPRITE_NUM = 0;
+    
     public StrongEnemy(){
         super();
         //setting the image for the strong enemy
-        image = drawStrongEnemy(STR_WIDTH, STR_HEIGHT);
+        //image = drawStrongEnemy(STR_WIDTH, STR_HEIGHT);
+        image = MOVING_SPRITES[0];
         setImage(image);
         //setting variables
         score = STR_SCORE;
@@ -31,6 +38,10 @@ public class StrongEnemy extends Enemy
         speed = STR_SPEED;
         DELAY = STR_DELAY;
         currDelay = 0;
+        movingSprites = MOVING_SPRITES;
+        attackingSprites = ATTACKING_SPRITES;
+        movingSpriteNum = MOVING_SPRITE_NUM;
+        attackingSpriteNum = ATTACKING_SPRITE_NUM;
     }
     
     public void act() 

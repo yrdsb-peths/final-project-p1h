@@ -18,7 +18,7 @@ public class MainMenu extends World
     //declaring actors
     private Button playButton, instructionsButton;
     private String title = "The Horde";
-
+    
     public MainMenu()
     {    
         // Create a new world with MENU_WIDTH * MENU_HEIGHT cells with a cell size of 1x1 pixels.
@@ -33,6 +33,9 @@ public class MainMenu extends World
         addObject(playButton, getWidth() * 3 / 4, getHeight() * 2 / 3);
         instructionsButton = new Button("How to Play");
         addObject(instructionsButton, getWidth() * 3 / 4, getHeight() * 5 / 6);
+        
+        //initialize enemy sprites
+        EnemySprites.initializeSprites();
     }
     
     public void act()
