@@ -48,8 +48,8 @@ public class Player extends SuperSmoothMover
     private GreenfootImage[] rifleReloadingSprites = new GreenfootImage[20];
     
     //declaring sprite information
-    private int rifleMovingSpriteNumber = 0;
-    private int rifleReloadingSpriteNumber = 0;
+    private int rifleMovingSpriteNum = 0;
+    private int rifleReloadingSpriteNum = 0;
     private boolean isMoving = false;
     
     public Player(){
@@ -132,7 +132,11 @@ public class Player extends SuperSmoothMover
         }
         currShootCD--; //update shoot cooldown
         
-        if(ammo <= 0 || (Greenfoot.isKeyDown("r") && ammo < PLAYER_MAG_SIZE)) reloading = true; //reloads weapon if ammo runs out or if user presses "r"
+         //reloads weapon if ammo runs out or if user presses "r"
+        if((ammo <= 0 || (Greenfoot.isKeyDown("r") && ammo < PLAYER_MAG_SIZE)) && !reloading){
+            reloading = true;
+            rifleReloadingSpriteNum = 0;
+        }
         //reloads weapon
         if(reloading){
             reloadTimer--;
@@ -145,6 +149,8 @@ public class Player extends SuperSmoothMover
         }
         
         handleSprites();
+        
+        if(currHP <= 0) Greenfoot.setWorld(new EndScreen());
     }
     
     //method to handle sprites
@@ -152,17 +158,16 @@ public class Player extends SuperSmoothMover
         //adds reload animation
         if (reloading) {
             if (reloadTimer % 3 == 0) {
-                rifleReloadingSpriteNumber++;
-                if (rifleReloadingSpriteNumber == 20) rifleReloadingSpriteNumber = 0;
+                if(rifleReloadingSpriteNum < 19) rifleReloadingSpriteNum++;
             }
-            setImage(rifleReloadingSprites[rifleReloadingSpriteNumber]);
+            setImage(rifleReloadingSprites[rifleReloadingSpriteNum]);
             return;
         }
         //adds moving animation
         if (isMoving) {
-            rifleMovingSpriteNumber++;
-            if (rifleMovingSpriteNumber == rifleMovingSprites.length) rifleMovingSpriteNumber = 0;
-            setImage(rifleMovingSprites[rifleMovingSpriteNumber]);
+            rifleMovingSpriteNum++;
+            if (rifleMovingSpriteNum == rifleMovingSprites.length) rifleMovingSpriteNum = 0;
+            setImage(rifleMovingSprites[rifleMovingSpriteNum]);
         }
     }
     
