@@ -14,7 +14,7 @@ public class Bullet extends SuperSmoothMover
     public static final int BULLET_HEIGHT = image.getHeight() / 6;
     
     //initializing declaring bullet constants
-    public static final int SPEED = 20;
+    public static final int SPEED = 25;
     
     //declaring actors
     Player player;

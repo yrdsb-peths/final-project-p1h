@@ -9,10 +9,10 @@ import java.util.List;
  */
 public class Player extends SuperSmoothMover
 {
-    //declaring the player's dimensions and image to reference width and height
-    private static GreenfootImage image = new GreenfootImage("rifle/move/survivor-move_rifle_0.png");
-    public static final int PLAYER_WIDTH = image.getWidth() / 2;
-    public static final int PLAYER_HEIGHT = image.getHeight() / 2;
+    //declaring dimensions and image to reference width and height
+    private static GreenfootImage refImage = new GreenfootImage("rifle/move/survivor-move_rifle_0.png");
+    public static final int PLAYER_WIDTH = refImage.getWidth() / 2;
+    public static final int PLAYER_HEIGHT = refImage.getHeight() / 2;
     
     //initializing constants
     public static final int PLAYER_MAX_HP = 100;
@@ -29,6 +29,7 @@ public class Player extends SuperSmoothMover
     
     //declaring instance variables
     private int score = 0;
+    //stats
     private int maxHP = PLAYER_MAX_HP;
     private int currHP = maxHP;
     private int speed = PLAYER_SPEED;
@@ -39,15 +40,13 @@ public class Player extends SuperSmoothMover
     private boolean unlimitedAmmo = false;
     private boolean reloading;
     private int reloadTimer = PLAYER_RELOAD_TIME;
-    //declaring mouse tracker
+    //mouse tracker
     private MouseInfo mouse;
     private boolean mouseDown = false;
-    
-    //declaring sprites
+    //sprites
     private GreenfootImage[] rifleMovingSprites = new GreenfootImage[20];
     private GreenfootImage[] rifleReloadingSprites = new GreenfootImage[20];
-    
-    //declaring sprite information
+    //sprite info
     private int rifleMovingSpriteNum = 0;
     private int rifleReloadingSpriteNum = 0;
     private boolean isMoving = false;
@@ -56,11 +55,11 @@ public class Player extends SuperSmoothMover
         //initialize sprites
         for (int i = 0; i < rifleMovingSprites.length; i++) {
             rifleMovingSprites[i] = new GreenfootImage("rifle/move/survivor-move_rifle_"+i+".png");
-            rifleMovingSprites[i].scale(rifleMovingSprites[i].getWidth() / 2, rifleMovingSprites[i].getHeight() / 2);
+            rifleMovingSprites[i].scale(PLAYER_WIDTH, PLAYER_HEIGHT);
         }
         for (int i = 0; i < rifleReloadingSprites.length; i++) {
             rifleReloadingSprites[i] = new GreenfootImage("rifle/reload/survivor-reload_rifle_"+i+".png");
-            rifleReloadingSprites[i].scale(rifleReloadingSprites[i].getWidth() / 2, rifleReloadingSprites[i].getHeight() / 2);
+            rifleReloadingSprites[i].scale(PLAYER_WIDTH, PLAYER_HEIGHT);
         }
         
         setImage(rifleMovingSprites[0]); //setting the player's image

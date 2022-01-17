@@ -18,7 +18,7 @@ public class MainMenu extends World
     //declaring actors
     private Button playButton, instructionsButton;
     private String title = "The Horde";
-
+    
     public MainMenu()
     {    
         // Create a new world with MENU_WIDTH * MENU_HEIGHT cells with a cell size of 1x1 pixels.

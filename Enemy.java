@@ -8,12 +8,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Enemy extends SuperSmoothMover
 {
-    //declaring the player's image
-    protected GreenfootImage image;
-    
     //declaring instance variables
     protected Actor target;
     protected int score, currHP, dmg, speed, DELAY, currDelay; //enemy stats
+    //sprites
+    protected GreenfootImage[] movingSprites;
+    protected GreenfootImage[] attackingSprites;
+    //sprite info
+    protected int movingSpriteNum = 0;
+    protected int attackingSpriteNum = 0;
     
     public Enemy(){
         
@@ -39,13 +42,19 @@ public class Enemy extends SuperSmoothMover
                 target = getWorld().getObjects(Player.class).get(0); //(from Mr. Cohen)
                 Player player = (Player) target;
                 turnTowards(player.getX(), player.getY());
+                movingSpriteNum++;
                 move(speed);
+                if (movingSpriteNum == movingSprites.length) {
+                    movingSpriteNum = 0;
+                }
+                setImage(movingSprites[movingSpriteNum]);
             }
             else currDelay--;
         }
     }
     
     //setter methods
+    
     //method to deal damage to the enemy
     public void dealDmg(int dmg){
         currHP -= dmg;
