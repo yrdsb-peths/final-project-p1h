@@ -12,6 +12,8 @@ public class MovementSpeed extends Powerup
     public static final int MS_BOOST = 2;
     public static final Color MS_BOOST_COLOR = Color.CYAN;
     
+    private int timeLeft = Powerup.LIFESPAN;
+    
     public MovementSpeed(Player player){
         this.player = player;
         super.draw(PU_WIDTH, PU_HEIGHT, MS_BOOST_COLOR);
@@ -19,7 +21,10 @@ public class MovementSpeed extends Powerup
     
     public void act() 
     {
-        
+        if (timeLeft == 0) {
+            getWorld().removeObject(this);
+        }
+        timeLeft--;
     }    
     
     public void activate(){

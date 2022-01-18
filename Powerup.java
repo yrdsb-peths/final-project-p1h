@@ -14,7 +14,8 @@ public class Powerup extends Actor
     protected GreenfootImage image;
     
     //declaring constants
-    public static final int LIFESPAN = 500;
+    public static final int LIFESPAN = 500; //how long the powerup lasts in the world
+    public static final int DURATION = 500; //how long its effect lasts
     
     //declaring instance variables
     protected Player player;

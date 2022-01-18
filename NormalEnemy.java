@@ -36,7 +36,7 @@ public class NormalEnemy extends Enemy
         }
         for (int i = 0; i < normAttackingSprites.length; i++) {
             normAttackingSprites[i] = new GreenfootImage("normal/attack2/attack02_" + i + ".png");
-            normAttackingSprites[i].scale(NORM_WIDTH, NORM_HEIGHT);
+            normAttackingSprites[i].scale(refImage.getWidth()*4, refImage.getWidth()*4);
         }
         
         setImage(normMovingSprites[0]); //setting the normal enemy's image

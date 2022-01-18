@@ -11,6 +11,8 @@ public class Healing extends Powerup
     //declaring constant
     public static final Color HEALING_COLOR = Color.GREEN;
     
+    private int timeLeft = Powerup.LIFESPAN;
+    
     public Healing(Player player){
         this.player = player;
         super.draw(PU_WIDTH, PU_HEIGHT, HEALING_COLOR);
@@ -18,7 +20,10 @@ public class Healing extends Powerup
     
     public void act()
     {
-        
+        if (timeLeft == 0) {
+            getWorld().removeObject(this);
+        }
+        timeLeft--;
     }
     
     public void activate(){
