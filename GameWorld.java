@@ -14,6 +14,9 @@ public class GameWorld extends World
     public static final int WORLD_WIDTH = 960;
     public static final int WORLD_HEIGHT = 540;
     
+    //declaring background variables
+    private GreenfootImage bgImage = new GreenfootImage("background.jpg");
+    
     //initializing constants
     public static final int START_NUM_POOL = 180; //smaller the pool the larger the chance to spawn an enemy
     public static final int END_NUM_POOL = 90;
@@ -39,6 +42,9 @@ public class GameWorld extends World
     {   
         // Create a new world with WORLD_WIDTH * WORLD_HEIGHT cells with a cell size of 1x1 pixels.
         super(WORLD_WIDTH, WORLD_HEIGHT, 1);
+        
+        //seting background
+        setBackground(bgImage);
         
         //initializing instance variables
         numPool = START_NUM_POOL;

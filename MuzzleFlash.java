@@ -33,7 +33,7 @@ public class MuzzleFlash extends SuperSmoothMover
         setRotation(player.getRotation());
         move(Player.PLAYER_WIDTH / 2 + MUZZLE_FLASH_WIDTH / 3);
         setRotation(getRotation() + 90);
-        move(Player.PLAYER_HEIGHT * 3 / 10);
+        move(Player.PLAYER_HEIGHT / 4);
         setRotation(getRotation() - 90);
         
         //fade out effect

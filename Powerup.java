@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Powerup extends Actor
 {
     //declaring the powerup's dimensions and image
-    public static final int PU_WIDTH = GameWorld.WORLD_WIDTH / 60;
+    public static final int PU_WIDTH = GameWorld.WORLD_WIDTH / 50;
     public static final int PU_HEIGHT = PU_WIDTH;
     protected GreenfootImage image;
     
