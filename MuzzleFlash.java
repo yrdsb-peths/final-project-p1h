@@ -30,7 +30,7 @@ public class MuzzleFlash extends SuperSmoothMover
         //follow rifle
         player = getWorld().getObjects(Player.class).get(0); //(from Mr. Cohen)
         setLocation(player.getX(), player.getY());
-        setRotation(getRotation());
+        setRotation(player.getRotation());
         move(Player.PLAYER_WIDTH / 2 + MUZZLE_FLASH_WIDTH / 3);
         setRotation(getRotation() + 90);
         move(Player.PLAYER_HEIGHT * 3 / 10);
