@@ -18,7 +18,9 @@ public class FastEnemy extends Enemy
     public static final int FAST_HP = 8;
     public static final int FAST_DMG = 3;
     public static final int FAST_SPEED = 8;
+    public static final int FAST_DURATION = 10;
     public static final int FAST_DELAY = 10;
+    public static final int FAST_DMG_SPRITE_NUM = 4;
     
     //declaring sprites
     private GreenfootImage[] fastMovingSprites = new GreenfootImage[8];
@@ -44,8 +46,9 @@ public class FastEnemy extends Enemy
         currHP = FAST_HP;
         dmg = FAST_DMG;
         speed = FAST_SPEED;
-        DELAY = FAST_DELAY;
-        currDelay = 0;
+        duration = FAST_DURATION;
+        delay = FAST_DELAY;
+        dmgSpriteNum = FAST_DMG_SPRITE_NUM;
         movingSprites = fastMovingSprites;
         attackingSprites = fastAttackingSprites;
     }

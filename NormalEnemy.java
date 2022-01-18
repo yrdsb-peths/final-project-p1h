@@ -18,7 +18,9 @@ public class NormalEnemy extends Enemy
     public static final int NORM_HP = 4;
     public static final int NORM_DMG = 3;
     public static final int NORM_SPEED = 2;
+    public static final int NORM_DURATION = 30;
     public static final int NORM_DELAY = 30;
+    public static final int NORM_DMG_SPRITE_NUM = 11;
     
     //declaring sprites
     private GreenfootImage[] normMovingSprites = new GreenfootImage[32];
@@ -44,8 +46,9 @@ public class NormalEnemy extends Enemy
         currHP = NORM_HP;
         dmg = NORM_DMG;
         speed = NORM_SPEED;
-        DELAY = NORM_DELAY;
-        currDelay = 0;
+        duration = NORM_DURATION;
+        delay = NORM_DELAY;
+        dmgSpriteNum = NORM_DMG_SPRITE_NUM;
         movingSprites = normMovingSprites;
         attackingSprites = normAttackingSprites;
     }

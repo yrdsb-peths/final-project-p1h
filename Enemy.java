@@ -10,7 +10,9 @@ public class Enemy extends SuperSmoothMover
 {
     //declaring instance variables
     protected Actor target;
-    protected int score, currHP, dmg, speed, DELAY, currDelay; //enemy stats
+    protected int score, currHP, dmg, speed, duration, currDuration = 0, delay, currDelay = 0; //enemy stats
+    protected int dmgSpriteNum;
+    protected boolean attacking = false, dmgDealt = false;
     //sprites
     protected GreenfootImage[] movingSprites;
     protected GreenfootImage[] attackingSprites;
@@ -30,12 +32,33 @@ public class Enemy extends SuperSmoothMover
             player.setScore(score); //give points to player
             getWorld().removeObject(this); //enemy dies
         }
-        else{
+        else if(attacking){
+            currDuration++;
+            //manages animation depending on the duration of the attack
+            if((int)((double)currDuration % ((double)duration / attackingSprites.length)) == 0 && attackingSpriteNum < attackingSprites.length - 1) attackingSpriteNum++;
+            setImage(attackingSprites[attackingSpriteNum]);
             target = getOneIntersectingObject(Player.class);
-            if(target != null && currDelay == 0){ //attack the player
+            //check if the enemy is at the animation frame that does dmg to the player
+            if(target != null && !dmgDealt && attackingSpriteNum == dmgSpriteNum){
                 Player player = (Player) target;
                 player.dealDmg(dmg);
-                currDelay = DELAY;
+                currDelay = delay;
+                dmgDealt = true;
+            }
+            //checks if the enemy has finished its attack
+            if(currDuration == duration){
+                attacking = false;
+                dmgDealt = false;
+                currDuration = 0;
+                attackingSpriteNum = 0;
+            }
+        }
+        else{
+            target = getOneIntersectingObject(Player.class);
+            //checks if the enemy can attack the player
+            if(target != null && currDelay == 0){
+                attacking = true;
+                setImage(attackingSprites[attackingSpriteNum]);
             }
             else if(currDelay == 0){
                 //turn towards the player
