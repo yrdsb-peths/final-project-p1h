@@ -20,13 +20,13 @@ public class PowerupIcon extends Actor
     
     public PowerupIcon(Powerup powerup){
         image = new GreenfootImage(PU_ICON_WIDTH, PU_ICON_HEIGHT);
-        timeLeft = Powerup.LIFESPAN;
+        timeLeft = Powerup.DURATION;
         this.powerup = powerup;
     }
     
     public void act() 
     {
-        timeLeft -= 1;
+        timeLeft--;
         drawPowerupIcon(PU_ICON_WIDTH, PU_ICON_HEIGHT);
     }
     

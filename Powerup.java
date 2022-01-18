@@ -14,18 +14,20 @@ public class Powerup extends Actor
     protected GreenfootImage image;
     
     //declaring constants
-    public static final int LIFESPAN = 500; //how long the powerup lasts in the world
-    public static final int DURATION = 500; //how long its effect lasts
+    public static final int LIFESPAN = 300; //how long the powerup lasts in the world
+    public static final int DURATION = 600; //how long its effect lasts
     
     //declaring instance variables
     protected Player player;
+    protected int timeLeft = LIFESPAN;
     
     public Powerup(){
         image = new GreenfootImage(PU_WIDTH + 1, PU_HEIGHT + 1);
     }
     
     public void act(){
-        
+        timeLeft--;
+        if (timeLeft == 0) getWorld().removeObject(this);
     }
     
     //method to activate the powerup benefits

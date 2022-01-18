@@ -11,8 +11,6 @@ public class UnlimitedAmmo extends Powerup
     //declaring constant 
     public static final Color UNLIMITED_AMMO_COLOR = Color.ORANGE;
     
-    private int timeLeft = Powerup.LIFESPAN;
-    
     public UnlimitedAmmo(Player player){
         this.player = player;
         super.draw(PU_WIDTH, PU_HEIGHT, UNLIMITED_AMMO_COLOR);
@@ -20,10 +18,7 @@ public class UnlimitedAmmo extends Powerup
     
     public void act()
     {
-        if (timeLeft == 0) {
-            getWorld().removeObject(this);
-        }
-        timeLeft--;
+        super.act();
     }    
     
     public void activate(){

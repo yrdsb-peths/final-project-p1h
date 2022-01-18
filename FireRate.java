@@ -12,8 +12,6 @@ public class FireRate extends Powerup
     public static final int FR_BOOST = 2;
     public static final Color FR_BOOST_COLOR = Color.YELLOW;
     
-    private int timeLeft = Powerup.LIFESPAN;
-    
     public FireRate(Player player){
         this.player = player;
         super.draw(PU_WIDTH, PU_HEIGHT, FR_BOOST_COLOR);
@@ -21,10 +19,7 @@ public class FireRate extends Powerup
     
     public void act() 
     {
-        if (timeLeft == 0) {
-            getWorld().removeObject(this);
-        }
-        timeLeft--;
+        super.act();
     }    
     
     public void activate(){

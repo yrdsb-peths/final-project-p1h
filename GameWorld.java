@@ -116,7 +116,7 @@ public class GameWorld extends World
             if(active){ //if it is active, update its timer
                 for(PowerupIcon j: powerupIcons){
                     if(j.getPowerup().toString().equals(name)){
-                        j.setTimeLeft(Powerup.LIFESPAN);
+                        j.setTimeLeft(Powerup.DURATION);
                         break;
                     }
                 }
@@ -145,7 +145,6 @@ public class GameWorld extends World
                 removeObject(i);
                 i.getPowerup().deactivate();
                 activePowerups.remove(i.getPowerup());
-                //powerupsInPlay.remove(i.getPowerup());
                 powerupIcons.remove(i);
             }
         }
