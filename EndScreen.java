@@ -12,6 +12,12 @@ public class EndScreen extends World
     public static final int ENDING_WIDTH = GameWorld.WORLD_WIDTH;
     public static final int ENDING_HEIGHT = GameWorld.WORLD_HEIGHT;
     
+    //declaring background variables
+    private GreenfootImage bgImage;
+    public static final Font ENDING_TITLE_FONT = MainMenu.MENU_TITLE_FONT;
+    public static final Color ENDING_TITLE_COLOR = MainMenu.MENU_TITLE_COLOR;
+    private String title = "You Died";
+    
     //declaring actors
     private Button backButton;
     
@@ -19,6 +25,15 @@ public class EndScreen extends World
     {    
         // Create a new world with ENDING_WIDTH*ENDING_HEIGHT cells with a cell size of 1x1 pixels.
         super(ENDING_WIDTH, ENDING_HEIGHT, 1);
+        
+        //drawing background
+        bgImage = new GreenfootImage(getWidth() + 1, getHeight() + 1);
+        bgImage.setColor(Color.WHITE);
+        bgImage.fill();
+        bgImage.setColor(ENDING_TITLE_COLOR);
+        bgImage.setFont(ENDING_TITLE_FONT);
+        bgImage.drawString(title, (getWidth() - (int)(title.length() * ENDING_TITLE_FONT.getSize() * 0.58)) / 2, getHeight() / 2);
+        setBackground(bgImage);
         
         //add button
         backButton = new Button("Back");
