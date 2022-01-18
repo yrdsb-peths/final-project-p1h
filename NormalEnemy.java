@@ -10,14 +10,14 @@ public class NormalEnemy extends Enemy
 {
     //declaring dimensions and image to reference width and height
     private static GreenfootImage refImage = new GreenfootImage("normal/move/saunter0.png");
-    public static final int NORM_WIDTH = refImage.getWidth() * 2;
-    public static final int NORM_HEIGHT = refImage.getHeight() * 2;
+    public static final int NORM_WIDTH = refImage.getWidth() * 4 / 3;
+    public static final int NORM_HEIGHT = refImage.getHeight() * 4 / 3;
     
     //initializing constants
     public static final int NORM_SCORE = 50; //score the player gets after killing this enemy
     public static final int NORM_HP = 4;
     public static final int NORM_DMG = 3;
-    public static final int NORM_SPEED = 2;
+    public static final int NORM_SPEED = 1;
     public static final int NORM_ATTACK_DURATION = 30;
     public static final int NORM_ATTACK_DELAY = 30;
     public static final int NORM_DMG_SPRITE_NUM = 11;
@@ -37,7 +37,7 @@ public class NormalEnemy extends Enemy
         }
         for (int i = 0; i < normAttackingSprites.length; i++) {
             normAttackingSprites[i] = new GreenfootImage("normal/attack2/attack02_" + i + ".png");
-            normAttackingSprites[i].scale(refImage.getWidth()*4, refImage.getWidth()*4);
+            normAttackingSprites[i].scale(NORM_WIDTH, NORM_HEIGHT);
         }
         
         setImage(normMovingSprites[0]); //setting the normal enemy's image

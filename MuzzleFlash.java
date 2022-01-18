@@ -10,8 +10,8 @@ public class MuzzleFlash extends SuperSmoothMover
 {
     //declaring the muzzle flash's dimensions and image
     private static GreenfootImage image = new GreenfootImage("rifle/muzzle_flash.png");
-    public static final int MUZZLE_FLASH_WIDTH = image.getWidth() / 2;
-    public static final int MUZZLE_FLASH_HEIGHT = image.getHeight() / 2;
+    public static final int MUZZLE_FLASH_WIDTH = image.getWidth() / 3;
+    public static final int MUZZLE_FLASH_HEIGHT = image.getHeight() / 3;
     
     //declaring actors
     Player player;

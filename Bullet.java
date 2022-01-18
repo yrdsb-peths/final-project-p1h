@@ -10,8 +10,8 @@ public class Bullet extends SuperSmoothMover
 {
     //declaring the bullet's dimensions and image
     private static GreenfootImage image = new GreenfootImage("rifle/bullet.png");
-    public static final int BULLET_WIDTH = image.getWidth() / 6;
-    public static final int BULLET_HEIGHT = image.getHeight() / 6;
+    public static final int BULLET_WIDTH = image.getWidth() / 8;
+    public static final int BULLET_HEIGHT = image.getHeight() / 8;
     
     //initializing declaring bullet constants
     public static final int SPEED = 25;

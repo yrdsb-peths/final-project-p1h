@@ -9,12 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Powerup extends Actor
 {
     //declaring the powerup's dimensions and image
-    public static final int PU_WIDTH = GameWorld.WORLD_WIDTH / 48;
+    public static final int PU_WIDTH = GameWorld.WORLD_WIDTH / 60;
     public static final int PU_HEIGHT = PU_WIDTH;
     protected GreenfootImage image;
     
     //declaring constants
-    public static final int LIFESPAN = 300; //how long the powerup lasts in the world
+    public static final int LIFESPAN = 480; //how long the powerup lasts in the world
     public static final int DURATION = 600; //how long its effect lasts
     
     //declaring instance variables
@@ -57,10 +57,10 @@ public class Powerup extends Actor
     
     //method to draw the powerup
     public void draw(int width, int height, Color color){
-        image.setColor(Color.GRAY);
+        image.setColor(Color.BLACK);
         image.fillRect(0, 0, width, height);
         image.setColor(color);
-        image.fillRect(width / 10, height / 10, width * 8 / 10, height * 8 / 10);
+        image.fillRect(width / 10, height / 10, width * 9 / 10, height * 9 / 10);
         setImage(image);
     }
 }

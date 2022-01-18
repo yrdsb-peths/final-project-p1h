@@ -10,14 +10,14 @@ public class FastEnemy extends Enemy
 {
     //declaring dimensions and image to reference width and height
     private static GreenfootImage refImage = new GreenfootImage("fast/move/troll-move_0.png");
-    public static final int FAST_WIDTH = refImage.getWidth() * 3 / 2;
-    public static final int FAST_HEIGHT = refImage.getHeight() * 3 / 2;
+    public static final int FAST_WIDTH = refImage.getWidth();
+    public static final int FAST_HEIGHT = refImage.getHeight();
     
     //initializing constants
     public static final int FAST_SCORE = 100; //score the player gets after killing this enemy
     public static final int FAST_HP = 8;
     public static final int FAST_DMG = 3;
-    public static final int FAST_SPEED = 8;
+    public static final int FAST_SPEED = 6;
     public static final int FAST_ATTACK_DURATION = 10;
     public static final int FAST_ATTACK_DELAY = 10;
     public static final int FAST_DMG_SPRITE_NUM = 4;

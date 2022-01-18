@@ -10,8 +10,8 @@ public class PowerupNotification extends Actor
 {   
     //declaring the powerup notification's dimensions and image variables
     public static final int PU_NOTIF_WIDTH = GameWorld.WORLD_WIDTH;
-    public static final int PU_NOTIF_HEIGHT = GameWorld.WORLD_HEIGHT / 10;
-    public static final Font PU_NOTIF_FONT = new Font("Courier New", true, true, 30);
+    public static final int PU_NOTIF_HEIGHT = GameWorld.WORLD_HEIGHT / 12;
+    public static final Font PU_NOTIF_FONT = new Font("Courier New", true, true, PU_NOTIF_HEIGHT * 2 / 3);
     private String name = "";
     private GreenfootImage image;
     

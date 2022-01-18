@@ -11,12 +11,12 @@ public class Player extends SuperSmoothMover
 {
     //declaring dimensions and image to reference width and height
     private static GreenfootImage refImage = new GreenfootImage("rifle/move/survivor-move_rifle_0.png");
-    public static final int PLAYER_WIDTH = refImage.getWidth() / 2;
-    public static final int PLAYER_HEIGHT = refImage.getHeight() / 2;
+    public static final int PLAYER_WIDTH = refImage.getWidth() / 3;
+    public static final int PLAYER_HEIGHT = refImage.getHeight() / 3;
     
     //initializing constants
     public static final int PLAYER_MAX_HP = 100;
-    public static final int PLAYER_SPEED = 5;
+    public static final int PLAYER_SPEED = 3;
     public static final int PLAYER_DMG = 4;
     public static final int PLAYER_MAG_SIZE = 15;
     public static final int PLAYER_SHOOT_CD = 10;
