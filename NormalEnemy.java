@@ -35,7 +35,7 @@ public class NormalEnemy extends Enemy
             normMovingSprites[i].scale(NORM_WIDTH, NORM_HEIGHT);
         }
         for (int i = 0; i < normAttackingSprites.length; i++) {
-            normAttackingSprites[i] = new GreenfootImage("normal/attack1/attack01_" + i + ".png");
+            normAttackingSprites[i] = new GreenfootImage("normal/attack2/attack02_" + i + ".png");
             normAttackingSprites[i].scale(NORM_WIDTH, NORM_HEIGHT);
         }
         

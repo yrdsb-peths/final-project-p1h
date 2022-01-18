@@ -121,6 +121,10 @@ public class Player extends SuperSmoothMover
             bullet.move(PLAYER_HEIGHT * 29 / 100);
             bullet.setRotation(bullet.getRotation() - 90);
             //adds muzzle flash
+            if(getWorld().getObjects(MuzzleFlash.class).size() > 0){
+                MuzzleFlash prevFlash = getWorld().getObjects(MuzzleFlash.class).get(0); //(from Mr. Cohen)
+                getWorld().removeObject(prevFlash);
+            }
             MuzzleFlash muzzleFlash = new MuzzleFlash();
             muzzleFlash.setRotation(getRotation());
             getWorld().addObject(muzzleFlash, getX(), getY());

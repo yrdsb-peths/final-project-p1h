@@ -20,7 +20,7 @@ public class Bullet extends SuperSmoothMover
     Player player;
     
     //declaring instance variables
-    private Class targetClass; //target class tracking (from Mr. Cohen)
+    private Class targetClass = Enemy.class; //target class tracking (from Mr. Cohen)
     private int dmg;
     
     public Bullet(){
@@ -45,7 +45,7 @@ public class Bullet extends SuperSmoothMover
                 Player player = (Player) target;
                 player.dealDmg(dmg);
             }
-            else */if(target instanceof Enemy){
+            else *///if(target instanceof Enemy){
                 Enemy enemy;
                 /*if(explosive){ //deals damage to all enemies in the area of the torpedo if it is a torpedo
                     List<Enemy> enemies = getObjectsInRange(explosionRange, Enemy.class); //(from "danpost" on Greenfoot)
@@ -59,7 +59,7 @@ public class Bullet extends SuperSmoothMover
                     enemy.dealDmg(dmg);
                     return true;
                 //}
-            }
+            //}
             
         }
         return false;
