@@ -16,9 +16,11 @@ public class StrongEnemy extends Enemy
     //initializing constants
     public static final int STR_SCORE = 200; //score the player gets after killing this enemy
     public static final int STR_HP = 20;
-    public static final int STR_DMG = 6;
+    public static final int STR_DMG = 10;
     public static final int STR_SPEED = 4;
-    public static final int STR_DELAY = 45;
+    public static final int STR_DURATION = 60;
+    public static final int STR_DELAY = 30;
+    public static final int STR_DMG_SPRITE_NUM = 5;
     
     //declaring sprites
     private GreenfootImage[] strMovingSprites = new GreenfootImage[17];
@@ -44,8 +46,9 @@ public class StrongEnemy extends Enemy
         currHP = STR_HP;
         dmg = STR_DMG;
         speed = STR_SPEED;
-        DELAY = STR_DELAY;
-        currDelay = 0;
+        duration = STR_DURATION;
+        delay = STR_DELAY;
+        dmgSpriteNum = STR_DMG_SPRITE_NUM;
         movingSprites = strMovingSprites;
         attackingSprites = strAttackingSprites;
     }
