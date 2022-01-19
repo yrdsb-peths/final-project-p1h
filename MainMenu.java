@@ -15,6 +15,7 @@ public class MainMenu extends World
     //declaring background variables
     private GreenfootImage bgImage;
     public static final Font MENU_TITLE_FONT = new Font("Courier New", true, false, MENU_HEIGHT / 8);
+    public static final Font MENU_SCORE_FONT = new Font("Courier New", true, false, MENU_HEIGHT / 15);
     public static final Color MENU_TITLE_COLOR = Color.RED;
     private String title = "The Horde";
     
@@ -40,8 +41,22 @@ public class MainMenu extends World
         addObject(playButton, getWidth() * 3 / 4, getHeight() * 2 / 3);
         instructionsButton = new Button("How to Play");
         addObject(instructionsButton, getWidth() * 3 / 4, getHeight() * 5 / 6);
+        
+        // read score data and put to title screen
+        bgImage.setColor(Color.BLACK);
+        bgImage.setFont(MENU_SCORE_FONT);
+        bgImage.drawString("Score: ", getWidth() / 7, getHeight() / 2);
+        ScoreFile scoreFile = ScoreFile.getInstance();
+        int scoreOffset = 60;
+        for (int score : scoreFile.getScoreData())
+        {
+            bgImage.drawString(Integer.toString(score), getWidth() / 7, getHeight() * 2 / 4+ scoreOffset);
+            scoreOffset += 60;
+            
+            if ((getHeight() * 2 / 4 + scoreOffset) > getWidth()) break;
+        }
     }
-    
+        
     public void act()
     {
         //checking if the user clicked any of the buttons and take them to the respective world
