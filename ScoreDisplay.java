@@ -10,8 +10,9 @@ public class ScoreDisplay extends Actor
 {
     //declaring variables for the score display's image
     private GreenfootImage image;
-    public static final int SCORE_DISPLAY_WIDTH = GameWorld.WORLD_WIDTH / 4;
-    public static final int SCORE_DISPLAY_HEIGHT = GameWorld.WORLD_HEIGHT / 11;
+    private GreenfootImage character = new GreenfootImage("CharacterDisplay.png");
+    public static final int SCORE_DISPLAY_WIDTH = GameWorld.WORLD_WIDTH / 3;
+    public static final int SCORE_DISPLAY_HEIGHT = GameWorld.WORLD_HEIGHT * 2 / 15;
     public static final Color scoreColor = Color.YELLOW;
     public static final Font scoreFont = new Font("Courier New", true, false, GameWorld.WORLD_HEIGHT / 20);
     
@@ -24,8 +25,9 @@ public class ScoreDisplay extends Actor
         this.score = score;
         display = "SCORE: " + this.score;
         //creating and setting the image for the score display
+        character.scale(SCORE_DISPLAY_WIDTH / 4, SCORE_DISPLAY_HEIGHT);
         image =  new GreenfootImage(SCORE_DISPLAY_WIDTH + 1, SCORE_DISPLAY_HEIGHT + 1);
-        drawScoreDisplay();
+        drawScoreDisplay(SCORE_DISPLAY_WIDTH + 1, SCORE_DISPLAY_HEIGHT + 1);
         setImage(image);
     }
     
@@ -35,16 +37,17 @@ public class ScoreDisplay extends Actor
         //updating the score and the display
         this.score = score;
         display = "SCORE: " + this.score;
-        drawScoreDisplay();
+        drawScoreDisplay(SCORE_DISPLAY_WIDTH + 1, SCORE_DISPLAY_HEIGHT + 1);
         setImage(image);
     }
     
     //method to draw the score display
-    private void drawScoreDisplay(){
+    private void drawScoreDisplay(int width, int height){
         //drawing the display
         image.clear();
+        image.drawImage(character, 0, 0);
         image.setColor(scoreColor);
         image.setFont(scoreFont);
-        image.drawString(display, SCORE_DISPLAY_WIDTH / 20, (SCORE_DISPLAY_HEIGHT + scoreFont.getSize() / 2) / 2);
+        image.drawString(display, width * 6 / 25, height * 4 / 5);
     }
 }

@@ -72,9 +72,9 @@ public class Player extends SuperSmoothMover
     
     public void addedToWorld(World world){ //(from Mr. Cohen)
         //adding player hp bar, score display, and ammo display to the world
-        world.addObject(hpBar, GameWorld.WORLD_WIDTH / 6, GameWorld.WORLD_HEIGHT / 15);
-        world.addObject(scoreDisplay, GameWorld.WORLD_WIDTH * 57 / 320, GameWorld.WORLD_HEIGHT / 8);
-        world.addObject(ammoDisplay, GameWorld.WORLD_WIDTH * 6 / 7, GameWorld.WORLD_HEIGHT * 19 / 20);
+        world.addObject(hpBar, GameWorld.WORLD_WIDTH * 9 / 50, GameWorld.WORLD_HEIGHT / 16);
+        world.addObject(scoreDisplay, GameWorld.WORLD_WIDTH / 6, GameWorld.WORLD_HEIGHT / 12);
+        world.addObject(ammoDisplay, GameWorld.WORLD_WIDTH * 23 / 25, GameWorld.WORLD_HEIGHT * 19 / 20);
     }
     
     public void act() 
