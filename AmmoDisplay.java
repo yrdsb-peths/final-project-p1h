@@ -12,8 +12,8 @@ public class AmmoDisplay extends Actor
     private GreenfootImage image;
     public static final int AMMO_DISPLAY_WIDTH = GameWorld.WORLD_WIDTH / 4;
     public static final int AMMO_DISPLAY_HEIGHT = GameWorld.WORLD_HEIGHT / 11;
-    public static final Color ammoColor = Color.BLUE; //MainMenu.titleColor
-    public static final Font ammoFont = new Font("Courier New", false, false, GameWorld.WORLD_HEIGHT / 20); //MainMenu.scoreFont
+    public static final Color ammoColor = Color.YELLOW;
+    public static final Font ammoFont = new Font("Courier New", true, false, GameWorld.WORLD_HEIGHT / 20);
     
     //declaring instance variables
     private int ammo;
