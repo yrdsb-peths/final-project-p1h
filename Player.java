@@ -9,14 +9,18 @@ import java.util.List;
  */
 public class Player extends SuperSmoothMover
 {
-    //declaring the player's dimensions and image
-    private GreenfootImage image;
-    public static final int PLAYER_WIDTH = GameWorld.WORLD_WIDTH / 20;
-    public static final int PLAYER_HEIGHT = PLAYER_WIDTH;
+    //declaring dimensions and image to reference width and height
+    private static GreenfootImage refImage = new GreenfootImage("rifle/move/survivor-move_rifle_0.png");
+    public static final int PLAYER_WIDTH = refImage.getWidth() / 3;
+    public static final int PLAYER_HEIGHT = refImage.getHeight() / 3;
     
-    //declaring constants
-    public static final int MAG_SIZE = 15;
-    public static final int RELOAD_TIME = 60; //(number of acts)
+    //initializing constants
+    public static final int PLAYER_MAX_HP = 100;
+    public static final int PLAYER_SPEED = 3;
+    public static final int PLAYER_DMG = 4;
+    public static final int PLAYER_MAG_SIZE = 15;
+    public static final int PLAYER_SHOOT_CD = 10;
+    public static final int PLAYER_RELOAD_TIME = 60; //(number of acts)
     
     //declaring actors
     private StatBar hpBar;
@@ -24,34 +28,44 @@ public class Player extends SuperSmoothMover
     private AmmoDisplay ammoDisplay;
     
     //declaring instance variables
-    private int score;
-    public int ammo;
+    private int score = 0;
+    //stats
+    private int maxHP = PLAYER_MAX_HP;
+    private int currHP = maxHP;
+    private int speed = PLAYER_SPEED;
+    private int dmg = PLAYER_DMG;
+    private int shootCD = PLAYER_SHOOT_CD;
     private int currShootCD = 0;
+    private int ammo = PLAYER_MAG_SIZE;
+    private boolean unlimitedAmmo = false;
     private boolean reloading;
-    private int reloadTimer = RELOAD_TIME;
-    //declaring mouse tracker
+    private int reloadTimer = PLAYER_RELOAD_TIME;
+    //mouse tracker
     private MouseInfo mouse;
     private boolean mouseDown = false;
-    
-    //declaring stats
-    public int playerMaxHp = 100;
-    public int speed = 5;
-    public int playerHp = playerMaxHp;
-    public int damage = 5;
-    public int shootCd = 10;
+    //sprites
+    private GreenfootImage[] rifleMovingSprites = new GreenfootImage[20];
+    private GreenfootImage[] rifleReloadingSprites = new GreenfootImage[20];
+    //sprite info
+    private int rifleMovingSpriteNum = 0;
+    private int rifleReloadingSpriteNum = 0;
+    private boolean isMoving = false;
     
     public Player(){
-        image = new GreenfootImage(PLAYER_WIDTH + 1, PLAYER_HEIGHT + 1); //creating the blank GreenfootImage used for the player
-        //drawing the player then setting the image for the player
-        drawPlayer(PLAYER_WIDTH, PLAYER_HEIGHT);
-        setImage(image);
+        //initialize sprites
+        for (int i = 0; i < rifleMovingSprites.length; i++) {
+            rifleMovingSprites[i] = new GreenfootImage("rifle/move/survivor-move_rifle_"+i+".png");
+            rifleMovingSprites[i].scale(PLAYER_WIDTH, PLAYER_HEIGHT);
+        }
+        for (int i = 0; i < rifleReloadingSprites.length; i++) {
+            rifleReloadingSprites[i] = new GreenfootImage("rifle/reload/survivor-reload_rifle_"+i+".png");
+            rifleReloadingSprites[i].scale(PLAYER_WIDTH, PLAYER_HEIGHT);
+        }
         
-        //resetting player score
-        score = 0;
-        ammo = MAG_SIZE;
+        setImage(rifleMovingSprites[0]); //setting the player's image
         
         //creating the player's hp bar and score display
-        hpBar = new StatBar(100, playerHp, GameWorld.WORLD_WIDTH / 5, GameWorld.WORLD_HEIGHT / 30, PLAYER_HEIGHT, null, Color.GREEN, Color.RED, false, Color.BLUE, GameWorld.WORLD_HEIGHT / 180);
+        hpBar = new StatBar(100, currHP, GameWorld.WORLD_WIDTH / 5, GameWorld.WORLD_HEIGHT / 30, PLAYER_HEIGHT, null, Color.GREEN, Color.RED, false, Color.BLUE, GameWorld.WORLD_HEIGHT / 180);
         scoreDisplay = new ScoreDisplay(score);
         ammoDisplay = new AmmoDisplay(ammo);
     }
@@ -67,59 +81,149 @@ public class Player extends SuperSmoothMover
     {
         mouse = Greenfoot.getMouseInfo(); //setting variable to track the mouse
         if(mouse != null) turnTowards(mouse.getX(), mouse.getY()); //making the player face the mouse
+        
         //movement
-        if(Greenfoot.isKeyDown("w")) setLocation(getX(), getY() - speed);
-        if(Greenfoot.isKeyDown("a")) setLocation(getX() - speed, getY());
-        if(Greenfoot.isKeyDown("s")) setLocation(getX(), getY() + speed);
-        if(Greenfoot.isKeyDown("d")) setLocation(getX() + speed, getY());
+        isMoving = false;
+        if(Greenfoot.isKeyDown("w")){
+            setLocation(getX(), getY() - speed);
+            isMoving = true;
+        }
+        if(Greenfoot.isKeyDown("a")) {
+            setLocation(getX() - speed, getY());
+            isMoving = true;
+        }
+        if(Greenfoot.isKeyDown("s")) {
+            setLocation(getX(), getY() + speed);
+            isMoving = true;
+        }
+        if(Greenfoot.isKeyDown("d")) {
+            setLocation(getX() + speed, getY());
+            isMoving = true;
+        }
         
         //checks if the mouse is down (from "danpost" on Greenfoot)
-        if(Greenfoot.mousePressed(null)){
-            mouseDown = true;
-        }
-        else if(Greenfoot.mouseClicked(null)){
-            mouseDown = false;
-        }
+        if(Greenfoot.mousePressed(null)) mouseDown = true;
+        else if(Greenfoot.mouseClicked(null)) mouseDown = false;
         
-        //shoots a bullet if the use presses the mouse button and the shoot cooldown has expired
+        //shoots a bullet and adds muzzle flash if the use presses the mouse button
         if(ammo > 0 && currShootCD <= 0 && mouseDown && !reloading){
+            currShootCD = shootCD;
+            if(!unlimitedAmmo){
+                ammo--;
+                ammoDisplay.update(ammo);
+            }
+            //adds bullet
             Bullet bullet = new Bullet();
             bullet.setRotation(getRotation());
             getWorld().addObject(bullet, getX(), getY());
-            bullet.move(PLAYER_WIDTH / 2 + bullet.BULLET_WIDTH / 2);
-            currShootCD = shootCd;
-            ammo--;
-            ammoDisplay.update(ammo);
+            bullet.move(PLAYER_WIDTH / 2 + bullet.BULLET_WIDTH / 3);
+            bullet.setRotation(bullet.getRotation() + 90);
+            bullet.move(PLAYER_HEIGHT * 29 / 100);
+            bullet.setRotation(bullet.getRotation() - 90);
+            //adds muzzle flash
+            if(getWorld().getObjects(MuzzleFlash.class).size() > 0){
+                MuzzleFlash prevFlash = getWorld().getObjects(MuzzleFlash.class).get(0); //(from Mr. Cohen)
+                getWorld().removeObject(prevFlash);
+            }
+            MuzzleFlash muzzleFlash = new MuzzleFlash();
+            muzzleFlash.setRotation(getRotation());
+            getWorld().addObject(muzzleFlash, getX(), getY());
+            muzzleFlash.move(PLAYER_WIDTH / 2 + muzzleFlash.MUZZLE_FLASH_WIDTH / 3);
+            muzzleFlash.setRotation(muzzleFlash.getRotation() + 90);
+            muzzleFlash.move(PLAYER_HEIGHT * 3 / 10);
+            muzzleFlash.setRotation(muzzleFlash.getRotation() - 90);
         }
         currShootCD--; //update shoot cooldown
         
-        if(ammo <= 0 || Greenfoot.isKeyDown("r")) reloading = true; //reloads weapon if ammo runs out or if user presses "r"
+         //reloads weapon if ammo runs out or if user presses "r"
+        if((ammo <= 0 || (Greenfoot.isKeyDown("r") && ammo < PLAYER_MAG_SIZE)) && !reloading){
+            reloading = true;
+            rifleReloadingSpriteNum = 0;
+        }
         //reloads weapon
         if(reloading){
             reloadTimer--;
             if(reloadTimer == 0){
                 reloading = false;
-                reloadTimer = RELOAD_TIME;
-                ammo = MAG_SIZE;
+                reloadTimer = PLAYER_RELOAD_TIME;
+                ammo = PLAYER_MAG_SIZE;
                 ammoDisplay.update(ammo);
             }
         }
+        
+        handleSprites();
+        
+        if(currHP <= 0) Greenfoot.setWorld(new EndScreen());
     }
     
-    //method to draw the player
-    private void drawPlayer(int width, int height){
-        int[] xVertices = {0, width, 0};
-        int[] yVertices = {0, height / 2, height};
-        image.fillPolygon(xVertices, yVertices, 3);
+    //method to handle sprites
+    private void handleSprites() {
+        //adds reload animation
+        if (reloading) {
+            if (reloadTimer % 3 == 0) {
+                if(rifleReloadingSpriteNum < 19) rifleReloadingSpriteNum++;
+            }
+            setImage(rifleReloadingSprites[rifleReloadingSpriteNum]);
+            return;
+        }
+        //adds moving animation
+        if (isMoving) {
+            rifleMovingSpriteNum++;
+            if (rifleMovingSpriteNum == rifleMovingSprites.length) rifleMovingSpriteNum = 0;
+            setImage(rifleMovingSprites[rifleMovingSpriteNum]);
+        }
+    }
+    
+    //getter methods
+    //method to deal damage to the player
+    public void dealDmg(int dmg){
+        currHP -= dmg;
+        if(currHP < 0) currHP = 0;
+        hpBar.update(currHP);
     }
     
     public List<Powerup> getIntersectingObjects() {
         return getIntersectingObjects(Powerup.class);
     }
     
-    public void instantReload() {
-        ammo = MAG_SIZE;
+    public int getMaxHP(){
+        return maxHP;
+    }
+    
+    public int getDmg(){
+        return dmg;
+    }
+    
+    //setter methods
+    
+    public void setScore(int points){
+        score += points;
+        scoreDisplay.update(score);
+    }
+    
+    public void setCurrHP(int currHP){
+        this.currHP = currHP;
+        hpBar.update(currHP);
+    }
+    
+    public void setSpeed(int increase){
+        speed += increase;
+    }
+    
+    public void setDmg(int increase){
+        dmg += increase;
+    }
+    
+    public void setShootCD(int decrease){
+        shootCD -= decrease;
+    }
+    
+    public void setAmmo(int ammo){
+        this.ammo = ammo;
         ammoDisplay.update(ammo);
     }
     
+    public void setUnlimitedAmmo(boolean unlimitedAmmo){
+        this.unlimitedAmmo = unlimitedAmmo;
+    }
 }

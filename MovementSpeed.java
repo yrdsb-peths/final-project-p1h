@@ -8,51 +8,33 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MovementSpeed extends Powerup
 {
-    private GreenfootImage image;
-    private Player player;
-    private int value = 2;
+    //declaring constants
+    public static final int MS_BOOST = 2;
+    public static final Color MS_BOOST_COLOR = Color.CYAN;
     
-    public MovementSpeed(Player player) {
+    public MovementSpeed(Player player){
         this.player = player;
-        draw();
+        super.draw(PU_WIDTH, PU_HEIGHT, MS_BOOST_COLOR);
     }
     
-    /**
-     * Act - do whatever the MovementSpeed wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public void act() 
     {
-        // Add your action code here.
+        super.act();
     }    
     
-    public void activate() {
-        player.speed += value;
+    public void activate(){
+        player.setSpeed(MS_BOOST);
     }
     
-    public void deactivate() {
-        player.speed -= value;
+    public void deactivate(){
+        player.setSpeed(-MS_BOOST);
     }
     
-    public void draw() {
-        image = new GreenfootImage(Powerup.WIDTH, Powerup.HEIGHT);
-        image.setColor(Color.GRAY);
-        image.fillRect(0, 0, Powerup.WIDTH, Powerup.HEIGHT);
-        image.setColor(Color.MAGENTA);
-        image.fillRect(2, 2, 16, 16);
-        setImage(image);
-    }
-    
-    public String toString() {
+    public String toString(){
         return "Movement Speed Boost";
     }
     
-    public boolean needsIcon() {
-        return true;
+    public Color getColor(){
+        return MS_BOOST_COLOR;
     }
-    
-    public Color getColour() {
-        return Color.MAGENTA;
-    }
-    
 }
