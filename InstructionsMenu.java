@@ -19,8 +19,9 @@ public class InstructionsMenu extends World
     private String title = "Instructions";
     public static final Font INSTRUCTIONS_FONT = new Font("Courier New", false, false, INSTRUCTIONS_HEIGHT / 20);
     public static final Color INSTRUCTIONS_COLOR = INSTRUCTIONS_TITLE_COLOR;
-    private String goal = "GOAL: Achieve The Highest Score By Killing The Horde";
-
+    private String goal = "GOAL: Achieve The Highest Score By\nKilling The Horde";
+    private String controls = "Mouse Click: Fire\nMouse: Aim\nW: Forward\nA: Left\nS: Backwards\nD: Right";
+    
     //declaring actors
     private Button backButton;
     
@@ -30,15 +31,19 @@ public class InstructionsMenu extends World
         super(INSTRUCTIONS_WIDTH, INSTRUCTIONS_HEIGHT, 1);
         
         //drawing background
-        bgImage = new GreenfootImage(getWidth() + 1, getHeight() + 1);
-        bgImage.setColor(Color.WHITE);
-        bgImage.fill();
-        bgImage.setColor(INSTRUCTIONS_TITLE_COLOR);
+        bgImage = new GreenfootImage("instruction-menu_background.png");
+        bgImage.scale(getWidth(), getHeight());
+        //bgImage.setColor(Color.WHITE);
+        //bgImage.fill();
+        //bgImage.setColor(INSTRUCTIONS_TITLE_COLOR);
+        bgImage.setColor(new Color(255, 69, 0));
         bgImage.setFont(INSTRUCTIONS_TITLE_FONT);
         bgImage.drawString(title, (getWidth() - (int)(title.length() * INSTRUCTIONS_TITLE_FONT.getSize() * 0.58)) / 2, getHeight() / 6);
-        bgImage.setColor(INSTRUCTIONS_COLOR);
+        //bgImage.setColor(INSTRUCTIONS_COLOR);
+        bgImage.setColor(Color.WHITE);
         bgImage.setFont(INSTRUCTIONS_FONT);
-        bgImage.drawString(goal, getWidth() / 20, getHeight() * 3 / 10);
+        bgImage.drawString(goal, getWidth() * 4 / 20, getHeight() * 3 / 10);
+        bgImage.drawString(controls, getWidth() * 4 / 20, getHeight() * 5 / 10);
         setBackground(bgImage);
         
         //add button
