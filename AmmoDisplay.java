@@ -51,6 +51,6 @@ public class AmmoDisplay extends Actor
         image.drawImage(rifle, 0, 0);
         image.setColor(ammoColor);
         image.setFont(ammoFont);
-        image.drawString(display, width * 2 / 3, (height + ammoFont.getSize() / 2) / 2);
+        image.drawString(display, width * 7 / 10, (height + ammoFont.getSize() / 2) / 2);
     }
 }

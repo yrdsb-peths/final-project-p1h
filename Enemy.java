@@ -19,6 +19,9 @@ public class Enemy extends SuperSmoothMover
     //sprite info
     protected int movingSpriteNum = 0;
     protected int attackingSpriteNum = 0;
+    //sound
+    protected GreenfootSound[] attackSounds;
+    protected int attackSoundsIndex = 0;
     
     public Enemy(){
         
@@ -44,6 +47,9 @@ public class Enemy extends SuperSmoothMover
                 player.dealDmg(dmg);
                 currDelay = attackdelay;
                 dmgDealt = true;
+                attackSounds[attackSoundsIndex].play();
+                attackSoundsIndex++;
+                if(attackSoundsIndex >= attackSounds.length) attackSoundsIndex = 0;
             }
             //checks if the enemy has finished its attack
             if(currDuration == attackduration){

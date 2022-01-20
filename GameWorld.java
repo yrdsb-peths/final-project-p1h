@@ -25,6 +25,7 @@ public class GameWorld extends World
     public static final int FAST_ENEMY_CHANCE = 20;
     public static final int STR_ENEMY_CHANCE = 30;
     public static final int POWERUP_FREQUENCY = 500; // 1 in x chance    
+    public static final int GROAN_DELAY = 60; //delay between zombie groans
     
     //declaring actors
     private Player player;
@@ -63,6 +64,7 @@ public class GameWorld extends World
         if(numPool > END_NUM_POOL && decrTimer == 0) numPool--;
         decrTimer--;
         if(decrTimer < 0) decrTimer = POOL_DECR_DELAY;
+        
         handlePowerups();
     }
     
@@ -78,9 +80,21 @@ public class GameWorld extends World
         //spawns an enemy if the random number chosen from the number pool is equal to 0
         if(Greenfoot.getRandomNumber(numPool) == 0){
             //chooses type of enemy
-            if(rdmEnemy < FAST_ENEMY_CHANCE) enemy = new FastEnemy();
-            else if(rdmEnemy < FAST_ENEMY_CHANCE + STR_ENEMY_CHANCE) enemy = new StrongEnemy();
-            else enemy = new NormalEnemy();
+            if(rdmEnemy < FAST_ENEMY_CHANCE){
+                enemy = new FastEnemy();
+                GreenfootSound zombieGroan = new GreenfootSound("FastGroan.wav");
+                zombieGroan.play();
+            }
+            else if(rdmEnemy < FAST_ENEMY_CHANCE + STR_ENEMY_CHANCE){
+                enemy = new StrongEnemy();
+                GreenfootSound zombieGroan = new GreenfootSound("StrongGroan.wav");
+                zombieGroan.play();
+            }
+            else{
+                enemy = new NormalEnemy();
+                GreenfootSound zombieGroan = new GreenfootSound("NormalGroan.wav");
+                zombieGroan.play();
+            }
             //spawns enemy at a random location at the edge of the world
             if(rdmSide == 0) addObject(enemy, rdmX, 0);
             else if(rdmSide == 1) addObject(enemy, rdmX, getHeight());

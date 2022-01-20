@@ -53,6 +53,8 @@ public class FastEnemy extends Enemy
         moveAct = FAST_MOVE_ACT;
         movingSprites = fastMovingSprites;
         attackingSprites = fastAttackingSprites;
+        attackSounds = new GreenfootSound[2];
+        for(int i = 0; i < attackSounds.length; i++) attackSounds[i] = new GreenfootSound("FastStab.wav");
     }
     
     public void act() 

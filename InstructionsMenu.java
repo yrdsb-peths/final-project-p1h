@@ -47,6 +47,10 @@ public class InstructionsMenu extends World
     }
     
     public void act(){
-        if(Greenfoot.mouseClicked(backButton)) Greenfoot.setWorld(new MainMenu());  //takes the user back to the main menu
+        //takes the user back to the main menu
+        if(Greenfoot.mouseClicked(backButton)){
+            Greenfoot.setWorld(new MainMenu());
+            backButton.playClickSound();
+        }
     }
 }

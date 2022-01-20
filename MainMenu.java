@@ -45,7 +45,13 @@ public class MainMenu extends World
     public void act()
     {
         //checking if the user clicked any of the buttons and take them to the respective world
-        if (Greenfoot.mouseClicked(playButton)) Greenfoot.setWorld(new GameWorld());
-        else if (Greenfoot.mouseClicked(instructionsButton)) Greenfoot.setWorld(new InstructionsMenu());
+        if (Greenfoot.mouseClicked(playButton)){
+            Greenfoot.setWorld(new GameWorld());
+            playButton.playClickSound();
+        }
+        else if (Greenfoot.mouseClicked(instructionsButton)){
+            Greenfoot.setWorld(new InstructionsMenu());
+            playButton.playClickSound();
+        }
     }
 }
