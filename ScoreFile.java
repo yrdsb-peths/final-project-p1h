@@ -16,11 +16,13 @@ public class ScoreFile
 {
     private static ScoreFile instance = new ScoreFile();
     
-    private String scorePath = "./data/score.txt";
+    private static String scorePath = "./data/score.txt";
     private ArrayList<Integer> scoreData = new ArrayList<Integer>();
     
     public static ScoreFile getInstance()
     {
+        // When initialized, make sure score file actually exists
+        createScoreFile();
         return instance;
     }
     
@@ -35,6 +37,22 @@ public class ScoreFile
         scoreData.add(newScore);
         sortScore();
         parseDataToFile();
+    }
+    
+    private static void createScoreFile()
+    {
+        try
+        {
+            File scoreFile = new File(scorePath);
+            if (!scoreFile.exists()){
+                scoreFile.createNewFile();
+            }
+        }
+        catch (IOException e)
+        {
+            System.out.println("Something went wrong...");
+            e.printStackTrace(System.out);
+        }
     }
     
     private void sortScore()
