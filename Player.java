@@ -171,6 +171,8 @@ public class Player extends SuperSmoothMover
             GreenfootSound backgroundSound = new GreenfootSound("ZombieEatingBackground.wav");
             deathMusic.play();
             backgroundSound.play();
+            //ScoreFile scoreFile = ScoreFile.getInstance();
+            //scoreFile.addScoreData(score);
             Greenfoot.setWorld(new EndScreen());
         }
     }
@@ -194,11 +196,10 @@ public class Player extends SuperSmoothMover
     }
     
     //getter methods
-    //method to deal damage to the player
-    public void dealDmg(int dmg){
-        currHP -= dmg;
-        if(currHP < 0) currHP = 0;
-        hpBar.update(currHP);
+    
+    public int getScore()
+    {
+        return score;
     }
     
     public List<Powerup> getIntersectingObjects() {
@@ -214,6 +215,13 @@ public class Player extends SuperSmoothMover
     }
     
     //setter methods
+    
+    //method to deal damage to the player
+    public void dealDmg(int dmg){
+        currHP -= dmg;
+        if(currHP < 0) currHP = 0;
+        hpBar.update(currHP);
+    }
     
     public void setScore(int points){
         score += points;

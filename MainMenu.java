@@ -16,6 +16,7 @@ public class MainMenu extends World
     private GreenfootImage bgImage;
     public static final Font MENU_TITLE_FONT = new Font("Courier New", true, false, MENU_HEIGHT / 8);
     public static final Color MENU_TITLE_COLOR = Color.RED;
+    public static final Font MENU_SCORE_FONT = new Font("Courier New", true, false, MENU_HEIGHT / 15);
     private String title = "The Horde";
     
     //declaring actors
@@ -33,6 +34,19 @@ public class MainMenu extends World
         bgImage.setColor(MENU_TITLE_COLOR);
         bgImage.setFont(MENU_TITLE_FONT);
         bgImage.drawString(title, getWidth() / 8, getHeight() / 4);
+        // read score data and put to title screen
+        /*bgImage.setColor(Color.BLACK);
+        bgImage.setFont(MENU_SCORE_FONT);
+        bgImage.drawString("Score: ", getWidth() / 7, getHeight() / 2);
+        ScoreFile scoreFile = ScoreFile.getInstance();
+        int scoreOffset = 60;
+        for (int score : scoreFile.getScoreData())
+        {
+            bgImage.drawString(Integer.toString(score), getWidth() / 7, getHeight() * 2 / 4+ scoreOffset);
+            scoreOffset += 60;
+
+            if ((getHeight() * 2 / 4 + scoreOffset) > getWidth()) break;
+        }*/
         setBackground(bgImage);
         
         //adding buttons
