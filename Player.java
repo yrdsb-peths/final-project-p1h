@@ -166,7 +166,13 @@ public class Player extends SuperSmoothMover
         
         handleSprites();
         
-        if(currHP <= 0) Greenfoot.setWorld(new EndScreen());
+        if(currHP <= 0){
+            GreenfootSound deathMusic = new GreenfootSound("Death.wav");
+            GreenfootSound backgroundSound = new GreenfootSound("ZombieEatingBackground.wav");
+            deathMusic.play();
+            backgroundSound.play();
+            Greenfoot.setWorld(new EndScreen());
+        }
     }
     
     //method to handle sprites

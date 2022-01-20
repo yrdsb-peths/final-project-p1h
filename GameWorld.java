@@ -115,15 +115,18 @@ public class GameWorld extends World
             else if (rdnPowerup == 3) powerup = new MovementSpeed(player);
             else powerup = new UnlimitedAmmo(player);
             powerupDrops.add(powerup);
-            //if(powerup.needsIcon()) powerupIcons.add(new PowerupIcon(powerup));
             
             // Spawn powerup
             addObject(powerupDrops.get(powerupDrops.size() - 1), Greenfoot.getRandomNumber(getWidth()), Greenfoot.getRandomNumber(getHeight()));
+            GreenfootSound powerupSound = new GreenfootSound("Powerup.wav");
+            powerupSound.play();
         }
         
         // Handle powerup collision with player
         List<Powerup> powerupsPickedUp = player.getIntersectingObjects();
         for (Powerup i: powerupsPickedUp) {
+            GreenfootSound pickupSound = new GreenfootSound("PowerupPickup.wav");
+            pickupSound.play();
             //checks if the powerup picked up is already active
             String name = i.toString();
             boolean active = false;

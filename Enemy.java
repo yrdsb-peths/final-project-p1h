@@ -33,7 +33,12 @@ public class Enemy extends SuperSmoothMover
             target = getWorld().getObjects(Player.class).get(0); //(from Mr. Cohen)
             Player player = (Player) target;
             player.setScore(score); //give points to player
+            //adding blood splatter
+            BloodSplatter bloodSplatter = new BloodSplatter();
+            getWorld().addObject(bloodSplatter, getX(), getY());
             getWorld().removeObject(this); //enemy dies
+            GreenfootSound zombieDeathSound = new GreenfootSound("ZombieDeath.wav");
+            zombieDeathSound.play();
         }
         else if(attacking){
             currDuration++;
