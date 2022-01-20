@@ -38,6 +38,9 @@ public class EndScreen extends World
         //add button
         backButton = new Button("Back");
         addObject(backButton, getWidth() * 3 / 4, getHeight() * 5 / 6);
+        
+        // Add player's score to score file
+        
     }
     
     public void act(){

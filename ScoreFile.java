@@ -7,7 +7,9 @@
 import java.util.ArrayList;
 import java.io.File;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class ScoreFile
@@ -15,7 +17,7 @@ public class ScoreFile
     private static ScoreFile instance = new ScoreFile();
     
     private String scorePath = "./data/score.txt";
-    private ArrayList<Integer> scoreData = new ArrayList();
+    private ArrayList<Integer> scoreData = new ArrayList<Integer>();
     
     public static ScoreFile getInstance()
     {
@@ -28,8 +30,36 @@ public class ScoreFile
         return scoreData;
     }
     
+    public void addScoreData(int newScore)
+    {
+        scoreData.add(newScore);
+        sortScore();
+        parseDataToFile();
+    }
+    
+    private void sortScore()
+    {
+        // Initialize sorted data
+        int[] sortedData = new int[scoreData.size()];
+        for (int i = 0; i < scoreData.size(); i++)
+        {
+            sortedData[i] = scoreData.get(i);
+        }
+        
+        // Sort the data and wipe out old data
+        sortedData = Sort.reverseMergeSort(sortedData);
+        scoreData.clear();
+        
+        // Replace current data with new data
+        for (int score: sortedData)
+        {
+            scoreData.add(score);
+        }
+    }
+    
     private void parseFileToData()
     {
+        scoreData.clear();
         try
         {
              BufferedReader br = new BufferedReader(new FileReader(scorePath));
@@ -39,10 +69,27 @@ public class ScoreFile
              while ((line = br.readLine()) != null) {
                  scoreData.add(Integer.parseInt(line));
              }
+             
+             br.close();
         }
         catch (IOException e)
         {
             e.printStackTrace(System.out);
         }
+    }
+    
+    private void parseDataToFile()
+    {
+        try
+        {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(scorePath, false));
+            
+            for (int score : scoreData)
+            {
+                bw.write(score + "\n");
+            }
+            bw.close();
+        }
+        catch (IOException e) { };
     }
 }

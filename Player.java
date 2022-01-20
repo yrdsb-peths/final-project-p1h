@@ -153,7 +153,12 @@ public class Player extends SuperSmoothMover
         
         handleSprites();
         
-        if(currHP <= 0) Greenfoot.setWorld(new EndScreen());
+        if(currHP <= 0) 
+        {
+            Greenfoot.setWorld(new EndScreen());
+            ScoreFile scoreFile = ScoreFile.getInstance();
+            scoreFile.addScoreData(score);
+        }
     }
     
     //method to handle sprites
@@ -175,6 +180,11 @@ public class Player extends SuperSmoothMover
     }
     
     //getter methods
+        public int getScore()
+    {
+        return score;
+    }
+    
     //method to deal damage to the player
     public void dealDmg(int dmg){
         currHP -= dmg;
