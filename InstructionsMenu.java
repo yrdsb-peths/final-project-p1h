@@ -33,13 +33,9 @@ public class InstructionsMenu extends World
         //drawing background
         bgImage = new GreenfootImage("instruction-menu_background.png");
         bgImage.scale(getWidth(), getHeight());
-        //bgImage.setColor(Color.WHITE);
-        //bgImage.fill();
-        //bgImage.setColor(INSTRUCTIONS_TITLE_COLOR);
-        bgImage.setColor(new Color(255, 69, 0));
+        bgImage.setColor(INSTRUCTIONS_TITLE_COLOR);
         bgImage.setFont(INSTRUCTIONS_TITLE_FONT);
         bgImage.drawString(title, (getWidth() - (int)(title.length() * INSTRUCTIONS_TITLE_FONT.getSize() * 0.58)) / 2, getHeight() / 6);
-        //bgImage.setColor(INSTRUCTIONS_COLOR);
         bgImage.setColor(Color.WHITE);
         bgImage.setFont(INSTRUCTIONS_FONT);
         bgImage.drawString(goal, getWidth() * 4 / 20, getHeight() * 3 / 10);
