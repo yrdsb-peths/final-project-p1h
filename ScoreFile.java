@@ -14,11 +14,17 @@ import java.io.IOException;
 
 public class ScoreFile
 {
+    // Instance object (the only object of this class allowed to exist)
     private static ScoreFile instance = new ScoreFile();
     
+    // The directory path to the score file. "./" means the "current directory
     private static String scorePath = "./data/score.txt";
+    
+    // An array that holds the current scores. New scores added are added to the variable,
+    // and then is used to update the file. This is similar to a "save" functionality.
     private ArrayList<Integer> scoreData = new ArrayList<Integer>();
     
+    // Instance referencer (as a singleton, this replaces the constructor of this class)
     public static ScoreFile getInstance()
     {
         // When initialized, make sure score file actually exists
@@ -26,12 +32,14 @@ public class ScoreFile
         return instance;
     }
     
+    // Get all scores from the file (used to display the scores)
     public ArrayList<Integer> getScoreData()
     {
         parseFileToData();
         return scoreData;
     }
     
+    // Add a new score to the file
     public void addScoreData(int newScore)
     {
         scoreData.add(newScore);
@@ -39,6 +47,7 @@ public class ScoreFile
         parseDataToFile();
     }
     
+    // Helper method for checking if score file exists
     private static void createScoreFile()
     {
         try
@@ -55,6 +64,7 @@ public class ScoreFile
         }
     }
     
+    // Sort the score in reverse order (biggest to smallest)
     private void sortScore()
     {
         // Initialize sorted data
@@ -75,6 +85,7 @@ public class ScoreFile
         }
     }
     
+    // Convert data from file into the arraylist
     private void parseFileToData()
     {
         scoreData.clear();
@@ -96,6 +107,7 @@ public class ScoreFile
         }
     }
     
+    // Convert data from the arraylist into the file
     private void parseDataToFile()
     {
         try
