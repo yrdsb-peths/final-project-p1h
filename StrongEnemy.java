@@ -53,6 +53,8 @@ public class StrongEnemy extends Enemy
         moveAct = STR_MOVE_ACT;
         movingSprites = strMovingSprites;
         attackingSprites = strAttackingSprites;
+        attackSounds = new GreenfootSound[1];
+        for(int i = 0; i < attackSounds.length; i++) attackSounds[i] = new GreenfootSound("StrongPunch.wav");
     }
     
     public void act() 

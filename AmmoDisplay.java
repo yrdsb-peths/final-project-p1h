@@ -10,9 +10,10 @@ public class AmmoDisplay extends Actor
 {
     //declaring variables for the ammo display's image
     private GreenfootImage image;
-    public static final int AMMO_DISPLAY_WIDTH = GameWorld.WORLD_WIDTH / 4;
+    private GreenfootImage rifle = new GreenfootImage("RifleDisplay.png");
+    public static final int AMMO_DISPLAY_WIDTH = GameWorld.WORLD_WIDTH / 5;
     public static final int AMMO_DISPLAY_HEIGHT = GameWorld.WORLD_HEIGHT / 11;
-    public static final Color ammoColor = Color.YELLOW;
+    public static final Color ammoColor = Color.WHITE;
     public static final Font ammoFont = new Font("Courier New", true, false, GameWorld.WORLD_HEIGHT / 20);
     
     //declaring instance variables
@@ -22,11 +23,13 @@ public class AmmoDisplay extends Actor
     public AmmoDisplay(int ammo){
         //setting the player's ammo
         this.ammo = ammo;
-        if(ammo < 10) display = "AMMO:  " + this.ammo + "/?";
-        else display = "AMMO: " + this.ammo + "/?";
+        if(ammo < 10) display = " " + this.ammo;
+        else display = "" + this.ammo;
+        
         //creating and setting the image for the ammo display
+        rifle.scale(AMMO_DISPLAY_WIDTH * 2 / 3, AMMO_DISPLAY_HEIGHT);
         image =  new GreenfootImage(AMMO_DISPLAY_WIDTH + 1, AMMO_DISPLAY_HEIGHT + 1);
-        drawAmmoDisplay();
+        drawAmmoDisplay(AMMO_DISPLAY_WIDTH + 1, AMMO_DISPLAY_HEIGHT + 1);
         setImage(image);
     }
     
@@ -35,18 +38,19 @@ public class AmmoDisplay extends Actor
     {
         //updating the ammo and the display
         this.ammo = ammo;
-        if(ammo < 10) display = "AMMO:  " + this.ammo + "/?";
-        else display = "AMMO: " + this.ammo + "/?";
-        drawAmmoDisplay();
+        if(ammo < 10) display = " " + this.ammo;
+        else display = "" + this.ammo;
+        drawAmmoDisplay(AMMO_DISPLAY_WIDTH + 1, AMMO_DISPLAY_HEIGHT + 1);
         setImage(image);
     }
     
     //method to draw the ammo display
-    private void drawAmmoDisplay(){
+    private void drawAmmoDisplay(int width, int height){
         //drawing the display
         image.clear();
+        image.drawImage(rifle, 0, 0);
         image.setColor(ammoColor);
         image.setFont(ammoFont);
-        image.drawString(display, AMMO_DISPLAY_WIDTH / 20, (AMMO_DISPLAY_HEIGHT + ammoFont.getSize() / 2) / 2);
+        image.drawString(display, width * 7 / 10, (height + ammoFont.getSize() / 2) / 2);
     }
 }

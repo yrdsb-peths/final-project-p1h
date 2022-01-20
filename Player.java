@@ -50,6 +50,10 @@ public class Player extends SuperSmoothMover
     private int rifleMovingSpriteNum = 0;
     private int rifleReloadingSpriteNum = 0;
     private boolean isMoving = false;
+    //sound
+    private GreenfootSound[] rifleSounds;
+    private int rifleSoundsIndex = 0;
+    private GreenfootSound reloadSound = new GreenfootSound("PlayerReload.wav");
     
     public Player(){
         //initialize sprites
@@ -68,13 +72,17 @@ public class Player extends SuperSmoothMover
         hpBar = new StatBar(100, currHP, GameWorld.WORLD_WIDTH / 5, GameWorld.WORLD_HEIGHT / 30, PLAYER_HEIGHT, null, Color.GREEN, Color.RED, false, Color.BLUE, GameWorld.WORLD_HEIGHT / 180);
         scoreDisplay = new ScoreDisplay(score);
         ammoDisplay = new AmmoDisplay(ammo);
+        
+        //creating sound arrays
+        rifleSounds = new GreenfootSound[10];
+        for(int i = 0; i < rifleSounds.length; i++) rifleSounds[i] = new GreenfootSound("RifleShot.wav");
     }
     
     public void addedToWorld(World world){ //(from Mr. Cohen)
         //adding player hp bar, score display, and ammo display to the world
-        world.addObject(hpBar, GameWorld.WORLD_WIDTH / 6, GameWorld.WORLD_HEIGHT / 15);
-        world.addObject(scoreDisplay, GameWorld.WORLD_WIDTH * 57 / 320, GameWorld.WORLD_HEIGHT / 8);
-        world.addObject(ammoDisplay, GameWorld.WORLD_WIDTH * 6 / 7, GameWorld.WORLD_HEIGHT * 19 / 20);
+        world.addObject(hpBar, GameWorld.WORLD_WIDTH * 9 / 50, GameWorld.WORLD_HEIGHT / 16);
+        world.addObject(scoreDisplay, GameWorld.WORLD_WIDTH / 6, GameWorld.WORLD_HEIGHT / 12);
+        world.addObject(ammoDisplay, GameWorld.WORLD_WIDTH * 91 / 100, GameWorld.WORLD_HEIGHT * 19 / 20);
     }
     
     public void act() 
@@ -132,6 +140,10 @@ public class Player extends SuperSmoothMover
             muzzleFlash.setRotation(muzzleFlash.getRotation() + 90);
             muzzleFlash.move(PLAYER_HEIGHT * 3 / 10);
             muzzleFlash.setRotation(muzzleFlash.getRotation() - 90);
+            //playing rifle shot sound
+            rifleSounds[rifleSoundsIndex].play();
+            rifleSoundsIndex++;
+            if(rifleSoundsIndex >= rifleSounds.length) rifleSoundsIndex = 0;
         }
         currShootCD--; //update shoot cooldown
         
@@ -139,6 +151,7 @@ public class Player extends SuperSmoothMover
         if((ammo <= 0 || (Greenfoot.isKeyDown("r") && ammo < PLAYER_MAG_SIZE)) && !reloading){
             reloading = true;
             rifleReloadingSpriteNum = 0;
+            reloadSound.play();
         }
         //reloads weapon
         if(reloading){
@@ -153,7 +166,13 @@ public class Player extends SuperSmoothMover
         
         handleSprites();
         
-        if(currHP <= 0) Greenfoot.setWorld(new EndScreen());
+        if(currHP <= 0){
+            GreenfootSound deathMusic = new GreenfootSound("Death.wav");
+            GreenfootSound backgroundSound = new GreenfootSound("ZombieEatingBackground.wav");
+            deathMusic.play();
+            backgroundSound.play();
+            Greenfoot.setWorld(new EndScreen());
+        }
     }
     
     //method to handle sprites

@@ -18,7 +18,8 @@ public class Button extends Actor
     
     //declaring instance variables
     //sound
-    //private GreenfootSound moveSound = new GreenfootSound("Menu Move.wav");
+    private GreenfootSound hoverSound = new GreenfootSound("ButtonHover.wav");
+    private GreenfootSound clickSound = new GreenfootSound("ButtonClick.wav");
     private boolean soundPlayed = false;
     //mouse tracking
     private MouseInfo mouse;
@@ -39,7 +40,7 @@ public class Button extends Actor
         if(Greenfoot.mouseMoved(this)){
             hovering = true;
             if(!soundPlayed){ //adds sound
-                //moveSound.play();
+                hoverSound.play();
                 soundPlayed = true;
             }
             drawButton(Color.BLACK, Color.WHITE, hoverColor);
@@ -57,6 +58,10 @@ public class Button extends Actor
         this.label = label;
         drawButton(Color.BLACK, Color.WHITE, hoverColor);
         this.setImage(image);
+    }
+    
+    public void playClickSound(){
+        clickSound.play();
     }
     
     //method to draw the button with the given parameters

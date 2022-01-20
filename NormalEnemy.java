@@ -53,6 +53,8 @@ public class NormalEnemy extends Enemy
         moveAct = NORM_MOVE_ACT;
         movingSprites = normMovingSprites;
         attackingSprites = normAttackingSprites;
+        attackSounds = new GreenfootSound[1];
+        for(int i = 0; i < attackSounds.length; i++) attackSounds[i] = new GreenfootSound("NormalPunch.wav");
     }
     
     public void act() 
