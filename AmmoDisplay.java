@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class AmmoDisplay extends Actor
 {
-    //declaring variables for the ammo display's image
+    //declaring the ammo display's dimensions and image variables
     private GreenfootImage image;
     private GreenfootImage rifle = new GreenfootImage("RifleDisplay.png");
     public static final int AMMO_DISPLAY_WIDTH = GameWorld.WORLD_WIDTH / 5;
@@ -26,17 +26,18 @@ public class AmmoDisplay extends Actor
         if(ammo < 10) display = " " + this.ammo;
         else display = "" + this.ammo;
         
-        //creating and setting the image for the ammo display
+        //drawing the ammo display
         rifle.scale(AMMO_DISPLAY_WIDTH * 2 / 3, AMMO_DISPLAY_HEIGHT);
         image =  new GreenfootImage(AMMO_DISPLAY_WIDTH + 1, AMMO_DISPLAY_HEIGHT + 1);
         drawAmmoDisplay(AMMO_DISPLAY_WIDTH + 1, AMMO_DISPLAY_HEIGHT + 1);
         setImage(image);
     }
     
-    //method to update the player's ammo
+    //setter methods
+    
+    //method to update the ammo display
     public void update(int ammo) 
     {
-        //updating the ammo and the display
         this.ammo = ammo;
         if(ammo < 10) display = " " + this.ammo;
         else display = "" + this.ammo;
@@ -46,7 +47,6 @@ public class AmmoDisplay extends Actor
     
     //method to draw the ammo display
     private void drawAmmoDisplay(int width, int height){
-        //drawing the display
         image.clear();
         image.drawImage(rifle, 0, 0);
         image.setColor(ammoColor);

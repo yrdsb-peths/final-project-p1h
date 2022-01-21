@@ -8,10 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Damage extends Powerup
 {
-    //declaring image
+    //declaring the damage powerup's image variables
     private GreenfootImage image = new GreenfootImage("PowerupIcons/damage-icon.png");
     
-    //declaring constants
+    //initializing constants
     public static final int DMG_BOOST = 2;
     public static final Color DMG_BOOST_COLOR = Color.RED;
     

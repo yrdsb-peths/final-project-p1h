@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class BloodSplatter extends Actor
 {
-    //declaring the blood splatter's dimensions and image
+    //declaring the blood splatter's dimensions and image variables
     private static GreenfootImage image = new GreenfootImage("BloodSplatter.png");
     public static final int BLOOD_SPLATTER_WIDTH = StrongEnemy.STR_WIDTH;
     public static final int BLOOD_SPLATTER_HEIGHT = BLOOD_SPLATTER_WIDTH;

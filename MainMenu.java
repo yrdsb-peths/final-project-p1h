@@ -13,11 +13,11 @@ public class MainMenu extends World
     public static final int MENU_HEIGHT = GameWorld.WORLD_HEIGHT;
     
     //declaring background variables
-    private GreenfootImage bgImage;
+    private GreenfootImage bg;
     public static final Font MENU_TITLE_FONT = new Font("Courier New", true, false, MENU_HEIGHT / 8);
     public static final Color MENU_TITLE_COLOR = Color.RED;
-    public static final Font MENU_SCORE_FONT = new Font("Courier New", true, false, MENU_HEIGHT / 15);
     private String title = "The Horde";
+    public static final Font MENU_SCORE_FONT = new Font("Courier New", true, false, MENU_HEIGHT / 15);
     
     //initializing constants
     public static final int SCORE_OFFSET = MENU_HEIGHT / 9;
@@ -31,25 +31,25 @@ public class MainMenu extends World
         super(MENU_WIDTH, MENU_HEIGHT, 1); 
 
         //drawing background
-        bgImage = new GreenfootImage(getWidth() + 1, getHeight() + 1);
-        bgImage.setColor(Color.WHITE);
-        bgImage.fill();
-        bgImage.setColor(MENU_TITLE_COLOR);
-        bgImage.setFont(MENU_TITLE_FONT);
-        bgImage.drawString(title, getWidth() / 8, getHeight() / 4);
+        bg = new GreenfootImage(getWidth() + 1, getHeight() + 1);
+        bg.setColor(Color.WHITE);
+        bg.fill();
+        bg.setColor(MENU_TITLE_COLOR);
+        bg.setFont(MENU_TITLE_FONT);
+        bg.drawString(title, getWidth() / 8, getHeight() / 4);
         //read score data and display the top scores
-        bgImage.setColor(Color.BLACK);
-        bgImage.setFont(MENU_SCORE_FONT);
-        bgImage.drawString("Score: ", getWidth() / 7, getHeight() / 2);
+        bg.setColor(Color.BLACK);
+        bg.setFont(MENU_SCORE_FONT);
+        bg.drawString("Score: ", getWidth() / 7, getHeight() / 2);
         ScoreFile scoreFile = ScoreFile.getInstance();
         int scoreOffset = SCORE_OFFSET;
         for(int score: scoreFile.getScoreData()){
-            bgImage.drawString(Integer.toString(score), getWidth() / 7, getHeight() * 2 / 4 + scoreOffset);
+            bg.drawString(Integer.toString(score), getWidth() / 7, getHeight() * 2 / 4 + scoreOffset);
             scoreOffset += 60;
             
             if ((getHeight() * 2 / 4 + scoreOffset) > getWidth()) break;
         }
-        setBackground(bgImage);
+        setBackground(bg);
         
         //adding buttons
         playButton = new Button("Play");

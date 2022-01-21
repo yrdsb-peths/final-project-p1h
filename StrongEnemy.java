@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class StrongEnemy extends Enemy
 {
-    //declaring dimensions and image to reference width and height
+    //declaring the strong enemy's dimensions and image to reference width and height
     private static GreenfootImage refImage = new GreenfootImage("strong/move/skeleton-move_0.png");
     public static final int STR_WIDTH = refImage.getWidth() / 2;
     public static final int STR_HEIGHT = refImage.getHeight() / 2;
@@ -39,8 +39,7 @@ public class StrongEnemy extends Enemy
             strAttackingSprites[i] = new GreenfootImage("strong/attack/skeleton-attack_" + i + ".png");
             strAttackingSprites[i].scale(STR_WIDTH, STR_HEIGHT);
         }
-        
-        setImage(strMovingSprites[0]); //setting the strong enemy's image
+        setImage(strMovingSprites[0]); //setting the image of the strong enemy
         
         //setting variables
         score = STR_SCORE;

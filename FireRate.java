@@ -8,10 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class FireRate extends Powerup
 {
-    //declaring image
+    //declaring the firerate powerup's image variables
     private GreenfootImage image = new GreenfootImage("PowerupIcons/fire_rate-icon.png");
     
-    //declaring constants
+    //initializing constants
     public static final int FR_BOOST = 2;
     public static final Color FR_BOOST_COLOR = Color.YELLOW;
     
