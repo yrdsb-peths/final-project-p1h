@@ -8,10 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Healing extends Powerup
 {
+    //declaring image
+    private GreenfootImage image = new GreenfootImage("PowerupIcons/healing-icon.png");
+    
     //declaring constant
     public static final Color HEALING_COLOR = Color.GREEN;
     
     public Healing(Player player){
+        image.scale(PU_WIDTH, PU_HEIGHT);
         this.player = player;
         super.draw(PU_WIDTH, PU_HEIGHT, HEALING_COLOR);
     }
@@ -23,6 +27,10 @@ public class Healing extends Powerup
     
     public void activate(){
         player.setCurrHP(player.getMaxHP());
+    }
+    
+    public GreenfootImage getImage(){
+        return image;
     }
     
     public String toString(){

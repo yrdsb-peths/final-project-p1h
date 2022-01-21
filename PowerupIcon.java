@@ -52,9 +52,10 @@ public class PowerupIcon extends Actor
         image.setFont(PU_ICON_FONT);
         image.setColor(Color.BLACK);
         image.fillRect(0, 0, width, height);
-        image.setColor(powerup.getColor());
-        image.fillRect(width / 10, height / 10, width * 9 / 10, height * 9 / 10);
-        image.setColor(Color.BLACK);
+        //image.setColor(powerup.getColor());
+        //image.fillRect(width / 10, height / 10, width * 9 / 10, height * 9 / 10);
+        image.drawImage(powerup.getImage(), 0, 0);
+        image.setColor(Color.WHITE);
         String text = String.valueOf(timeLeft / 60);
         image.drawString(text, (image.getWidth() - (int)(text.length() * PU_ICON_FONT.getSize() * 0.58)) / 2, (image.getHeight() + PU_ICON_FONT.getSize() / 2) / 2);
         setImage(image);

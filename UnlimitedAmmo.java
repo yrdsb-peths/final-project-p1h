@@ -8,10 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class UnlimitedAmmo extends Powerup
 {
+    //declaring image
+    private GreenfootImage image = new GreenfootImage("PowerupIcons/unlimited_ammo-icon.png");
+    
     //declaring constant 
     public static final Color UNLIMITED_AMMO_COLOR = Color.ORANGE;
     
     public UnlimitedAmmo(Player player){
+        image.scale(PU_WIDTH, PU_HEIGHT);
         this.player = player;
         super.draw(PU_WIDTH, PU_HEIGHT, UNLIMITED_AMMO_COLOR);
     }
@@ -28,6 +32,10 @@ public class UnlimitedAmmo extends Powerup
     
     public void deactivate(){
         player.setUnlimitedAmmo(false);
+    }
+    
+    public GreenfootImage getImage(){
+        return image;
     }
     
     public String toString(){

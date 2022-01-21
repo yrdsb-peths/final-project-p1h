@@ -8,11 +8,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Damage extends Powerup
 {
+    //declaring image
+    private GreenfootImage image = new GreenfootImage("PowerupIcons/damage-icon.png");
+    
     //declaring constants
     public static final int DMG_BOOST = 2;
     public static final Color DMG_BOOST_COLOR = Color.RED;
     
     public Damage(Player player){
+        image.scale(PU_WIDTH, PU_HEIGHT);
         this.player = player;
         super.draw(PU_WIDTH, PU_HEIGHT, DMG_BOOST_COLOR);
     }
@@ -28,6 +32,10 @@ public class Damage extends Powerup
     
     public void deactivate(){
         player.setDmg(-DMG_BOOST);
+    }
+    
+    public GreenfootImage getImage(){
+        return image;
     }
     
     public String toString(){
