@@ -10,7 +10,7 @@ import java.util.List;
 public class Player extends SuperSmoothMover
 {
     //declaring the player's dimensions and image to reference width and height
-    private static GreenfootImage refImage = new GreenfootImage("rifle/move/survivor-move_rifle_0.png");
+    private static GreenfootImage refImage = new GreenfootImage("Player/RifleSprites/Move/survivor-move_rifle_0.png");
     public static final int PLAYER_WIDTH = refImage.getWidth() / 3;
     public static final int PLAYER_HEIGHT = refImage.getHeight() / 3;
     
@@ -57,11 +57,11 @@ public class Player extends SuperSmoothMover
     public Player(){
         //initializing sprites
         for (int i = 0; i < rifleMovingSprites.length; i++) {
-            rifleMovingSprites[i] = new GreenfootImage("rifle/move/survivor-move_rifle_"+i+".png");
+            rifleMovingSprites[i] = new GreenfootImage("Player/RifleSprites/Move/survivor-move_rifle_"+i+".png");
             rifleMovingSprites[i].scale(PLAYER_WIDTH, PLAYER_HEIGHT);
         }
         for (int i = 0; i < rifleReloadingSprites.length; i++) {
-            rifleReloadingSprites[i] = new GreenfootImage("rifle/reload/survivor-reload_rifle_"+i+".png");
+            rifleReloadingSprites[i] = new GreenfootImage("Player/RifleSprites/Reload/survivor-reload_rifle_"+i+".png");
             rifleReloadingSprites[i].scale(PLAYER_WIDTH, PLAYER_HEIGHT);
         }
         setImage(rifleMovingSprites[0]); //setting the image of the player

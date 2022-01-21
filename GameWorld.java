@@ -15,7 +15,7 @@ public class GameWorld extends World
     public static final int WORLD_HEIGHT = 540;
     
     //declaring background variables
-    private GreenfootImage bgImage = new GreenfootImage("background.jpg");
+    private GreenfootImage bgImage = new GreenfootImage("Backgrounds/GameWorld.jpg");
     
     //initializing constants
     public static final int START_NUM_POOL = 120; //the smaller the pool, the larger the chance to spawn an enemy

@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MovementSpeed extends Powerup
 {
     //declaring the movement speed powerup's image variables
-    private GreenfootImage image = new GreenfootImage("PowerupIcons/movement_speed-icon.png");
+    private GreenfootImage image = new GreenfootImage("PowerupIcons/MovementSpeed.png");
     
     //initializing constants
     public static final int MS_BOOST = 2;

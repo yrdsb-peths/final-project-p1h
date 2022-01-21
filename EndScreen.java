@@ -13,7 +13,7 @@ public class EndScreen extends World
     public static final int ENDING_HEIGHT = GameWorld.WORLD_HEIGHT;
     
     //declaring background variables
-    private GreenfootImage bg;
+    private GreenfootImage bg = new GreenfootImage("Backgrounds/EndScreen.png");
     public static final Font ENDING_TITLE_FONT = MainMenu.MENU_TITLE_FONT;
     public static final Color ENDING_TITLE_COLOR = MainMenu.MENU_TITLE_COLOR;
     private String title = "You Died";
@@ -27,7 +27,6 @@ public class EndScreen extends World
         super(ENDING_WIDTH, ENDING_HEIGHT, 1);
         
         //drawing background
-        bg = new GreenfootImage("EndScreenBackground.png");
         bg.scale(getWidth() + 1, getHeight() + 1);
         bg.setColor(ENDING_TITLE_COLOR);
         bg.setFont(ENDING_TITLE_FONT);

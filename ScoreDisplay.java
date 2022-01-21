@@ -10,7 +10,7 @@ public class ScoreDisplay extends Actor
 {
     //declaring the score display's dimensions and image variables
     private GreenfootImage image;
-    private GreenfootImage character = new GreenfootImage("CharacterDisplay.png");
+    private GreenfootImage character = new GreenfootImage("CharacterProfile.png");
     public static final int SCORE_DISPLAY_WIDTH = GameWorld.WORLD_WIDTH / 3;
     public static final int SCORE_DISPLAY_HEIGHT = GameWorld.WORLD_HEIGHT * 2 / 15;
     public static final Color scoreColor = Color.YELLOW;

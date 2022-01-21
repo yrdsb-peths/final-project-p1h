@@ -13,8 +13,12 @@ public class BloodSplatter extends Actor
     public static final int BLOOD_SPLATTER_WIDTH = StrongEnemy.STR_WIDTH;
     public static final int BLOOD_SPLATTER_HEIGHT = BLOOD_SPLATTER_WIDTH;
     
+    //initializing constants
+    public static final int STARTING_TRANSPARENCY = 200;
+    public static final int FADE_OUT_SPEED = 5; //decrease in transparency per act
+    
     //declaring instance variables
-    private int transparency = 60;
+    private int transparency = STARTING_TRANSPARENCY;
     
     public BloodSplatter(){
         //setting the blood splatter's image
@@ -25,7 +29,7 @@ public class BloodSplatter extends Actor
     public void act() 
     {
         //fade out effect
-        transparency--;
+        transparency -= FADE_OUT_SPEED;
         if (transparency <= 0) {
             getWorld().removeObject(this);
             return;

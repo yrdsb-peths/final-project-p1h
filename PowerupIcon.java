@@ -11,8 +11,8 @@ public class PowerupIcon extends Actor
     //declaring the powerup icon's dimensions and image variables
     private GreenfootImage image;
     public static final int PU_ICON_WIDTH = Powerup.PU_WIDTH;
-    public static final int PU_ICON_HEIGHT = PU_ICON_WIDTH;
-    public static final Font PU_ICON_FONT = new Font("Courier New", true, false, PU_ICON_HEIGHT / 2);
+    public static final int PU_ICON_HEIGHT = PU_ICON_WIDTH * 3 / 2;
+    public static final Font PU_ICON_FONT = new Font("Courier New", true, false, PU_ICON_HEIGHT / 3);
     
     //declaring instance variables
     private int timeLeft;
@@ -55,13 +55,13 @@ public class PowerupIcon extends Actor
     //method to draw the powerup icon
     private void drawPowerupIcon(int width, int height){
         image.clear();
-        image.setFont(PU_ICON_FONT);
         image.setColor(Color.BLACK);
-        image.fillRect(0, 0, width, height);
+        image.fillRect(0, 0, width, height * 2 / 3);
         image.drawImage(powerup.getImage(), 0, 0);
         image.setColor(Color.WHITE);
+        image.setFont(PU_ICON_FONT);
         String text = String.valueOf(timeLeft / 60 + 1);
-        image.drawString(text, (image.getWidth() - (int)(text.length() * PU_ICON_FONT.getSize() * 0.58)) / 2, (image.getHeight() + PU_ICON_FONT.getSize() / 2) / 2);
+        image.drawString(text, (image.getWidth() - (int)(text.length() * PU_ICON_FONT.getSize() * 0.58)) / 2, image.getHeight() - PU_ICON_FONT.getSize() / 6);
         setImage(image);
     }
 }

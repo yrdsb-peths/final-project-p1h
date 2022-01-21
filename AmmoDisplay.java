@@ -10,7 +10,7 @@ public class AmmoDisplay extends Actor
 {
     //declaring the ammo display's dimensions and image variables
     private GreenfootImage image;
-    private GreenfootImage rifle = new GreenfootImage("RifleDisplay.png");
+    private GreenfootImage rifle = new GreenfootImage("Rifle.png");
     public static final int AMMO_DISPLAY_WIDTH = GameWorld.WORLD_WIDTH / 5;
     public static final int AMMO_DISPLAY_HEIGHT = GameWorld.WORLD_HEIGHT / 11;
     public static final Color ammoColor = Color.WHITE;

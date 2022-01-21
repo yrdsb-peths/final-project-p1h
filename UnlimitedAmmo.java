@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class UnlimitedAmmo extends Powerup
 {
     //declaring the unlimited ammo powerup's image variables
-    private GreenfootImage image = new GreenfootImage("PowerupIcons/unlimited_ammo-icon.png");
+    private GreenfootImage image = new GreenfootImage("PowerupIcons/UnlimitedAmmo.png");
     
     //initializing constants
     public static final Color UNLIMITED_AMMO_COLOR = Color.ORANGE;

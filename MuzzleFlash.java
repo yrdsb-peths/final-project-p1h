@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MuzzleFlash extends SuperSmoothMover
 {
     //declaring the muzzle flash's dimensions and image variables
-    private static GreenfootImage image = new GreenfootImage("rifle/muzzle_flash.png");
+    private static GreenfootImage image = new GreenfootImage("Player/RifleSprites/MuzzleFlash.png");
     public static final int MUZZLE_FLASH_WIDTH = image.getWidth() / 3;
     public static final int MUZZLE_FLASH_HEIGHT = image.getHeight() / 3;
     

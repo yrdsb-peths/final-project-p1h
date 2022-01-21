@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Bullet extends SuperSmoothMover
 {
     //declaring the bullet's dimensions and image variables
-    private static GreenfootImage image = new GreenfootImage("rifle/bullet.png");
+    private static GreenfootImage image = new GreenfootImage("Player/RifleSprites/Bullet.png");
     public static final int BULLET_WIDTH = image.getWidth() / 8;
     public static final int BULLET_HEIGHT = image.getHeight() / 8;
     

@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Healing extends Powerup
 {
     //declaring the healing powerup's image variables
-    private GreenfootImage image = new GreenfootImage("PowerupIcons/healing-icon.png");
+    private GreenfootImage image = new GreenfootImage("PowerupIcons/Healing.png");
     
     //initializing constants
     public static final Color HEALING_COLOR = Color.GREEN;

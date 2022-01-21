@@ -13,7 +13,7 @@ public class InstructionsMenu extends World
     public static final int INSTRUCTIONS_HEIGHT = GameWorld.WORLD_HEIGHT;
     
     //declaring background variables
-    private GreenfootImage bg;
+    private GreenfootImage bg = new GreenfootImage("Backgrounds/InstructionsMenu.png");
     public static final Font INSTRUCTIONS_TITLE_FONT = MainMenu.MENU_TITLE_FONT;
     public static final Color INSTRUCTIONS_TITLE_COLOR = MainMenu.MENU_TITLE_COLOR;
     private String title = "Instructions";
@@ -31,7 +31,6 @@ public class InstructionsMenu extends World
         super(INSTRUCTIONS_WIDTH, INSTRUCTIONS_HEIGHT, 1);
         
         //drawing background
-        bg = new GreenfootImage("instruction-menu_background.png");
         bg.scale(getWidth() + 1, getHeight() + 1);
         bg.setColor(INSTRUCTIONS_TITLE_COLOR);
         bg.setFont(INSTRUCTIONS_TITLE_FONT);
