@@ -13,7 +13,7 @@ public class InstructionsMenu extends World
     public static final int INSTRUCTIONS_HEIGHT = GameWorld.WORLD_HEIGHT;
     
     //declaring background variables
-    private GreenfootImage bgImage;
+    private GreenfootImage bg;
     public static final Font INSTRUCTIONS_TITLE_FONT = MainMenu.MENU_TITLE_FONT;
     public static final Color INSTRUCTIONS_TITLE_COLOR = MainMenu.MENU_TITLE_COLOR;
     private String title = "Instructions";
@@ -31,24 +31,24 @@ public class InstructionsMenu extends World
         super(INSTRUCTIONS_WIDTH, INSTRUCTIONS_HEIGHT, 1);
         
         //drawing background
-        bgImage = new GreenfootImage("instruction-menu_background.png");
-        bgImage.scale(getWidth(), getHeight());
-        bgImage.setColor(INSTRUCTIONS_TITLE_COLOR);
-        bgImage.setFont(INSTRUCTIONS_TITLE_FONT);
-        bgImage.drawString(title, (getWidth() - (int)(title.length() * INSTRUCTIONS_TITLE_FONT.getSize() * 0.58)) / 2, getHeight() / 6);
-        bgImage.setColor(Color.WHITE);
-        bgImage.setFont(INSTRUCTIONS_FONT);
-        bgImage.drawString(goal, getWidth() * 4 / 20, getHeight() * 3 / 10);
-        bgImage.drawString(controls, getWidth() * 4 / 20, getHeight() * 5 / 10);
-        setBackground(bgImage);
+        bg = new GreenfootImage("instruction-menu_background.png");
+        bg.scale(getWidth() + 1, getHeight() + 1);
+        bg.setColor(INSTRUCTIONS_TITLE_COLOR);
+        bg.setFont(INSTRUCTIONS_TITLE_FONT);
+        bg.drawString(title, (getWidth() - (int)(title.length() * INSTRUCTIONS_TITLE_FONT.getSize() * 0.58)) / 2, getHeight() / 6);
+        bg.setColor(Color.WHITE);
+        bg.setFont(INSTRUCTIONS_FONT);
+        bg.drawString(goal, getWidth() * 4 / 20, getHeight() * 3 / 10);
+        bg.drawString(controls, getWidth() * 4 / 20, getHeight() * 5 / 10);
+        setBackground(bg);
         
-        //add button
+        //adding button
         backButton = new Button("Back");
         addObject(backButton, getWidth() * 3 / 4, getHeight() * 5 / 6);
     }
     
     public void act(){
-        //takes the user back to the main menu
+        //takes the user back to the main menu if they pressed the button
         if(Greenfoot.mouseClicked(backButton)){
             Greenfoot.setWorld(new MainMenu());
             backButton.playClickSound();

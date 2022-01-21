@@ -9,52 +9,39 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class PowerupNotification extends Actor
 {   
     //declaring the powerup notification's dimensions and image variables
+    private GreenfootImage image;
     public static final int PU_NOTIF_WIDTH = GameWorld.WORLD_WIDTH;
     public static final int PU_NOTIF_HEIGHT = GameWorld.WORLD_HEIGHT / 12;
     public static final Font PU_NOTIF_FONT = new Font("Courier New", true, true, PU_NOTIF_HEIGHT * 2 / 3);
-    private String name = "";
-    private GreenfootImage image;
     
-    //declaring constants
+    //initializing constants
     public static final int POPUP_TIME = 60;
     
     //declaring instance variables
     private int currTime = 0;
-    private boolean displaying = false;
     
-    public PowerupNotification(){
-        //drawing the powerup notification then setting its image
+    public PowerupNotification(Powerup powerup){
+        //drawing the powerup notification
         image = new GreenfootImage(PU_NOTIF_WIDTH + 1, PU_NOTIF_HEIGHT + 1);
+        drawPowerupNotification(powerup);
         setImage(image);
     }
     
     public void act() 
     {
-        if(displaying) currTime++;
         //clears the notification after it reached its time
-        if(currTime == POPUP_TIME){
-            image.clear();
-            displaying = false;
-            currTime = 0;
-        }
-    }
-    
-    //method to set the display text of the powerup notification
-    public void setDisplay(Powerup powerup){
-        this.name = powerup.toString();
-        displaying = true;
-        image.clear();
-        drawPowerupNotification(powerup.getColor());
+        currTime++;
+        if(currTime == POPUP_TIME) getWorld().removeObject(this);
     }
     
     //method to draw the powerup notification
-    public void drawPowerupNotification(Color bgColor){
-        image.setColor(bgColor);
+    public void drawPowerupNotification(Powerup powerup){
+        image.setColor(powerup.getColor());
         image.setFont(PU_NOTIF_FONT);
         image.setTransparency(150);
         image.fillRect(0, 0, image.getWidth(), image.getHeight());
         image.setTransparency(255);
         image.setColor(Color.BLACK);
-        image.drawString(name, (image.getWidth() - (int)(name.length() * PU_NOTIF_FONT.getSize() * 0.58)) / 2, (image.getHeight() + PU_NOTIF_FONT.getSize() / 2) / 2);
+        image.drawString(powerup.toString(), (image.getWidth() - (int)(powerup.toString().length() * PU_NOTIF_FONT.getSize() * 0.58)) / 2, (image.getHeight() + PU_NOTIF_FONT.getSize() / 2) / 2);
     }
 }

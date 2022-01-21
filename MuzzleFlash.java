@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MuzzleFlash extends SuperSmoothMover
 {
-    //declaring the muzzle flash's dimensions and image
+    //declaring the muzzle flash's dimensions and image variables
     private static GreenfootImage image = new GreenfootImage("rifle/muzzle_flash.png");
     public static final int MUZZLE_FLASH_WIDTH = image.getWidth() / 3;
     public static final int MUZZLE_FLASH_HEIGHT = image.getHeight() / 3;
@@ -27,7 +27,7 @@ public class MuzzleFlash extends SuperSmoothMover
     
     public void act() 
     {
-        //follow rifle
+        //follow the rifle
         player = getWorld().getObjects(Player.class).get(0); //(from Mr. Cohen)
         setLocation(player.getX(), player.getY());
         setRotation(player.getRotation());

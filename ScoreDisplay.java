@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ScoreDisplay extends Actor
 {
-    //declaring variables for the score display's image
+    //declaring the score display's dimensions and image variables
     private GreenfootImage image;
     private GreenfootImage character = new GreenfootImage("CharacterDisplay.png");
     public static final int SCORE_DISPLAY_WIDTH = GameWorld.WORLD_WIDTH / 3;
@@ -24,17 +24,19 @@ public class ScoreDisplay extends Actor
         //setting the player's score
         this.score = score;
         display = "SCORE: " + this.score;
-        //creating and setting the image for the score display
+        
+        //drawing the score display
         character.scale(SCORE_DISPLAY_WIDTH / 4, SCORE_DISPLAY_HEIGHT);
         image =  new GreenfootImage(SCORE_DISPLAY_WIDTH + 1, SCORE_DISPLAY_HEIGHT + 1);
         drawScoreDisplay(SCORE_DISPLAY_WIDTH + 1, SCORE_DISPLAY_HEIGHT + 1);
         setImage(image);
     }
     
-    //method to update the player's score
+    //setter methods
+    
+    //method to update the score display
     public void update(int score) 
     {
-        //updating the score and the display
         this.score = score;
         display = "SCORE: " + this.score;
         drawScoreDisplay(SCORE_DISPLAY_WIDTH + 1, SCORE_DISPLAY_HEIGHT + 1);
@@ -43,7 +45,6 @@ public class ScoreDisplay extends Actor
     
     //method to draw the score display
     private void drawScoreDisplay(int width, int height){
-        //drawing the display
         image.clear();
         image.drawImage(character, 0, 0);
         image.setColor(scoreColor);

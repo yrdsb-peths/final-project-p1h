@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class FastEnemy extends Enemy
 {
-    //declaring dimensions and image to reference width and height
+    //declaring the fast enemy's dimensions and image variable to reference width and height
     private static GreenfootImage refImage = new GreenfootImage("fast/move/troll-move_0.png");
     public static final int FAST_WIDTH = refImage.getWidth();
     public static final int FAST_HEIGHT = refImage.getHeight();
@@ -39,8 +39,7 @@ public class FastEnemy extends Enemy
             fastAttackingSprites[i] = new GreenfootImage("fast/attack/troll-attack_" + i + ".png");
             fastAttackingSprites[i].scale(FAST_WIDTH, FAST_HEIGHT);
         }
-        
-        setImage(fastMovingSprites[0]); //setting the fast enemy's image
+        setImage(fastMovingSprites[0]); //setting the image of the fast enemy
         
         //setting variables
         score = FAST_SCORE;

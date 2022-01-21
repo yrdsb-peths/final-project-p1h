@@ -1,12 +1,10 @@
 #BlueJ class context
 comment0.target=PowerupNotification
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ PowerupNotification\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=PowerupNotification()
+comment1.params=powerup
+comment1.target=PowerupNotification(Powerup)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=powerup
-comment3.target=void\ setDisplay(Powerup)
-comment4.params=bgColor
-comment4.target=void\ drawPowerupNotification(greenfoot.Color)
-numComments=5
+comment3.target=void\ drawPowerupNotification(Powerup)
+numComments=4

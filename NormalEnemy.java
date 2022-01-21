@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class NormalEnemy extends Enemy
 {
-    //declaring dimensions and image to reference width and height
+    //declaring the normal enemy's dimensions and image to reference width and height
     private static GreenfootImage refImage = new GreenfootImage("normal/move/saunter0.png");
     public static final int NORM_WIDTH = refImage.getWidth() * 4 / 3;
     public static final int NORM_HEIGHT = refImage.getHeight() * 4 / 3;
@@ -39,8 +39,7 @@ public class NormalEnemy extends Enemy
             normAttackingSprites[i] = new GreenfootImage("normal/attack2/attack02_" + i + ".png");
             normAttackingSprites[i].scale(NORM_WIDTH, NORM_HEIGHT);
         }
-        
-        setImage(normMovingSprites[0]); //setting the normal enemy's image
+        setImage(normMovingSprites[0]); //setting the image of the normal enemy
         
         //setting variables
         score = NORM_SCORE;
