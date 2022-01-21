@@ -19,6 +19,7 @@ public class MainMenu extends World
     private String title = "The\nHorde";
     
     private GreenfootSound bgMusic = new GreenfootSound("main_menu.mp3");
+    private boolean musicStarted = false;
     
     //declaring actors
     private Button playButton, instructionsButton;
@@ -39,9 +40,6 @@ public class MainMenu extends World
         addObject(playButton, getWidth() * 3 / 4, getHeight() * 2 / 3);
         instructionsButton = new Button("How to Play");
         addObject(instructionsButton, getWidth() * 3 / 4, getHeight() * 5 / 6);
-        
-        // Play music
-        bgMusic.playLoop();
     }
     
     public void act()
@@ -52,5 +50,11 @@ public class MainMenu extends World
             bgMusic.stop();
         }
         else if (Greenfoot.mouseClicked(instructionsButton)) Greenfoot.setWorld(new InstructionsMenu());
+        
+        // Start music, and prevent redundency
+        if (!musicStarted) {
+            bgMusic.playLoop();
+            musicStarted = true;
+        }
     }
 }
