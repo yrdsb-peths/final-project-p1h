@@ -18,6 +18,8 @@ public class MainMenu extends World
     public static final Color MENU_TITLE_COLOR = Color.WHITE;
     private String title = "The\nHorde";
     
+    private GreenfootSound bgMusic = new GreenfootSound("main_menu.mp3");
+    
     //declaring actors
     private Button playButton, instructionsButton;
     
@@ -37,12 +39,18 @@ public class MainMenu extends World
         addObject(playButton, getWidth() * 3 / 4, getHeight() * 2 / 3);
         instructionsButton = new Button("How to Play");
         addObject(instructionsButton, getWidth() * 3 / 4, getHeight() * 5 / 6);
+        
+        // Play music
+        bgMusic.playLoop();
     }
     
     public void act()
     {
         //checking if the user clicked any of the buttons and take them to the respective world
-        if (Greenfoot.mouseClicked(playButton)) Greenfoot.setWorld(new GameWorld());
+        if (Greenfoot.mouseClicked(playButton)) {
+            Greenfoot.setWorld(new GameWorld());
+            bgMusic.stop();
+        }
         else if (Greenfoot.mouseClicked(instructionsButton)) Greenfoot.setWorld(new InstructionsMenu());
     }
 }
