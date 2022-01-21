@@ -171,8 +171,9 @@ public class Player extends SuperSmoothMover
             GreenfootSound backgroundSound = new GreenfootSound("ZombieEatingBackground.wav");
             deathMusic.play();
             backgroundSound.play();
-            //ScoreFile scoreFile = ScoreFile.getInstance();
-            //scoreFile.addScoreData(score);
+            //adding score to scorefile
+            ScoreFile scoreFile = ScoreFile.getInstance();
+            scoreFile.addScoreData(score);
             Greenfoot.setWorld(new EndScreen());
         }
     }
