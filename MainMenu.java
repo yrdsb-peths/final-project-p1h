@@ -13,10 +13,10 @@ public class MainMenu extends World
     public static final int MENU_HEIGHT = GameWorld.WORLD_HEIGHT;
     
     //declaring background variables
-    private GreenfootImage bgImage;
+    private GreenfootImage bgImage = new GreenfootImage("manchester_apocalypse.jpg");
     public static final Font MENU_TITLE_FONT = new Font("Courier New", true, false, MENU_HEIGHT / 8);
-    public static final Color MENU_TITLE_COLOR = Color.RED;
-    private String title = "The Horde";
+    public static final Color MENU_TITLE_COLOR = Color.WHITE;
+    private String title = "The\nHorde";
     
     //declaring actors
     private Button playButton, instructionsButton;
@@ -27,13 +27,10 @@ public class MainMenu extends World
         super(MENU_WIDTH, MENU_HEIGHT, 1); 
 
         //drawing background
-        bgImage = new GreenfootImage(getWidth() + 1, getHeight() + 1);
-        bgImage.setColor(Color.WHITE);
-        bgImage.fill();
+        setBackground(bgImage);
         bgImage.setColor(MENU_TITLE_COLOR);
         bgImage.setFont(MENU_TITLE_FONT);
         bgImage.drawString(title, getWidth() / 8, getHeight() / 4);
-        setBackground(bgImage);
         
         //adding buttons
         playButton = new Button("Play");
