@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import javax.swing.*;
 
 /**
  * The world the user is taken to after the player has died in the GameWorld
@@ -24,6 +25,7 @@ public class EndScreen extends World
     //declaring instance variables
     private GreenfootSound deathMusic = new GreenfootSound("BackgroundMusic/EndScreenMusic.wav");
     private GreenfootSound backgroundSound = new GreenfootSound("BackgroundMusic/ZombieEatingBackground.wav");
+    private boolean promptedForName = false;
     
     /**
      * EndScreen Constructor
@@ -60,6 +62,29 @@ public class EndScreen extends World
             deathMusic.stop();
             backgroundSound.stop();
             backButton.playClickSound();
+        }
+        
+        // Get player's name and sanitize input
+        if (!promptedForName)
+        {
+            promptedForName = true;
+            String name = "";
+            while (name.length() == 0) {
+                name = Greenfoot.ask("Enter your name...");
+            }
+            String sanitizedString = "";
+            for (char c : name.toCharArray())
+            {
+                sanitizedString += c;
+            }
+
+            // Enter name and score into file
+            ScoreFile scoreFile = ScoreFile.getInstance();
+            scoreFile.parseFileToData();
+            scoreFile.addScoreData(sanitizedString, Player.score);
+
+            // Reset player score
+            Player.score = 0;
         }
     }
 }

@@ -22,7 +22,7 @@ public class ScoreFile
     
     // An array that holds the current scores. New scores added are added to the variable,
     // and then is used to update the file. This is similar to a "save" functionality.
-    private ArrayList<Integer> scoreData = new ArrayList<Integer>();
+    private ArrayList<Pair<String, Integer>> scoreData = new ArrayList<Pair<String, Integer>>();
     
     /**
      * Instance referencer (as a singleton, this replaces the constructor of this class)
@@ -41,7 +41,7 @@ public class ScoreFile
      *
      * @return all scores from the file
      */
-    public ArrayList<Integer> getScoreData()
+    public ArrayList<Pair<String,Integer>> getScoreData()
     {
         parseFileToData();
         return scoreData;
@@ -52,9 +52,9 @@ public class ScoreFile
      *
      * @param newScore a new score
      */
-    public void addScoreData(int newScore)
+    public void addScoreData(String name, int score)
     {
-        scoreData.add(newScore);
+        scoreData.add(new Pair<String,Integer>(name, score));
         sortScore();
         parseDataToFile();
     }
@@ -85,37 +85,57 @@ public class ScoreFile
     private void sortScore()
     {
         // Initialize sorted data
-        int[] sortedData = new int[scoreData.size()];
+        int[] sortedScores = new int[scoreData.size()];
         for (int i = 0; i < scoreData.size(); i++)
         {
-            sortedData[i] = scoreData.get(i);
+            sortedScores[i] = scoreData.get(i).getSecond();
         }
         
-        // Sort the data and wipe out old data
-        sortedData = Sort.reverseMergeSort(sortedData);
+        // Sort the data and rematch names to scores
+        sortedScores = Sort.reverseMergeSort(sortedScores);
+        ArrayList<Pair<String,Integer>> oldData = new ArrayList(scoreData);
         scoreData.clear();
         
         // Replace current data with new data
-        for (int score: sortedData)
+        for (int score : sortedScores)
         {
-            scoreData.add(score);
+            for (int i = 0; i < oldData.size(); i++)
+            {
+                if (oldData.get(i).getSecond() == score)
+                {
+                    scoreData.add(oldData.get(i));
+                    oldData.remove(i);
+                    i--;
+                    break;
+                }
+            }
         }
     }
     
     /**
      * Method to convert data from file into the arraylist
      */
-    private void parseFileToData()
+    public void parseFileToData()
     {
         scoreData.clear();
         try
         {
              BufferedReader br = new BufferedReader(new FileReader(scorePath));
+             String rawData = "";
              String line;
              
-             // logic for parsing file is here
+             // Get the raw data
              while ((line = br.readLine()) != null) {
-                 scoreData.add(Integer.parseInt(line));
+                 rawData += line;
+             }
+
+             // Split the data into array list via comma (CSV)
+             String[] rawDataArr = rawData.split(",");
+
+             // Put it into the arraylist
+             for (int i = 0; i < rawDataArr.length - 1; i+=2)
+             {
+                 scoreData.add(new Pair<String, Integer>(rawDataArr[i], Integer.parseInt(rawDataArr[i+1])));
              }
              
              br.close();
@@ -130,15 +150,15 @@ public class ScoreFile
      * Method to convert data from the arraylist into the file
      *
      */
-    private void parseDataToFile()
+    public void parseDataToFile()
     {
         try
         {
             BufferedWriter bw = new BufferedWriter(new FileWriter(scorePath, false));
             
-            for (int score : scoreData)
+            for (Pair p : scoreData)
             {
-                bw.write(score + "\n");
+                bw.write(p.getFirst() + "," + p.getSecond() + ",\n");
             }
             bw.close();
         }

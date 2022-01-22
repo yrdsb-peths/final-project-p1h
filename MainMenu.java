@@ -20,11 +20,8 @@ public class MainMenu extends World
     public static final Font MENU_SCORE_FONT = new Font("Courier New", true, false, MENU_HEIGHT / 15);
     public static final Color MENU_SCORE_COLOR = Color.YELLOW;
     
-    //initializing constants
-    public static final int SCORE_OFFSET = MENU_HEIGHT / 9;
-    
     //declaring actors
-    private Button playButton, instructionsButton;
+    private Button playButton, instructionsButton, leaderboardButton;
     
     //declaring instance variables
     private GreenfootSound bgMusic = new GreenfootSound("BackgroundMusic/MainMenuMusic.mp3");
@@ -42,25 +39,15 @@ public class MainMenu extends World
         bg.setColor(MENU_TITLE_COLOR);
         bg.setFont(MENU_TITLE_FONT);
         bg.drawString(title, getWidth() / 8, getHeight() / 4);
-        //read score data and display the top scores
-        bg.setColor(MENU_SCORE_COLOR);
-        bg.setFont(MENU_SCORE_FONT);
-        bg.drawString("Top Scores: ", getWidth() / 7, getHeight() * 3 / 5);
-        ScoreFile scoreFile = ScoreFile.getInstance();
-        int scoreOffset = SCORE_OFFSET;
-        for(int score: scoreFile.getScoreData()){
-            bg.drawString(Integer.toString(score), getWidth() / 7, getHeight() * 3 / 5 + scoreOffset);
-            scoreOffset += 60;
-            
-            if ((getHeight() / 2 + scoreOffset) > getWidth()) break;
-        }
         setBackground(bg);
         
         //adding buttons
         playButton = new Button("Play");
-        addObject(playButton, getWidth() * 3 / 4, getHeight() * 2 / 3);
+        addObject(playButton, getWidth() * 3 / 4, (int) (getHeight() * 1.9 / 3));
         instructionsButton = new Button("How to Play");
-        addObject(instructionsButton, getWidth() * 3 / 4, getHeight() * 5 / 6);
+        addObject(instructionsButton, getWidth() * 3 / 4, (int) (getHeight() * 2.3 / 3));
+        leaderboardButton = new Button("Leaderboard");
+        addObject(leaderboardButton, getWidth() * 3 / 4, (int) (getHeight() * 2.7 / 3));
     }
     
     /**
@@ -78,6 +65,10 @@ public class MainMenu extends World
         }
         else if (Greenfoot.mouseClicked(instructionsButton)){
             Greenfoot.setWorld(new InstructionsMenu());
+            playButton.playClickSound();
+        }
+        else if (Greenfoot.mouseClicked(leaderboardButton)){
+            Greenfoot.setWorld(new LeaderboardMenu());
             playButton.playClickSound();
         }
         
