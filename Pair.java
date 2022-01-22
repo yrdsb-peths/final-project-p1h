@@ -1,40 +1,70 @@
 /**
  * Write a description of class Pair here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Vaughn Chan) 
+ * @version (3.0: 01/22/2022)
  */
 public class Pair<T1, T2>
 {
     private T1 first;
     private T2 second;
 
-    // For initializing object with empty variables
+    /**
+     * Pair Constructor
+     * 
+     * For initializing object with empty variables
+     */
     public Pair() {}
 
-    // For initializing object with member variables
+    /**
+     * Pair Constructor
+     *
+     *For initializing object with member variables
+     *
+     * @param first the first element
+     * @param second the second element
+     */
     public Pair(T1 first, T2 second)
     {
         this.first = first;
         this.second = second;
     }
 
+    /**
+     * Method to set the first and second element
+     *
+     * @param first the first element
+     * @param second the second element
+     */
     public void setPair(T1 first, T2 second)
     {
         this.first = first;
         this.second = second;
     }
 
+    /**
+     * Method to get the first element
+     *
+     * @return the first element
+     */
     public T1 getFirst()
     {
         return first;
     }
 
+    /**
+     * Method to get the second element
+     *
+     * @return the second element
+     */
     public T2 getSecond()
     {
         return second;
     }
 
+    /**
+     * Method to print the string in the format "first element, second element"
+     */
     public void printString()
     {
         System.out.println(first + ", " + second);

@@ -186,13 +186,7 @@ public class Player extends SuperSmoothMover
         handleSprites();
         
         //ends the game if the player dies
-        if(currHP <= 0){
-            //adding score to scorefile
-            //ScoreFile scoreFile = ScoreFile.getInstance();
-            //scoreFile.addScoreData(score);
-            
-            GameWorld.endGame(); //taking the user to the endscreen
-        }
+        if(currHP <= 0) GameWorld.endGame(); //taking the user to the endscreen
     }
     
     /**

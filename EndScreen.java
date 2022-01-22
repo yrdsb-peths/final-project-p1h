@@ -70,7 +70,7 @@ public class EndScreen extends World
             promptedForName = true;
             String name = "";
             while (name.length() == 0) {
-                name = Greenfoot.ask("Enter your name...");
+                name = Greenfoot.ask("Enter your name:");
             }
             String sanitizedString = "";
             for (char c : name.toCharArray())

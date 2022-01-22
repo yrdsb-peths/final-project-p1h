@@ -2,7 +2,7 @@
  * Singleton class for reading and writing to a score file.
  * 
  * @author (Vaughn Chan) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/22/2022)
  */
 import java.util.ArrayList;
 import java.io.File;
