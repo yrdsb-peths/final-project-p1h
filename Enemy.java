@@ -37,7 +37,7 @@ public class Enemy extends SuperSmoothMover
             BloodSplatter bloodSplatter = new BloodSplatter();
             getWorld().addObject(bloodSplatter, getX(), getY());
             
-            GreenfootSound zombieDeathSound = new GreenfootSound("ZombieDeath.wav");
+            GreenfootSound zombieDeathSound = new GreenfootSound("ZombieSoundEffects/ZombieDeath.wav");
             zombieDeathSound.play();
             
             getWorld().removeObject(this); //enemy dies

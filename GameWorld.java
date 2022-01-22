@@ -35,6 +35,8 @@ public class GameWorld extends World
     private ArrayList<PowerupIcon> powerupIcons = new ArrayList<PowerupIcon>();
     
     //declaring instance variables
+    private static GreenfootSound bgMusic = new GreenfootSound("BackgroundMusic/GameWorldMusic.wav");
+    private boolean musicStarted = false;
     private int numPool,decrTimer;
     
     public GameWorld()
@@ -62,6 +64,12 @@ public class GameWorld extends World
         if(decrTimer < 0) decrTimer = POOL_DECR_DELAY;
         
         handlePowerups();
+        
+        // Start music, and prevent redundency
+        if (!musicStarted) {
+            bgMusic.playLoop();
+            musicStarted = true;
+        }
     }
     
     //method to spawn an en enemy
@@ -78,15 +86,15 @@ public class GameWorld extends World
         //chooses type of enemy
         if(rdmEnemy < FAST_ENEMY_CHANCE){
             enemy = new FastEnemy();
-            zombieGroan = new GreenfootSound("FastGroan.wav");
+            zombieGroan = new GreenfootSound("ZombieSoundEffects/FastGroan.wav");
         }
         else if(rdmEnemy < FAST_ENEMY_CHANCE + STR_ENEMY_CHANCE){
             enemy = new StrongEnemy();
-            zombieGroan = new GreenfootSound("StrongGroan.wav");
+            zombieGroan = new GreenfootSound("ZombieSoundEffects/StrongGroan.wav");
         }
         else{
             enemy = new NormalEnemy();
-            zombieGroan = new GreenfootSound("NormalGroan.wav");
+            zombieGroan = new GreenfootSound("ZombieSoundEffects/NormalGroan.wav");
         }
         
         //spawns enemy at a random location at the edge of the world
@@ -112,14 +120,14 @@ public class GameWorld extends World
             
             // Spawn powerup
             addObject(powerupDrops.get(powerupDrops.size() - 1), Greenfoot.getRandomNumber(getWidth()), Greenfoot.getRandomNumber(getHeight()));
-            GreenfootSound powerupSound = new GreenfootSound("Powerup.wav");
+            GreenfootSound powerupSound = new GreenfootSound("PowerupSoundEffects/PowerupSpawn.wav");
             powerupSound.play();
         }
         
         // Handle powerup collision with player
         List<Powerup> powerupsPickedUp = player.getIntersectingObjects();
         for (Powerup i: powerupsPickedUp) {
-            GreenfootSound pickupSound = new GreenfootSound("PowerupPickup.wav");
+            GreenfootSound pickupSound = new GreenfootSound("PowerupSoundEffects/PowerupPickup.wav");
             pickupSound.play();
             
             //checks if the powerup picked up is already active
@@ -172,5 +180,10 @@ public class GameWorld extends World
                 powerupIcons.remove(i);
             }
         }
+    }
+    
+    public static void endGame(){
+        bgMusic.stop();
+        Greenfoot.setWorld(new EndScreen());
     }
 }

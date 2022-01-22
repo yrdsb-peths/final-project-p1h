@@ -9,4 +9,6 @@ comment3.params=
 comment3.target=void\ spawnEnemy()
 comment4.params=
 comment4.target=void\ handlePowerups()
-numComments=5
+comment5.params=
+comment5.target=void\ endGame()
+numComments=6

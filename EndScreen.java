@@ -21,6 +21,10 @@ public class EndScreen extends World
     //declaring actors
     private Button backButton;
     
+    //declaring instance variables
+    private GreenfootSound deathMusic = new GreenfootSound("BackgroundMusic/EndScreenMusic.wav");
+    private GreenfootSound backgroundSound = new GreenfootSound("BackgroundMusic/ZombieEatingBackground.wav");
+    
     public EndScreen()
     {    
         // Create a new world with ENDING_WIDTH*ENDING_HEIGHT cells with a cell size of 1x1 pixels.
@@ -40,12 +44,17 @@ public class EndScreen extends World
         //adding button
         backButton = new Button("Back");
         addObject(backButton, getWidth() * 3 / 4, getHeight() * 5 / 6);
+        
+        deathMusic.play();
+        backgroundSound.play();
     }
     
     public void act(){
         //takes the user back to the main menu if they pressed the button
         if(Greenfoot.mouseClicked(backButton)){
             Greenfoot.setWorld(new MainMenu());
+            deathMusic.stop();
+            backgroundSound.stop();
             backButton.playClickSound();
         }
     }

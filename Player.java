@@ -73,7 +73,7 @@ public class Player extends SuperSmoothMover
         
         //creating sound array
         rifleSounds = new GreenfootSound[10];
-        for(int i = 0; i < rifleSounds.length; i++) rifleSounds[i] = new GreenfootSound("RifleShot.wav");
+        for(int i = 0; i < rifleSounds.length; i++) rifleSounds[i] = new GreenfootSound("PlayerSoundEffects/RifleShot.wav");
     }
     
     public void addedToWorld(World world){ //(from Mr. Cohen)
@@ -152,7 +152,7 @@ public class Player extends SuperSmoothMover
         if((ammo <= 0 || (Greenfoot.isKeyDown("r") && ammo < PLAYER_MAG_SIZE)) && !reloading){
             reloading = true;
             rifleReloadingSpriteNum = 0;
-            GreenfootSound reloadSound = new GreenfootSound("PlayerReload.wav");
+            GreenfootSound reloadSound = new GreenfootSound("PlayerSoundEffects/PlayerReload.wav");
             reloadSound.play();
         }
         //reloads weapon
@@ -170,16 +170,11 @@ public class Player extends SuperSmoothMover
         
         //ends the game if the player dies
         if(currHP <= 0){
-            GreenfootSound deathMusic = new GreenfootSound("Death.wav");
-            GreenfootSound backgroundSound = new GreenfootSound("ZombieEatingBackground.wav");
-            deathMusic.play();
-            backgroundSound.play();
-            
             //adding score to scorefile
             ScoreFile scoreFile = ScoreFile.getInstance();
             scoreFile.addScoreData(score);
             
-            Greenfoot.setWorld(new EndScreen()); //taking the user to the endscreen
+            GameWorld.endGame(); //taking the user to the endscreen
         }
     }
     
