@@ -3,10 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Write a description of class GameWorld here.
+ * The world where the game is played, the user is taken to this world after clicking the 'Play" button in the MainMenu
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Edison Lim) 
+ * @version (2.0: 01/22/2022)
  */
 public class GameWorld extends World
 {

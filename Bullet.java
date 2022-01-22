@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Bullet here.
+ * The bullet that is fired from the player's weapon
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Edison Lim) 
+ * @version (2.0: 01/22/2022)
  */
 public class Bullet extends SuperSmoothMover
 {

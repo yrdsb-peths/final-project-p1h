@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MuzzleFlash here.
+ * The muzzle flash of the player's weapon, appears for a second when a bullet is fired
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Jaylen Cheung) 
+ * @version (2.0: 01/22/2022)
  */
 public class MuzzleFlash extends SuperSmoothMover
 {

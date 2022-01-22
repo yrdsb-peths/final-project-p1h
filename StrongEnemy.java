@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class StrongEnemy here.
+ * The strong enemy (large zombie in a t-shirt)
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Edison Lim) 
+ * @version (2.0: 01/22/2022)
  */
 public class StrongEnemy extends Enemy
 {

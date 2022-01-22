@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MovementSpeed here.
+ * The movement speed powerup: increases the player's movement speed for a duration
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Jaylen Cheung) 
+ * @version (2.0: 01/22/2022)
  */
 public class MovementSpeed extends Powerup
 {

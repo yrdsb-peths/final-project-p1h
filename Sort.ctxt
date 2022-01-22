@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Sort
-comment0.text=\r\n\ Merge\ Sort\ algorithm\r\n\ (Nothing\ new\ here,\ literally\ just\ the\ regular\ algorithm\ sorter)\r\n\ \r\n\ @author\ Vaughn\ Chan\r\n\ @version\ 2022-01-19\r\n
+comment0.text=\r\n\ Merge\ Sort\ algorithm\r\n\ (Nothing\ new\ here,\ literally\ just\ the\ regular\ algorithm\ sorter)\r\n\ \r\n\ @author\ (Vaughn\ Chan)\ \r\n\ @version\ (2.0\:\ 01/22/2022)\r\n
 comment1.params=arr
 comment1.target=int[]\ reverseMergeSort(int[])
 comment1.text=\r\n\ Method\ to\ reverse\ merge\ sort\r\n\r\n\ @param\ arr\ the\ array\ to\ be\ sorted\r\n\ @return\ the\ reverse\ sorted\ array\r\n

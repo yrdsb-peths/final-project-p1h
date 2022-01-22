@@ -2,10 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
 
 /**
- * Write a description of class Player here.
+ * The player that the user controls
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Edison Lim) 
+ * @version (2.0: 01/22/2022)
  */
 public class Player extends SuperSmoothMover
 {

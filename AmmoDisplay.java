@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class AmmoDisplay here.
+ * The display showing the player's weapon and the amount of ammo currently in the magazine
  * 
- * @author (Edison Lim, Jaylen Cheung, Vaughn Chan) 
- * @version (01-21-2022)
+ * @author (Edison Lim) 
+ * @version (2.0: 01-21-2022)
  */
 public class AmmoDisplay extends Actor
 {

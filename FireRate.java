@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class FireRate here.
+ * The firerate powerup: increases the player's firerate for a duration
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Jaylen Cheung) 
+ * @version (2.0: 01/22/2022)
  */
 public class FireRate extends Powerup
 {

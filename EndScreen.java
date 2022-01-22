@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class EndScreen here.
+ * The world the user is taken to after the player has died in the GameWorld
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Edison Lim) 
+ * @version (2.0: 01/22/2022)
  */
 public class EndScreen extends World
 {

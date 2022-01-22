@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class InstructionsMenu here.
+ * The world displaying the instructions for how to play the game, the user is taken to this world after clicking the 'How To Play Button' in the MainMenu
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Jaylen Cheung) 
+ * @version (2.0: 01/22/2022)
  */
 public class InstructionsMenu extends World
 {
