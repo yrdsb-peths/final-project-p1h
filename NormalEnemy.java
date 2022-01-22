@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class NormalEnemy extends Enemy
 {
-    //declaring dimensions and image to reference width and height
-    private static GreenfootImage refImage = new GreenfootImage("normal/move/saunter0.png");
+    //declaring the normal enemy's dimensions and image to reference width and height
+    private static GreenfootImage refImage = new GreenfootImage("Enemies/NormalEnemySprites/Move/saunter0.png");
     public static final int NORM_WIDTH = refImage.getWidth() * 4 / 3;
     public static final int NORM_HEIGHT = refImage.getHeight() * 4 / 3;
     
@@ -27,20 +27,22 @@ public class NormalEnemy extends Enemy
     private GreenfootImage[] normMovingSprites = new GreenfootImage[32];
     private GreenfootImage[] normAttackingSprites = new GreenfootImage[20];
     
+    /**
+     * NormalEnemy Constructor
+     */
     public NormalEnemy(){
         super();
         
         //initializing sprites
         for (int i = 0; i < normMovingSprites.length; i++) {
-            normMovingSprites[i] = new GreenfootImage("normal/move/saunter" + i + ".png");
+            normMovingSprites[i] = new GreenfootImage("Enemies/NormalEnemySprites/Move/saunter" + i + ".png");
             normMovingSprites[i].scale(NORM_WIDTH, NORM_HEIGHT);
         }
         for (int i = 0; i < normAttackingSprites.length; i++) {
-            normAttackingSprites[i] = new GreenfootImage("normal/attack2/attack02_" + i + ".png");
+            normAttackingSprites[i] = new GreenfootImage("Enemies/NormalEnemySprites/Attack2/attack02_" + i + ".png");
             normAttackingSprites[i].scale(NORM_WIDTH, NORM_HEIGHT);
         }
-        
-        setImage(normMovingSprites[0]); //setting the normal enemy's image
+        setImage(normMovingSprites[0]); //setting the image of the normal enemy
         
         //setting variables
         score = NORM_SCORE;
@@ -53,14 +55,25 @@ public class NormalEnemy extends Enemy
         moveAct = NORM_MOVE_ACT;
         movingSprites = normMovingSprites;
         attackingSprites = normAttackingSprites;
+        attackSounds = new GreenfootSound[1];
+        for(int i = 0; i < attackSounds.length; i++) attackSounds[i] = new GreenfootSound("ZombieSoundEffects/NormalPunch.wav");
     }
     
+    /**
+     * Act Method
+     */
     public void act() 
     {
         super.act();
     }
     
-    //method to draw the normal enemy
+    /**
+     * Method to draw thhe normal enemy
+     *
+     * @param width the width of the normal enemy
+     * @param height the height of the normal enemy
+     * @return the normal enemy's image
+     */
     private GreenfootImage drawNormalEnemy(int width, int height){
         GreenfootImage image = new GreenfootImage(width + 1, height + 1);
         image.setColor(Color.BLUE);

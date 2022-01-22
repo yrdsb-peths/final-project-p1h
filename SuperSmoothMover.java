@@ -39,6 +39,9 @@ public abstract class SuperSmoothMover extends Actor
         setLocation(exactX + dx, exactY + dy);
     }
     
+    /**
+     * Set rotation to the specified exact rotation
+     */
     public void setRotation (double rotation){
         this.rotation = rotation;
         super.setRotation ((int)(rotation + 0.5));

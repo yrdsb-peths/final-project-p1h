@@ -8,38 +8,47 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Button extends Actor
 {
-    //declaring variables for the button's image
+    //declaring the button's dimensions and image variables
     private GreenfootImage image;
     public static final int BUTTON_WIDTH = GameWorld.WORLD_WIDTH / 6;
     public static final int BUTTON_HEIGHT = GameWorld.WORLD_HEIGHT / 11;
-    public static final Color hoverColor = Color.YELLOW; //MainMenu.titleColor
-    private String label;
+    public static final Color hoverColor = MainMenu.MENU_TITLE_COLOR;
     public static Font labelFont = new Font("Courier New", true, false, BUTTON_HEIGHT / 2);
+    private String label;
     
     //declaring instance variables
-    //sound
-    //private GreenfootSound moveSound = new GreenfootSound("Menu Move.wav");
     private boolean soundPlayed = false;
     //mouse tracking
     private MouseInfo mouse;
     private boolean hovering = false;
     
+    /**
+     * Button Constructor
+     *
+     * @param str the label of the button
+     */
     public Button(String str){
-        image = new GreenfootImage(BUTTON_WIDTH + 1, BUTTON_HEIGHT + 1); //creating the blank GreenfootImages used for the buttons
+        //drawing the button
+        image = new GreenfootImage(BUTTON_WIDTH + 1, BUTTON_HEIGHT + 1);
         label = str;
-        //setting the image for the button
         drawButton(Color.BLACK, Color.WHITE, hoverColor);
         setImage(image);
     }
     
+    /**
+     * Act Method
+     * 
+     * Checks if the user is hovering over the button with the mouse, and updates the image of the button if they are
+     */
     public void act() 
     {
         mouse = Greenfoot.getMouseInfo();
-        //changes button label's color when the mouse is hovering over it (from Mr. Cohen)
+        //changes the button label's color when the mouse is hovering over it (from Mr. Cohen)
         if(Greenfoot.mouseMoved(this)){
             hovering = true;
-            if(!soundPlayed){ //adds sound
-                //moveSound.play();
+            if(!soundPlayed){
+                GreenfootSound hoverSound = new GreenfootSound("ButtonHover.wav");
+                hoverSound.play();
                 soundPlayed = true;
             }
             drawButton(Color.BLACK, Color.WHITE, hoverColor);
@@ -53,13 +62,21 @@ public class Button extends Actor
         }
     }
     
-    public void update(String label){
-        this.label = label;
-        drawButton(Color.BLACK, Color.WHITE, hoverColor);
-        this.setImage(image);
+    /**
+     * Method to play the click sound of pressing the button, called by worlds that have buttons in them
+     */
+    public void playClickSound(){
+        GreenfootSound clickSound = new GreenfootSound("ButtonClick.wav");
+        clickSound.play();
     }
     
-    //method to draw the button with the given parameters
+    /**
+     * Method to draw the button
+     *
+     * @param backColor the color of the button
+     * @param labelColor the color of the label
+     * @param hoverColor the hover color of the label
+     */
     private void drawButton(Color backColor, Color labelColor, Color hoverColor){
         image.clear();
         //drawing button

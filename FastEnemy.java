@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class FastEnemy extends Enemy
 {
-    //declaring dimensions and image to reference width and height
-    private static GreenfootImage refImage = new GreenfootImage("fast/move/troll-move_0.png");
+    //declaring the fast enemy's dimensions and image variable to reference width and height
+    private static GreenfootImage refImage = new GreenfootImage("Enemies/FastEnemySprites/Move/troll-move_0.png");
     public static final int FAST_WIDTH = refImage.getWidth();
     public static final int FAST_HEIGHT = refImage.getHeight();
     
@@ -27,20 +27,22 @@ public class FastEnemy extends Enemy
     private GreenfootImage[] fastMovingSprites = new GreenfootImage[8];
     private GreenfootImage[] fastAttackingSprites = new GreenfootImage[8];
     
+    /**
+     * FastEnemy Constructor
+     */
     public FastEnemy(){
         super();
         
         //initializing sprites
         for (int i = 0; i < fastMovingSprites.length; i++) {
-            fastMovingSprites[i] = new GreenfootImage("fast/move/troll-move_" + i + ".png");
+            fastMovingSprites[i] = new GreenfootImage("Enemies/FastEnemySprites/Move/troll-move_" + i + ".png");
             fastMovingSprites[i].scale(FAST_WIDTH, FAST_HEIGHT);
         }
         for (int i = 0; i < fastAttackingSprites.length; i++) {
-            fastAttackingSprites[i] = new GreenfootImage("fast/attack/troll-attack_" + i + ".png");
+            fastAttackingSprites[i] = new GreenfootImage("Enemies/FastEnemySprites/Attack/troll-attack_" + i + ".png");
             fastAttackingSprites[i].scale(FAST_WIDTH, FAST_HEIGHT);
         }
-        
-        setImage(fastMovingSprites[0]); //setting the fast enemy's image
+        setImage(fastMovingSprites[0]); //setting the image of the fast enemy
         
         //setting variables
         score = FAST_SCORE;
@@ -53,14 +55,25 @@ public class FastEnemy extends Enemy
         moveAct = FAST_MOVE_ACT;
         movingSprites = fastMovingSprites;
         attackingSprites = fastAttackingSprites;
+        attackSounds = new GreenfootSound[2];
+        for(int i = 0; i < attackSounds.length; i++) attackSounds[i] = new GreenfootSound("ZombieSoundEffects/FastStab.wav");
     }
     
+    /**
+     * Act Method
+     */
     public void act() 
     {
         super.act();
     }
     
-    //method to draw the fast enemy
+    /**
+     * Method to draw the fast enemy
+     *
+     * @param width the width of the fast enemy
+     * @param height the height of the fast enemy
+     * @return the fast enemy's image
+     */
     private GreenfootImage drawFastEnemy(int width, int height){
         GreenfootImage image = new GreenfootImage(width + 1, height + 1);
         image.setColor(Color.GREEN);

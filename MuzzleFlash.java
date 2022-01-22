@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MuzzleFlash extends SuperSmoothMover
 {
-    //declaring the muzzle flash's dimensions and image
-    private static GreenfootImage image = new GreenfootImage("rifle/muzzle_flash.png");
+    //declaring the muzzle flash's dimensions and image variables
+    private static GreenfootImage image = new GreenfootImage("Player/RifleSprites/MuzzleFlash.png");
     public static final int MUZZLE_FLASH_WIDTH = image.getWidth() / 3;
     public static final int MUZZLE_FLASH_HEIGHT = image.getHeight() / 3;
     
@@ -19,15 +19,23 @@ public class MuzzleFlash extends SuperSmoothMover
     //declaring instance variables
     private int transparency = 255;
     
+    /**
+     * MuzzleFlash Constructor
+     */
     public MuzzleFlash(){
         //setting the muzzle flash's image
         image.scale(MUZZLE_FLASH_WIDTH, MUZZLE_FLASH_HEIGHT);
         setImage(image);
     }
     
+    /**
+     * Act Method
+     * 
+     * Follows the rifle and reduces transparency to apply the fade out effect, removes the object when it is transparent
+     */
     public void act() 
     {
-        //follow rifle
+        //follow the rifle
         player = getWorld().getObjects(Player.class).get(0); //(from Mr. Cohen)
         setLocation(player.getX(), player.getY());
         setRotation(player.getRotation());
