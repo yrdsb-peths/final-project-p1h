@@ -20,6 +20,11 @@ public class ScoreDisplay extends Actor
     private int score;
     private String display;
     
+    /**
+     * ScoreDisplay Constructor
+     *
+     * @param score current score
+     */
     public ScoreDisplay(int score){
         //setting the player's score
         this.score = score;
@@ -34,7 +39,11 @@ public class ScoreDisplay extends Actor
     
     //setter methods
     
-    //method to update the score display
+    /**
+     * Method to update the score
+     *
+     * @param score current score
+     */
     public void update(int score) 
     {
         this.score = score;
@@ -43,7 +52,12 @@ public class ScoreDisplay extends Actor
         setImage(image);
     }
     
-    //method to draw the score display
+    /**
+     * Method to draw the score display
+     *
+     * @param width the width of the score display
+     * @param height the height of the score display
+     */
     private void drawScoreDisplay(int width, int height){
         image.clear();
         image.drawImage(character, 0, 0);

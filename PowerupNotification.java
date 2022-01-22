@@ -20,6 +20,11 @@ public class PowerupNotification extends Actor
     //declaring instance variables
     private int currTime = 0;
     
+    /**
+     * PowerupNotification Constructor
+     *
+     * @param powerup the powerup represented by the powerup notification
+     */
     public PowerupNotification(Powerup powerup){
         //drawing the powerup notification
         image = new GreenfootImage(PU_NOTIF_WIDTH + 1, PU_NOTIF_HEIGHT + 1);
@@ -27,6 +32,11 @@ public class PowerupNotification extends Actor
         setImage(image);
     }
     
+    /**
+     * Act Method
+     * 
+     * Updates the amount of time that the notification has been up, and clears the notification when it has reached its time
+     */
     public void act() 
     {
         //clears the notification after it reached its time
@@ -34,7 +44,11 @@ public class PowerupNotification extends Actor
         if(currTime == POPUP_TIME) getWorld().removeObject(this);
     }
     
-    //method to draw the powerup notification
+    /**
+     * Method to draw the powerup notification
+     *
+     * @param powerup the powerup represented by the powerup notification
+     */
     public void drawPowerupNotification(Powerup powerup){
         image.setColor(powerup.getColor());
         image.setFont(PU_NOTIF_FONT);

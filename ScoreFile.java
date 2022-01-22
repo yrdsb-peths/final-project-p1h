@@ -24,7 +24,11 @@ public class ScoreFile
     // and then is used to update the file. This is similar to a "save" functionality.
     private ArrayList<Integer> scoreData = new ArrayList<Integer>();
     
-    // Instance referencer (as a singleton, this replaces the constructor of this class)
+    /**
+     * Instance referencer (as a singleton, this replaces the constructor of this class)
+     *
+     * @return the scorefile
+     */
     public static ScoreFile getInstance()
     {
         // When initialized, make sure score file actually exists
@@ -32,14 +36,22 @@ public class ScoreFile
         return instance;
     }
     
-    // Get all scores from the file (used to display the scores)
+    /**
+     * Method to get all scores from the file (used to display the scores)
+     *
+     * @return all scores from the file
+     */
     public ArrayList<Integer> getScoreData()
     {
         parseFileToData();
         return scoreData;
     }
     
-    // Add a new score to the file
+    /**
+     * Method to add a new score to the file
+     *
+     * @param newScore a new score
+     */
     public void addScoreData(int newScore)
     {
         scoreData.add(newScore);
@@ -47,7 +59,9 @@ public class ScoreFile
         parseDataToFile();
     }
     
-    // Helper method for checking if score file exists
+    /**
+     * Helper method for checking if score file exists
+     */
     private static void createScoreFile()
     {
         try
@@ -64,7 +78,10 @@ public class ScoreFile
         }
     }
     
-    // Sort the score in reverse order (biggest to smallest)
+    /**
+     * Method to sort the score in reverse order (largest to smallest)
+     *
+     */
     private void sortScore()
     {
         // Initialize sorted data
@@ -85,7 +102,9 @@ public class ScoreFile
         }
     }
     
-    // Convert data from file into the arraylist
+    /**
+     * Method to convert data from file into the arraylist
+     */
     private void parseFileToData()
     {
         scoreData.clear();
@@ -107,7 +126,10 @@ public class ScoreFile
         }
     }
     
-    // Convert data from the arraylist into the file
+    /**
+     * Method to convert data from the arraylist into the file
+     *
+     */
     private void parseDataToFile()
     {
         try

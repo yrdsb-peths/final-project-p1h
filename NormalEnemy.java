@@ -27,6 +27,9 @@ public class NormalEnemy extends Enemy
     private GreenfootImage[] normMovingSprites = new GreenfootImage[32];
     private GreenfootImage[] normAttackingSprites = new GreenfootImage[20];
     
+    /**
+     * NormalEnemy Constructor
+     */
     public NormalEnemy(){
         super();
         
@@ -56,12 +59,21 @@ public class NormalEnemy extends Enemy
         for(int i = 0; i < attackSounds.length; i++) attackSounds[i] = new GreenfootSound("ZombieSoundEffects/NormalPunch.wav");
     }
     
+    /**
+     * Act Method
+     */
     public void act() 
     {
         super.act();
     }
     
-    //method to draw the normal enemy
+    /**
+     * Method to draw thhe normal enemy
+     *
+     * @param width the width of the normal enemy
+     * @param height the height of the normal enemy
+     * @return the normal enemy's image
+     */
     private GreenfootImage drawNormalEnemy(int width, int height){
         GreenfootImage image = new GreenfootImage(width + 1, height + 1);
         image.setColor(Color.BLUE);

@@ -19,12 +19,20 @@ public class MuzzleFlash extends SuperSmoothMover
     //declaring instance variables
     private int transparency = 255;
     
+    /**
+     * MuzzleFlash Constructor
+     */
     public MuzzleFlash(){
         //setting the muzzle flash's image
         image.scale(MUZZLE_FLASH_WIDTH, MUZZLE_FLASH_HEIGHT);
         setImage(image);
     }
     
+    /**
+     * Act Method
+     * 
+     * Follows the rifle and reduces transparency to apply the fade out effect, removes the object when it is transparent
+     */
     public void act() 
     {
         //follow the rifle

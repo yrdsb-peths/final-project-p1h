@@ -183,6 +183,11 @@ public class StatBar extends Actor
 
     }
     
+    /**
+     * Act Method
+     * 
+     * Follows the owner of the statbar is the there is an owner
+     */
     public void act(){
         if (owner != null && owner.getWorld() != null)
         {
@@ -190,6 +195,11 @@ public class StatBar extends Actor
         }
     }
     
+    /**
+     * Method to update the statbar's current value
+     *
+     * @param new current value
+     */
     public void update (int newCurrVal){
         update (new int[]{newCurrVal});
     }
@@ -271,10 +281,21 @@ public class StatBar extends Actor
     }
     
     //getter methods
+    
+    /**
+     * Method to get the width of the statbar
+     *
+     * @return the width of the statbar
+     */
     public int getWidth(){
         return width;
     }
     
+    /**
+     * Method to get the height of the statbar
+     *
+     * @return the height of the statbar
+     */
     public int getHeight(){
         return height;
     }

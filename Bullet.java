@@ -23,12 +23,20 @@ public class Bullet extends SuperSmoothMover
     private Class targetClass = Enemy.class; //target class tracking (from Mr. Cohen)
     private int dmg;
     
+    /**
+     * Bullet Constructor
+     */
     public Bullet(){
         //setting the image of the bullet
         image.scale(BULLET_WIDTH, BULLET_HEIGHT);
         setImage(image);
     }
     
+    /**
+     * Act Method
+     * 
+     * Moves the bullet forward, and removes it from the world if it has reached the edge of the world or if it has hit and enemy
+     */
     public void act() 
     {
         //updating the bullet's damage
@@ -38,7 +46,11 @@ public class Bullet extends SuperSmoothMover
         if(collisionDetection() || isAtEdge()) getWorld().removeObject(this); //removes bullet if when it hits an enemy or leaves the screen
     }
     
-    //method to check if the bullet has collided with an enemy, and deals damage respectively (from Mr. Cohen)
+    /**
+     * Method to check if the bullet has collided with an enemy, and deals damage respectively (from Mr. Cohen)
+     *
+     * @return true if the bullet as collided with an enemy, and false otherwise
+     */
     private boolean collisionDetection(){
         Actor target = getOneIntersectingObject(targetClass);
         if(target != null){

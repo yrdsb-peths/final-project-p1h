@@ -18,6 +18,11 @@ public class PowerupIcon extends Actor
     private int timeLeft;
     private Powerup powerup;
     
+    /**
+     * PowerupIcon Constructor
+     *
+     * @param powerup the powerup represented by the powerup icon
+     */
     public PowerupIcon(Powerup powerup){
         this.powerup = powerup;
         timeLeft = Powerup.DURATION;
@@ -26,6 +31,11 @@ public class PowerupIcon extends Actor
         drawPowerupIcon(PU_ICON_WIDTH, PU_ICON_HEIGHT);
     }
     
+    /**
+     * Act Method
+     * 
+     * Updates the timer on the powerup icon
+     */
     public void act() 
     {
         //update the powerup icon's timer
@@ -35,24 +45,41 @@ public class PowerupIcon extends Actor
     
     //getter methods
     
-    //method to get the powerup of the powerup icon
+    /**
+     * Method to get the powerup of the powerup icon
+     *
+     * @return the powerup icon's powerup
+     */
     public Powerup getPowerup(){
         return powerup;
     }
     
-    //method to get the amount of time left on the timer of the powerup
+    /**
+     * Method to get the amount of time left on the timer of the powerup
+     *
+     * @return the amount of time left on the powerup icon
+     */
     public int getTimeLeft(){
         return timeLeft;
     }
     
     //setter methods
     
-    //methods to set the timer of the powerup
+    /**
+     * Method to set the timer of the powerup
+     *
+     * @param timeLeft current time left
+     */
     public void setTimeLeft(int timeLeft){
         this.timeLeft = timeLeft;
     }
     
-    //method to draw the powerup icon
+    /**
+     * Method to draw the powerup icon
+     *
+     * @param width the width of the powerup icon
+     * @param height the height of the powerup icon
+     */
     private void drawPowerupIcon(int width, int height){
         image.clear();
         image.setColor(Color.BLACK);

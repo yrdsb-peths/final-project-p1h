@@ -22,10 +22,20 @@ public class Enemy extends SuperSmoothMover
     protected GreenfootSound[] attackSounds;
     protected int attackSoundsIndex = 0;
     
+    /**
+     * Enemy Constructor
+     */
     public Enemy(){
         
     }
     
+    /**
+     * Act Method
+     * 
+     * Removes the object from the world if it has died
+     * Set attacking animation if it is currently attacking the player, and deal damage to the player if it hits him
+     * If it is not currently attacking the player, move towards the player
+     */
     public void act() 
     {
         if(currHP <= 0){
@@ -98,7 +108,13 @@ public class Enemy extends SuperSmoothMover
     
     //setter methods
     
-    //method to deal damage to the enemy
+    /**
+     * Method to deal damage to the enemy
+     * 
+     * Called by the bullet class when the bullet has collided with the enemy
+     *
+     * @param dmg the amount of damage dealt
+     */
     public void dealDmg(int dmg){
         currHP -= dmg;
     }

@@ -27,6 +27,9 @@ public class FastEnemy extends Enemy
     private GreenfootImage[] fastMovingSprites = new GreenfootImage[8];
     private GreenfootImage[] fastAttackingSprites = new GreenfootImage[8];
     
+    /**
+     * FastEnemy Constructor
+     */
     public FastEnemy(){
         super();
         
@@ -56,12 +59,21 @@ public class FastEnemy extends Enemy
         for(int i = 0; i < attackSounds.length; i++) attackSounds[i] = new GreenfootSound("ZombieSoundEffects/FastStab.wav");
     }
     
+    /**
+     * Act Method
+     */
     public void act() 
     {
         super.act();
     }
     
-    //method to draw the fast enemy
+    /**
+     * Method to draw the fast enemy
+     *
+     * @param width the width of the fast enemy
+     * @param height the height of the fast enemy
+     * @return the fast enemy's image
+     */
     private GreenfootImage drawFastEnemy(int width, int height){
         GreenfootImage image = new GreenfootImage(width + 1, height + 1);
         image.setColor(Color.GREEN);

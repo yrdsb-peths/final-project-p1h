@@ -25,6 +25,9 @@ public class InstructionsMenu extends World
     //declaring actors
     private Button backButton;
     
+    /**
+     * InstructionsMenu Constructor
+     */
     public InstructionsMenu()
     {    
         // Create a new world with INSTRUCTIONS_WIDTH*INSTRUCTIONS_HEIGHT cells with a cell size of 1x1 pixels.
@@ -46,6 +49,11 @@ public class InstructionsMenu extends World
         addObject(backButton, getWidth() * 3 / 4, getHeight() * 5 / 6);
     }
     
+    /**
+     * Act Method
+     * 
+     * Checks if the user clicks the 'back' button, and takes them back to the main menu if they did
+     */
     public void act(){
         //takes the user back to the main menu if they pressed the button
         if(Greenfoot.mouseClicked(backButton)){

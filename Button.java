@@ -22,6 +22,11 @@ public class Button extends Actor
     private MouseInfo mouse;
     private boolean hovering = false;
     
+    /**
+     * Button Constructor
+     *
+     * @param str the label of the button
+     */
     public Button(String str){
         //drawing the button
         image = new GreenfootImage(BUTTON_WIDTH + 1, BUTTON_HEIGHT + 1);
@@ -30,6 +35,11 @@ public class Button extends Actor
         setImage(image);
     }
     
+    /**
+     * Act Method
+     * 
+     * Checks if the user is hovering over the button with the mouse, and updates the image of the button if they are
+     */
     public void act() 
     {
         mouse = Greenfoot.getMouseInfo();
@@ -52,13 +62,21 @@ public class Button extends Actor
         }
     }
     
-    //public method to play the sound when the button is clicked
+    /**
+     * Method to play the click sound of pressing the button, called by worlds that have buttons in them
+     */
     public void playClickSound(){
         GreenfootSound clickSound = new GreenfootSound("ButtonClick.wav");
         clickSound.play();
     }
     
-    //method to draw the button with the given parameters
+    /**
+     * Method to draw the button
+     *
+     * @param backColor the color of the button
+     * @param labelColor the color of the label
+     * @param hoverColor the hover color of the label
+     */
     private void drawButton(Color backColor, Color labelColor, Color hoverColor){
         image.clear();
         //drawing button

@@ -30,6 +30,9 @@ public class MainMenu extends World
     private GreenfootSound bgMusic = new GreenfootSound("BackgroundMusic/MainMenuMusic.mp3");
     private boolean musicStarted = false;
     
+    /**
+     * MainMenu Constructor
+     */
     public MainMenu()
     {    
         // Create a new world with MENU_WIDTH * MENU_HEIGHT cells with a cell size of 1x1 pixels.
@@ -42,14 +45,14 @@ public class MainMenu extends World
         //read score data and display the top scores
         bg.setColor(MENU_SCORE_COLOR);
         bg.setFont(MENU_SCORE_FONT);
-        bg.drawString("Score: ", getWidth() / 7, getHeight() / 2);
+        bg.drawString("Top Scores: ", getWidth() / 7, getHeight() * 3 / 5);
         ScoreFile scoreFile = ScoreFile.getInstance();
         int scoreOffset = SCORE_OFFSET;
         for(int score: scoreFile.getScoreData()){
-            bg.drawString(Integer.toString(score), getWidth() / 7, getHeight() * 2 / 4 + scoreOffset);
+            bg.drawString(Integer.toString(score), getWidth() / 7, getHeight() * 3 / 5 + scoreOffset);
             scoreOffset += 60;
             
-            if ((getHeight() * 2 / 4 + scoreOffset) > getWidth()) break;
+            if ((getHeight() / 2 + scoreOffset) > getWidth()) break;
         }
         setBackground(bg);
         
@@ -60,6 +63,11 @@ public class MainMenu extends World
         addObject(instructionsButton, getWidth() * 3 / 4, getHeight() * 5 / 6);
     }
     
+    /**
+     * Act Method
+     * 
+     * Checks if the user clicked any of the buttons, and take them to the respective worlds if they did
+     */
     public void act()
     {
         //checking if the user clicked any of the buttons and take them to the respective world

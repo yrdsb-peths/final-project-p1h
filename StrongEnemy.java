@@ -27,6 +27,9 @@ public class StrongEnemy extends Enemy
     private GreenfootImage[] strMovingSprites = new GreenfootImage[17];
     private GreenfootImage[] strAttackingSprites = new GreenfootImage[9];
     
+    /**
+     * StrongEnemy Constructor
+     */
     public StrongEnemy(){
         super();
         
@@ -56,12 +59,21 @@ public class StrongEnemy extends Enemy
         for(int i = 0; i < attackSounds.length; i++) attackSounds[i] = new GreenfootSound("ZombieSoundEffects/StrongPunch.wav");
     }
     
+    /**
+     * Act Method
+     */
     public void act() 
     {
         super.act();
     }
     
-    //method to draw the strong enemy
+    /**
+     * Method to draw the strong enemy
+     *
+     * @param width the width of the strong enemy
+     * @param height the height of the strong enemy
+     * @return the strong enemy's image
+     */
     private GreenfootImage drawStrongEnemy(int width, int height){
         GreenfootImage image = new GreenfootImage(width + 1, height + 1);
         image.setColor(Color.RED);

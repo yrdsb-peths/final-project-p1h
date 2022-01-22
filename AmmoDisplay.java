@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class AmmoDisplay here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Edison Lim, Jaylen Cheung, Vaughn Chan) 
+ * @version (01-21-2022)
  */
 public class AmmoDisplay extends Actor
 {
@@ -20,6 +20,11 @@ public class AmmoDisplay extends Actor
     private int ammo;
     private String display;
     
+    /**
+     * AmmoDisplay Constructor
+     *
+     * @param ammo current amount of ammo
+     */
     public AmmoDisplay(int ammo){
         //setting the player's ammo
         this.ammo = ammo;
@@ -35,7 +40,11 @@ public class AmmoDisplay extends Actor
     
     //setter methods
     
-    //method to update the ammo display
+    /**
+     * Method to update the current amount of ammo
+     *
+     * @param ammo current amount of ammo
+     */
     public void update(int ammo) 
     {
         this.ammo = ammo;
@@ -45,7 +54,12 @@ public class AmmoDisplay extends Actor
         setImage(image);
     }
     
-    //method to draw the ammo display
+    /**
+     * Method to draw the ammo display
+     *
+     * @param width the width of the ammo display
+     * @param height the height of the ammo display
+     */
     private void drawAmmoDisplay(int width, int height){
         image.clear();
         image.drawImage(rifle, 0, 0);

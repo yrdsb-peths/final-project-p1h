@@ -25,6 +25,9 @@ public class EndScreen extends World
     private GreenfootSound deathMusic = new GreenfootSound("BackgroundMusic/EndScreenMusic.wav");
     private GreenfootSound backgroundSound = new GreenfootSound("BackgroundMusic/ZombieEatingBackground.wav");
     
+    /**
+     * EndScreen Constructor
+     */
     public EndScreen()
     {    
         // Create a new world with ENDING_WIDTH*ENDING_HEIGHT cells with a cell size of 1x1 pixels.
@@ -37,10 +40,6 @@ public class EndScreen extends World
         bg.drawString(title, (getWidth() - (int)(title.length() * ENDING_TITLE_FONT.getSize() * 0.58)) / 2, getHeight() / 2);
         setBackground(bg);
         
-        //add cover
-        //BackgroundCover cover = new BackgroundCover();
-        //addObject(cover, 0, 0);
-        
         //adding button
         backButton = new Button("Back");
         addObject(backButton, getWidth() * 3 / 4, getHeight() * 5 / 6);
@@ -49,6 +48,11 @@ public class EndScreen extends World
         backgroundSound.play();
     }
     
+    /**
+     * Act Method
+     * 
+     * Checks if the user clicks the 'back' button, and takes them back to the main menu if they did
+     */
     public void act(){
         //takes the user back to the main menu if they pressed the button
         if(Greenfoot.mouseClicked(backButton)){

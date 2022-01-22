@@ -20,12 +20,20 @@ public class BloodSplatter extends Actor
     //declaring instance variables
     private int transparency = STARTING_TRANSPARENCY;
     
+    /**
+     * BloodSplatter Constructor
+     */
     public BloodSplatter(){
         //setting the blood splatter's image
         image.scale(BLOOD_SPLATTER_WIDTH, BLOOD_SPLATTER_HEIGHT);
         setImage(image);
     }
     
+    /**
+     * Act Method
+     * 
+     * Reduces transparency to apply fade out effect, and removes the object when it is transparent
+     */
     public void act() 
     {
         //fade out effect

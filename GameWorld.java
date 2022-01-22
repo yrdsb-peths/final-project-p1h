@@ -19,7 +19,7 @@ public class GameWorld extends World
     
     //initializing constants
     public static final int START_NUM_POOL = 120; //the smaller the pool, the larger the chance to spawn an enemy
-    public static final int END_NUM_POOL = 60;
+    public static final int END_NUM_POOL = 30;
     public static final int POOL_DECR_DELAY = 60; //acts between decreasing the number pool by 1
     //chance of fast or strong enemy spawning (as a percent, 0 <= sum <= 100)
     public static final int FAST_ENEMY_CHANCE = 20;
@@ -39,6 +39,9 @@ public class GameWorld extends World
     private boolean musicStarted = false;
     private int numPool,decrTimer;
     
+    /**
+     * GameWorld Constructor
+     */
     public GameWorld()
     {   
         // Create a new world with WORLD_WIDTH * WORLD_HEIGHT cells with a cell size of 1x1 pixels.
@@ -56,6 +59,11 @@ public class GameWorld extends World
         addObject(player, getWidth() / 2, getHeight() / 2);
     }
     
+    /**
+     * Act Method
+     * 
+     * Checks whether or not to spawn an enemy, increases enemy spawn chance, and manages powerups
+     */
     public void act(){
         if(Greenfoot.getRandomNumber(numPool) == 0) spawnEnemy(); //spawns an enemy if the random number chosen from the number pool is equal to 0
         //increases the chance of enemies spawning when the timer hits 0
@@ -72,7 +80,11 @@ public class GameWorld extends World
         }
     }
     
-    //method to spawn an en enemy
+    /**
+     * Method to spawn an enemy
+     * 
+     * Spawns a random enemy at a random location at the edge of the screen
+     */
     private void spawnEnemy(){
         //generating random numbers for the type of enemy and where to spawn it
         int rdmX = Greenfoot.getRandomNumber(getWidth());
@@ -105,7 +117,13 @@ public class GameWorld extends World
         zombieGroan.play();
     }
     
-    //method to handle the powerups
+    /**
+     * Method to manage powerups
+     * 
+     * Spawns a random powerup on the screen if the random number matches the powerup frequency
+     * Checks if the player collided with any powerups, and grants its benefits
+     * Updates the powerup icons and timer
+     */
     private void handlePowerups() {
         // Decide whether or not to spawn a powerup
         if (Greenfoot.getRandomNumber(POWERUP_FREQUENCY) == 0) {
@@ -182,6 +200,11 @@ public class GameWorld extends World
         }
     }
     
+    /**
+     * Method to end the game
+     * 
+     * Called by the player class, ends the game by taking the user to the end screen
+     */
     public static void endGame(){
         bgMusic.stop();
         Greenfoot.setWorld(new EndScreen());

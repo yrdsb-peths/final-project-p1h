@@ -7,6 +7,12 @@
  */
 public class Sort
 {
+    /**
+     * Method to reverse merge sort
+     *
+     * @param arr the array to be sorted
+     * @return the reverse sorted array
+     */
     public static int[] reverseMergeSort(int[] arr)
     {
         arr = mergeSort(arr);
@@ -19,6 +25,12 @@ public class Sort
         return revArr;
     }
     
+    /**
+     * Method to merge sort
+     *
+     * @param arr the array to be sorted
+     * @return the sorted array
+     */
     public static int[] mergeSort(int[] arr)
     {
         int[] temp = new int[arr.length];
@@ -26,6 +38,14 @@ public class Sort
         return arr;
     }
     
+    /**
+     * Merge sort helper method
+     *
+     * @param arr the array to be sorted
+     * @param from starting index
+     * @param to ending index
+     * @param temp a temporary array to copy the elements to
+     */
     private static void mergeSortHelper (int[] arr, int from, int to, int[] temp)
     {
         if (to - from >= 1)
@@ -37,6 +57,15 @@ public class Sort
         }
     }
     
+    /**
+     * Method to merge
+     *
+     * @param arr the array to be sorted
+     * @param from the starting index
+     * @param mid the middle index
+     * @param to the ending index
+     * @param temp a temporary array to copy the elements to
+     */
     private static void merge (int[] arr, int from, int mid, int to, int[] temp)
     {
         int i = from;
