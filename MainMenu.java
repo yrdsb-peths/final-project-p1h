@@ -26,12 +26,12 @@ public class MainMenu extends World
     public static final int NUM_SCORES = 5;
     public static final int SCORE_OFFSET = MENU_HEIGHT / 20;
     
-    //declaring actors
+    //declaring buttons
     private Button playButton, instructionsButton;
     
     //declaring instance variables
-    private GreenfootSound bgMusic = new GreenfootSound("BackgroundMusic/MainMenuMusic.mp3");
-    private boolean musicStarted = false;
+    private static GreenfootSound bgMusic = new GreenfootSound("BackgroundMusic/MainMenuMusic.mp3");
+    private static boolean musicStarted;
     
     /**
      * MainMenu Constructor
@@ -66,6 +66,8 @@ public class MainMenu extends World
         addObject(playButton, getWidth() * 3 / 4, (int) (getHeight() * 2 / 3));
         instructionsButton = new Button("How to Play");
         addObject(instructionsButton, getWidth() * 3 / 4, (int) (getHeight() * 5 / 6));
+        
+        musicStarted = false;
     }
     
     /**
@@ -79,6 +81,8 @@ public class MainMenu extends World
         if (Greenfoot.mouseClicked(playButton)){
             Greenfoot.setWorld(new GameWorld());
             playButton.playClickSound();
+            
+            // reset music when player goes back to main screen
             bgMusic.stop();
         }
         else if (Greenfoot.mouseClicked(instructionsButton)){

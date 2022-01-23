@@ -1,13 +1,13 @@
 #BlueJ class context
 comment0.target=NormalEnemy
-comment0.text=\r\n\ The\ normal\ enemy\ (grey\ zombie)\r\n\ \r\n\ @author\ (Edison\ Lim)\ \r\n\ @version\ (2.0\:\ 01/22/2022)\r\n
+comment0.text=\n\ The\ normal\ enemy\ (grey\ zombie)\n\ \n\ @author\ (Edison\ Lim)\ \n\ @version\ (2.0\:\ 01/22/2022)\n
 comment1.params=
 comment1.target=NormalEnemy()
-comment1.text=\r\n\ NormalEnemy\ Constructor\r\n
+comment1.text=\n\ NormalEnemy\ Constructor\n
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\r\n\ Act\ Method\r\n
+comment2.text=\n\ Act\ Method\n
 comment3.params=width\ height
 comment3.target=greenfoot.GreenfootImage\ drawNormalEnemy(int,\ int)
-comment3.text=\r\n\ Method\ to\ draw\ thhe\ normal\ enemy\r\n\r\n\ @param\ width\ the\ width\ of\ the\ normal\ enemy\r\n\ @param\ height\ the\ height\ of\ the\ normal\ enemy\r\n\ @return\ the\ normal\ enemy's\ image\r\n
+comment3.text=\n\ Method\ to\ draw\ thhe\ normal\ enemy\n\n\ @param\ width\ the\ width\ of\ the\ normal\ enemy\n\ @param\ height\ the\ height\ of\ the\ normal\ enemy\n\ @return\ the\ normal\ enemy's\ image\n
 numComments=4

@@ -1,13 +1,13 @@
 #BlueJ class context
 comment0.target=ScoreDisplay
-comment0.text=\r\n\ The\ display\ showing\ the\ player's\ character\ profile\ and\ current\ score\r\n\ \r\n\ @author\ (Edison\ Lim)\ \r\n\ @version\ (2.0\:\ 01/22/2022)\r\n
+comment0.text=\n\ The\ display\ showing\ the\ player's\ character\ profile\ and\ current\ score\n\ \n\ @author\ (Edison\ Lim)\ \n\ @version\ (2.0\:\ 01/22/2022)\n
 comment1.params=score
 comment1.target=ScoreDisplay(int)
-comment1.text=\r\n\ ScoreDisplay\ Constructor\r\n\r\n\ @param\ score\ current\ score\r\n
+comment1.text=\n\ ScoreDisplay\ Constructor\n\n\ @param\ score\ current\ score\n
 comment2.params=score
 comment2.target=void\ update(int)
-comment2.text=\r\n\ Method\ to\ update\ the\ score\r\n\r\n\ @param\ score\ current\ score\r\n
+comment2.text=\n\ Method\ to\ update\ the\ score\n\n\ @param\ score\ current\ score\n
 comment3.params=width\ height
 comment3.target=void\ drawScoreDisplay(int,\ int)
-comment3.text=\r\n\ Method\ to\ draw\ the\ score\ display\r\n\r\n\ @param\ width\ the\ width\ of\ the\ score\ display\r\n\ @param\ height\ the\ height\ of\ the\ score\ display\r\n
+comment3.text=\n\ Method\ to\ draw\ the\ score\ display\n\n\ @param\ width\ the\ width\ of\ the\ score\ display\n\ @param\ height\ the\ height\ of\ the\ score\ display\n
 numComments=4
