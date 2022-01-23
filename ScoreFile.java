@@ -54,9 +54,42 @@ public class ScoreFile
      */
     public void addScoreData(String name, int score)
     {
-        scoreData.add(new Pair<String,Integer>(name, score));
+        int duplicateIndex = findDuplicate(name);
+        
+        // Check if the name registered is a duplicate
+        if (findDuplicate(name) != -1)
+        {
+            // If it is a duplicate, then check if their score was higher than before
+            if (score > scoreData.get(duplicateIndex).getSecond())
+            {
+                scoreData.set(duplicateIndex, new Pair<String,Integer>(name, score));   
+            }
+        }
+        // Otherwise, add new entry to data
+        else
+        {
+            scoreData.add(new Pair<String,Integer>(name, score));
+        }
         sortScore();
         parseDataToFile();
+    }
+    
+    /**
+     * Helper method for checking for any duplicate names
+     */
+    private int findDuplicate(String possibleDuplicate)
+    {
+        int count = 0;
+        for (Pair<String, Integer> p : scoreData)
+        {
+            if (p.getFirst().equals(possibleDuplicate))
+            {
+                return count;
+            }
+            count++;
+        }
+        
+        return -1;
     }
     
     /**

@@ -68,6 +68,10 @@ public class MainMenu extends World
         addObject(instructionsButton, getWidth() * 3 / 4, (int) (getHeight() * 5 / 6));
         
         musicStarted = false;
+        
+        // Reset player score, since transitioning from game to main menu directly does not reset score
+        // NOTE: This should never happen in the game itself, only in development
+        Player.score = 0;
     }
     
     /**
