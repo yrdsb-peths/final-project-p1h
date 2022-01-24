@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Pair
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Pair\ here.\r\n\ \r\n\ @author\ (Vaughn\ Chan)\ \r\n\ @version\ (3.0\:\ 01/22/2022)\r\n
+comment1.params=
+comment1.target=Pair()
+comment1.text=\r\n\ Pair\ Constructor\r\n\ \r\n\ For\ initializing\ object\ with\ empty\ variables\r\n
+comment2.params=first\ second
+comment2.target=Pair(java.lang.Object,\ java.lang.Object)
+comment2.text=\r\n\ Pair\ Constructor\r\n\r\nFor\ initializing\ object\ with\ member\ variables\r\n\r\n\ @param\ first\ the\ first\ element\r\n\ @param\ second\ the\ second\ element\r\n
+comment3.params=first\ second
+comment3.target=void\ setPair(java.lang.Object,\ java.lang.Object)
+comment3.text=\r\n\ Method\ to\ set\ the\ first\ and\ second\ element\r\n\r\n\ @param\ first\ the\ first\ element\r\n\ @param\ second\ the\ second\ element\r\n
+comment4.params=
+comment4.target=java.lang.Object\ getFirst()
+comment4.text=\r\n\ Method\ to\ get\ the\ first\ element\r\n\r\n\ @return\ the\ first\ element\r\n
+comment5.params=
+comment5.target=java.lang.Object\ getSecond()
+comment5.text=\r\n\ Method\ to\ get\ the\ second\ element\r\n\r\n\ @return\ the\ second\ element\r\n
+comment6.params=
+comment6.target=void\ printString()
+comment6.text=\r\n\ Method\ to\ print\ the\ string\ in\ the\ format\ "first\ element,\ second\ element"\r\n
+numComments=7

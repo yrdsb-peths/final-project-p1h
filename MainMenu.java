@@ -17,18 +17,21 @@ public class MainMenu extends World
     public static final Font MENU_TITLE_FONT = new Font("Courier New", true, false, MENU_HEIGHT / 8);
     public static final Color MENU_TITLE_COLOR = Color.RED;
     private String title = "The\nHorde";
-    public static final Font MENU_SCORE_FONT = new Font("Courier New", true, false, MENU_HEIGHT / 15);
+    public static final Font MENU_HEADER_FONT = new Font("Courier New", true, false, MENU_HEIGHT / 15);
+    public static final Font MENU_SCORE_FONT = new Font("Courier New", true, false, MENU_HEIGHT / 20);
     public static final Color MENU_SCORE_COLOR = Color.YELLOW;
+    private String scoreHeader = "Top Scores:";
     
     //initializing constants
-    public static final int SCORE_OFFSET = MENU_HEIGHT / 9;
+    public static final int NUM_SCORES = 5;
+    public static final int SCORE_OFFSET = MENU_HEIGHT / 20;
     
-    //declaring actors
+    //declaring buttons
     private Button playButton, instructionsButton;
     
     //declaring instance variables
-    private GreenfootSound bgMusic = new GreenfootSound("BackgroundMusic/MainMenuMusic.mp3");
-    private boolean musicStarted = false;
+    private static GreenfootSound bgMusic = new GreenfootSound("BackgroundMusic/MainMenuMusic.mp3");
+    private static boolean musicStarted;
     
     /**
      * MainMenu Constructor
@@ -41,26 +44,34 @@ public class MainMenu extends World
         //drawing background
         bg.setColor(MENU_TITLE_COLOR);
         bg.setFont(MENU_TITLE_FONT);
-        bg.drawString(title, getWidth() / 8, getHeight() / 4);
-        //read score data and display the top scores
+        bg.drawString(title, getWidth() / 8, getHeight() / 5);
         bg.setColor(MENU_SCORE_COLOR);
+        bg.setFont(MENU_HEADER_FONT);
+        bg.drawString(scoreHeader, getWidth() / 10, getHeight() * 31 / 50);
+        // Read score data and display the top scores
         bg.setFont(MENU_SCORE_FONT);
-        bg.drawString("Top Scores: ", getWidth() / 7, getHeight() * 3 / 5);
         ScoreFile scoreFile = ScoreFile.getInstance();
-        int scoreOffset = SCORE_OFFSET;
-        for(int score: scoreFile.getScoreData()){
-            bg.drawString(Integer.toString(score), getWidth() / 7, getHeight() * 3 / 5 + scoreOffset);
-            scoreOffset += 60;
-            
-            if ((getHeight() / 2 + scoreOffset) > getWidth()) break;
+        int scoreOffset = 0;
+        for (Pair p : scoreFile.getScoreData())
+        {
+            bg.drawString(p.getFirst() + " - " + p.getSecond(), getWidth() / 10, getHeight() * 7 / 10 + scoreOffset);
+            scoreOffset += SCORE_OFFSET;
+
+            if (scoreOffset / SCORE_OFFSET == NUM_SCORES) break;
         }
         setBackground(bg);
         
         //adding buttons
         playButton = new Button("Play");
-        addObject(playButton, getWidth() * 3 / 4, getHeight() * 2 / 3);
+        addObject(playButton, getWidth() * 3 / 4, (int) (getHeight() * 2 / 3));
         instructionsButton = new Button("How to Play");
-        addObject(instructionsButton, getWidth() * 3 / 4, getHeight() * 5 / 6);
+        addObject(instructionsButton, getWidth() * 3 / 4, (int) (getHeight() * 5 / 6));
+        
+        musicStarted = false;
+        
+        // Reset player score, since transitioning from game to main menu directly does not reset score
+        // NOTE: This should never happen in the game itself, only in development
+        Player.score = 0;
     }
     
     /**
@@ -74,6 +85,8 @@ public class MainMenu extends World
         if (Greenfoot.mouseClicked(playButton)){
             Greenfoot.setWorld(new GameWorld());
             playButton.playClickSound();
+            
+            // reset music when player goes back to main screen
             bgMusic.stop();
         }
         else if (Greenfoot.mouseClicked(instructionsButton)){
