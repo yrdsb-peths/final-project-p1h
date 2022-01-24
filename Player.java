@@ -5,7 +5,7 @@ import java.util.List;
  * The player that the user controls
  * 
  * @author (Edison Lim) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/22/2022)
  */
 public class Player extends SuperSmoothMover
 {
@@ -28,7 +28,7 @@ public class Player extends SuperSmoothMover
     private AmmoDisplay ammoDisplay;
     
     //declaring instance variables
-    private int score = 0;
+    public static int score = 0;
     //stats
     private int currHP = PLAYER_MAX_HP;
     private int speed = PLAYER_SPEED;
@@ -186,13 +186,7 @@ public class Player extends SuperSmoothMover
         handleSprites();
         
         //ends the game if the player dies
-        if(currHP <= 0){
-            //adding score to scorefile
-            ScoreFile scoreFile = ScoreFile.getInstance();
-            scoreFile.addScoreData(score);
-            
-            GameWorld.endGame(); //taking the user to the endscreen
-        }
+        if(currHP <= 0) GameWorld.endGame(); //taking the user to the endscreen
     }
     
     /**
