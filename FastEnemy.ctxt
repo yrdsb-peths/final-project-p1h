@@ -1,13 +1,13 @@
 #BlueJ class context
 comment0.target=FastEnemy
-comment0.text=\n\ The\ fast\ enemy\ (green\ troll)\n\ \n\ @author\ (Edison\ Lim)\ \n\ @version\ (2.0\:\ 01/22/2022)\n
+comment0.text=\r\n\ The\ fast\ enemy\ (green\ troll)\r\n\ \r\n\ @author\ (Edison\ Lim)\ \r\n\ @version\ (2.0\:\ 01/22/2022)\r\n
 comment1.params=
 comment1.target=FastEnemy()
-comment1.text=\n\ FastEnemy\ Constructor\n
+comment1.text=\r\n\ FastEnemy\ Constructor\r\n
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\n\ Act\ Method\n
+comment2.text=\r\n\ Act\ Method\r\n
 comment3.params=width\ height
 comment3.target=greenfoot.GreenfootImage\ drawFastEnemy(int,\ int)
-comment3.text=\n\ Method\ to\ draw\ the\ fast\ enemy\n\n\ @param\ width\ the\ width\ of\ the\ fast\ enemy\n\ @param\ height\ the\ height\ of\ the\ fast\ enemy\n\ @return\ the\ fast\ enemy's\ image\n
+comment3.text=\r\n\ Method\ to\ draw\ the\ fast\ enemy\r\n\r\n\ @param\ width\ the\ width\ of\ the\ fast\ enemy\r\n\ @param\ height\ the\ height\ of\ the\ fast\ enemy\r\n\ @return\ the\ fast\ enemy's\ image\r\n
 numComments=4

@@ -1,9 +1,3 @@
-/**
- * Singleton class for reading and writing to a score file.
- * 
- * @author (Vaughn Chan) 
- * @version (3.0: 01/22/2022)
- */
 import java.util.ArrayList;
 import java.io.File;
 import java.io.BufferedReader;
@@ -12,6 +6,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Singleton class for reading and writing to a score file.
+ * 
+ * @author (Vaughn Chan) 
+ * @version (3.0: 01/23/2022)
+ */
 public class ScoreFile
 {
     // Instance object (the only object of this class allowed to exist)
@@ -76,6 +76,9 @@ public class ScoreFile
     
     /**
      * Helper method for checking for any duplicate names
+     *
+     * @param possibleDuplicate possible duplicate name
+     * @return the index of the duplicate name
      */
     private int findDuplicate(String possibleDuplicate)
     {

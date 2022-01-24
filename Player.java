@@ -5,7 +5,7 @@ import java.util.List;
  * The player that the user controls
  * 
  * @author (Edison Lim) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/22/2022)
  */
 public class Player extends SuperSmoothMover
 {

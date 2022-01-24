@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The main menu of the game
  * 
  * @author (Vaughn Chan) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/23/2022)
  */
 public class MainMenu extends World
 {
@@ -26,7 +26,7 @@ public class MainMenu extends World
     public static final int NUM_SCORES = 5;
     public static final int SCORE_OFFSET = MENU_HEIGHT / 20;
     
-    //declaring buttons
+    //declaring actors
     private Button playButton, instructionsButton;
     
     //declaring instance variables
@@ -86,7 +86,7 @@ public class MainMenu extends World
             Greenfoot.setWorld(new GameWorld());
             playButton.playClickSound();
             
-            // reset music when player goes back to main screen
+            // stop the music when the user enters the GameWorld
             bgMusic.stop();
         }
         else if (Greenfoot.mouseClicked(instructionsButton)){

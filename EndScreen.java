@@ -5,7 +5,7 @@ import javax.swing.*;
  * The world the user is taken to after the player has died in the GameWorld
  * 
  * @author (Edison Lim) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/22/2022)
  */
 public class EndScreen extends World
 {

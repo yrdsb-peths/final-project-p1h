@@ -1,13 +1,13 @@
 #BlueJ class context
 comment0.target=AmmoDisplay
-comment0.text=\n\ The\ display\ showing\ the\ player's\ weapon\ and\ the\ amount\ of\ ammo\ currently\ in\ the\ magazine\n\ \n\ @author\ (Edison\ Lim)\ \n\ @version\ (2.0\:\ 01-21-2022)\n
+comment0.text=\r\n\ The\ display\ showing\ the\ player's\ weapon\ and\ the\ amount\ of\ ammo\ currently\ in\ the\ magazine\r\n\ \r\n\ @author\ (Edison\ Lim)\ \r\n\ @version\ (2.0\:\ 01-21-2022)\r\n
 comment1.params=ammo
 comment1.target=AmmoDisplay(int)
-comment1.text=\n\ AmmoDisplay\ Constructor\n\n\ @param\ ammo\ current\ amount\ of\ ammo\n
+comment1.text=\r\n\ AmmoDisplay\ Constructor\r\n\r\n\ @param\ ammo\ current\ amount\ of\ ammo\r\n
 comment2.params=ammo
 comment2.target=void\ update(int)
-comment2.text=\n\ Method\ to\ update\ the\ current\ amount\ of\ ammo\n\n\ @param\ ammo\ current\ amount\ of\ ammo\n
+comment2.text=\r\n\ Method\ to\ update\ the\ current\ amount\ of\ ammo\r\n\r\n\ @param\ ammo\ current\ amount\ of\ ammo\r\n
 comment3.params=width\ height
 comment3.target=void\ drawAmmoDisplay(int,\ int)
-comment3.text=\n\ Method\ to\ draw\ the\ ammo\ display\n\n\ @param\ width\ the\ width\ of\ the\ ammo\ display\n\ @param\ height\ the\ height\ of\ the\ ammo\ display\n
+comment3.text=\r\n\ Method\ to\ draw\ the\ ammo\ display\r\n\r\n\ @param\ width\ the\ width\ of\ the\ ammo\ display\r\n\ @param\ height\ the\ height\ of\ the\ ammo\ display\r\n
 numComments=4
