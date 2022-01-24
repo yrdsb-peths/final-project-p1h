@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The world displaying the instructions for how to play the game, the user is taken to this world after clicking the 'How To Play Button' in the MainMenu
  * 
  * @author (Jaylen Cheung) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class InstructionsMenu extends World
 {
@@ -20,7 +20,7 @@ public class InstructionsMenu extends World
     public static final Font INSTRUCTIONS_FONT = new Font("Courier New", false, false, INSTRUCTIONS_HEIGHT / 20);
     public static final Color INSTRUCTIONS_COLOR = INSTRUCTIONS_TITLE_COLOR;
     private String goal = "GOAL: Achieve The Highest Score By\nKilling The Horde";
-    private String controls = "Mouse Click: Fire\nMouse: Aim\nW: Forward\nA: Left\nS: Backwards\nD: Right";
+    private String controls = "Mouse Click: Shoot\nMouse: Aim\nW: Move Up\nA: Move Left\nS: Move Down\nD: Move Right\nR: Reload\nPickup Powerup By Running Over It";
     
     //declaring actors
     private Button backButton;
@@ -40,13 +40,13 @@ public class InstructionsMenu extends World
         bg.drawString(title, (getWidth() - (int)(title.length() * INSTRUCTIONS_TITLE_FONT.getSize() * 0.58)) / 2, getHeight() / 6);
         bg.setColor(Color.WHITE);
         bg.setFont(INSTRUCTIONS_FONT);
-        bg.drawString(goal, getWidth() * 4 / 20, getHeight() * 3 / 10);
-        bg.drawString(controls, getWidth() * 4 / 20, getHeight() * 5 / 10);
+        bg.drawString(goal, getWidth() / 5, getHeight() * 3 / 10);
+        bg.drawString(controls, getWidth() / 5, getHeight() / 2);
         setBackground(bg);
         
         //adding button
         backButton = new Button("Back");
-        addObject(backButton, getWidth() * 3 / 4, getHeight() * 5 / 6);
+        addObject(backButton, getWidth() * 7 / 8, getHeight() * 7 / 8);
     }
     
     /**

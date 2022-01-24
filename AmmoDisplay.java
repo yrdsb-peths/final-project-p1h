@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The display showing the player's weapon and the amount of ammo currently in the magazine
  * 
  * @author (Edison Lim) 
- * @version (2.0: 01-21-2022)
+ * @version (3.0: 01-24-2022)
  */
 public class AmmoDisplay extends Actor
 {
@@ -18,7 +18,7 @@ public class AmmoDisplay extends Actor
     
     //declaring instance variables
     private int ammo;
-    private String display;
+    private String text;
     
     /**
      * AmmoDisplay Constructor
@@ -28,8 +28,8 @@ public class AmmoDisplay extends Actor
     public AmmoDisplay(int ammo){
         //setting the player's ammo
         this.ammo = ammo;
-        if(ammo < 10) display = " " + this.ammo;
-        else display = "" + this.ammo;
+        if(ammo < 10) text = " " + this.ammo;
+        else text = "" + this.ammo;
         
         //drawing the ammo display
         rifle.scale(AMMO_DISPLAY_WIDTH * 2 / 3, AMMO_DISPLAY_HEIGHT);
@@ -48,8 +48,8 @@ public class AmmoDisplay extends Actor
     public void update(int ammo) 
     {
         this.ammo = ammo;
-        if(ammo < 10) display = " " + this.ammo;
-        else display = "" + this.ammo;
+        if(ammo < 10) text = " " + this.ammo;
+        else text = "" + this.ammo;
         drawAmmoDisplay(AMMO_DISPLAY_WIDTH + 1, AMMO_DISPLAY_HEIGHT + 1);
         setImage(image);
     }
@@ -65,6 +65,6 @@ public class AmmoDisplay extends Actor
         image.drawImage(rifle, 0, 0);
         image.setColor(ammoColor);
         image.setFont(ammoFont);
-        image.drawString(display, width * 7 / 10, (height + ammoFont.getSize() / 2) / 2);
+        image.drawString(text, width * 7 / 10, (height + ammoFont.getSize() / 2) / 2);
     }
 }

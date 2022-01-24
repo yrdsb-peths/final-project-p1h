@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=ScoreFile
-comment0.text=\r\n\ Singleton\ class\ for\ reading\ and\ writing\ to\ a\ score\ file.\r\n\ \r\n\ @author\ (Vaughn\ Chan)\ \r\n\ @version\ (3.0\:\ 01/23/2022)\r\n
+comment0.text=\r\n\ Singleton\ class\ for\ reading\ and\ writing\ to\ a\ score\ file.\r\n\ \r\n\ @author\ (Vaughn\ Chan)\ \r\n\ @version\ (3.0\:\ 01/24/2022)\r\n
 comment1.params=
 comment1.target=ScoreFile\ getInstance()
 comment1.text=\r\n\ Instance\ referencer\ (as\ a\ singleton,\ this\ replaces\ the\ constructor\ of\ this\ class)\r\n\r\n\ @return\ the\ scorefile\r\n
@@ -24,5 +24,5 @@ comment7.target=void\ parseFileToData()
 comment7.text=\r\n\ Method\ to\ convert\ data\ from\ file\ into\ the\ arraylist\r\n
 comment8.params=
 comment8.target=void\ parseDataToFile()
-comment8.text=\r\n\ Method\ to\ convert\ data\ from\ the\ arraylist\ into\ the\ file\r\n\r\n
+comment8.text=\r\n\ Method\ to\ convert\ data\ from\ the\ arraylist\ into\ the\ file\r\n
 numComments=9

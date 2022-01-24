@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The icon that shows what powerup is active and its timer
  * 
  * @author (Jaylen Cheung) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class PowerupIcon extends Actor
 {

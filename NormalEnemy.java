@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The normal enemy (grey zombie)
  * 
  * @author (Edison Lim) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class NormalEnemy extends Enemy
 {
@@ -20,8 +20,8 @@ public class NormalEnemy extends Enemy
     public static final int NORM_SPEED = 1;
     public static final int NORM_ATTACK_DURATION = 30;
     public static final int NORM_ATTACK_DELAY = 30;
-    public static final int NORM_DMG_SPRITE_NUM = 11;
-    public static final int NORM_MOVE_ACT = 1;
+    public static final int NORM_DMG_SPRITE_NUM = 11; //sprite number where the enemy actually hits the player
+    public static final int NORM_MOVE_ACT = 1; //number of acts before switching to the next moving sprite
     
     //declaring sprites
     private GreenfootImage[] normMovingSprites = new GreenfootImage[32];
@@ -65,21 +65,5 @@ public class NormalEnemy extends Enemy
     public void act() 
     {
         super.act();
-    }
-    
-    /**
-     * Method to draw thhe normal enemy
-     *
-     * @param width the width of the normal enemy
-     * @param height the height of the normal enemy
-     * @return the normal enemy's image
-     */
-    private GreenfootImage drawNormalEnemy(int width, int height){
-        GreenfootImage image = new GreenfootImage(width + 1, height + 1);
-        image.setColor(Color.BLUE);
-        int[] xVertices = {0, width, 0};
-        int[] yVertices = {0, height / 2, height};
-        image.fillPolygon(xVertices, yVertices, 3);
-        return image;
     }
 }

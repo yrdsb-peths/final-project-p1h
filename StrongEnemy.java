@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The strong enemy (large zombie in a t-shirt)
  * 
  * @author (Edison Lim) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class StrongEnemy extends Enemy
 {
@@ -20,8 +20,8 @@ public class StrongEnemy extends Enemy
     public static final int STR_SPEED = 2;
     public static final int STR_ATTACK_DURATION = 60;
     public static final int STR_ATTACK_DELAY = 30;
-    public static final int STR_DMG_SPRITE_NUM = 5;
-    public static final int STR_MOVE_ACT = 2;
+    public static final int STR_DMG_SPRITE_NUM = 5; //sprite number where the enemy actually hits the player
+    public static final int STR_MOVE_ACT = 2; //number of acts before switching to the next moving sprite
     
     //declaring sprites
     private GreenfootImage[] strMovingSprites = new GreenfootImage[17];
@@ -65,21 +65,5 @@ public class StrongEnemy extends Enemy
     public void act() 
     {
         super.act();
-    }
-    
-    /**
-     * Method to draw the strong enemy
-     *
-     * @param width the width of the strong enemy
-     * @param height the height of the strong enemy
-     * @return the strong enemy's image
-     */
-    private GreenfootImage drawStrongEnemy(int width, int height){
-        GreenfootImage image = new GreenfootImage(width + 1, height + 1);
-        image.setColor(Color.RED);
-        int[] xVertices = {0, width, 0};
-        int[] yVertices = {0, height / 2, height};
-        image.fillPolygon(xVertices, yVertices, 3);
-        return image;
     }
 }

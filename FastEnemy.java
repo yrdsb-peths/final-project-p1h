@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The fast enemy (green troll)
  * 
  * @author (Edison Lim) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class FastEnemy extends Enemy
 {
@@ -20,8 +20,8 @@ public class FastEnemy extends Enemy
     public static final int FAST_SPEED = 6;
     public static final int FAST_ATTACK_DURATION = 10;
     public static final int FAST_ATTACK_DELAY = 10;
-    public static final int FAST_DMG_SPRITE_NUM = 4;
-    public static final int FAST_MOVE_ACT = 0;
+    public static final int FAST_DMG_SPRITE_NUM = 4; //sprite number where the enemy actually hits the player
+    public static final int FAST_MOVE_ACT = 0; //number of acts before switching to the next moving sprite
     
     //declaring sprites
     private GreenfootImage[] fastMovingSprites = new GreenfootImage[8];
@@ -65,21 +65,5 @@ public class FastEnemy extends Enemy
     public void act() 
     {
         super.act();
-    }
-    
-    /**
-     * Method to draw the fast enemy
-     *
-     * @param width the width of the fast enemy
-     * @param height the height of the fast enemy
-     * @return the fast enemy's image
-     */
-    private GreenfootImage drawFastEnemy(int width, int height){
-        GreenfootImage image = new GreenfootImage(width + 1, height + 1);
-        image.setColor(Color.GREEN);
-        int[] xVertices = {0, width, 0};
-        int[] yVertices = {0, height / 2, height};
-        image.fillPolygon(xVertices, yVertices, 3);
-        return image;
     }
 }

@@ -5,7 +5,7 @@ import javax.swing.*;
  * The world the user is taken to after the player has died in the GameWorld
  * 
  * @author (Edison Lim) 
- * @version (3.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class EndScreen extends World
 {
@@ -44,7 +44,7 @@ public class EndScreen extends World
         
         //adding button
         backButton = new Button("Back");
-        addObject(backButton, getWidth() * 3 / 4, getHeight() * 5 / 6);
+        addObject(backButton, getWidth() * 7 / 8, getHeight() * 7 / 8);
         
         deathMusic.play();
         backgroundSound.play();
@@ -56,7 +56,7 @@ public class EndScreen extends World
      * Checks if the user clicks the 'back' button, and takes them back to the main menu if they did
      */
     public void act(){
-        //takes the user back to the main menu if they pressed the button
+        //takes the user back to the main menu and stops the background music and sound if they pressed the button
         if(Greenfoot.mouseClicked(backButton)){
             Greenfoot.setWorld(new MainMenu());
             deathMusic.stop();

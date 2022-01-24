@@ -6,7 +6,7 @@ import java.util.List;
  * The world where the game is played, the user is taken to this world after clicking the 'Play" button in the MainMenu
  * 
  * @author (Edison Lim) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class GameWorld extends World
 {
@@ -18,10 +18,10 @@ public class GameWorld extends World
     private GreenfootImage bgImage = new GreenfootImage("Backgrounds/GameWorld.jpg");
     
     //initializing constants
-    public static final int START_NUM_POOL = 120; //the smaller the pool, the larger the chance to spawn an enemy
+    public static final int START_NUM_POOL = 120; //the smaller the pool, the larger the chance of spawning an enemy
     public static final int END_NUM_POOL = 30;
     public static final int POOL_DECR_DELAY = 60; //acts between decreasing the number pool by 1
-    //chance of fast or strong enemy spawning (as a percent, 0 <= sum <= 100)
+    //chance of fast or strong enemy spawning (as a percent, 0 <= sum of the two <= 100)
     public static final int FAST_ENEMY_CHANCE = 20;
     public static final int STR_ENEMY_CHANCE = 30;
     public static final int POWERUP_FREQUENCY = 500; // 1 in x chance of spawning a powerup every act
@@ -29,7 +29,7 @@ public class GameWorld extends World
     //declaring actors
     private Player player;
     
-    //declaring lists for the powerups
+    //declaring arraylists for the powerups
     private ArrayList<Powerup> powerupDrops = new ArrayList<Powerup>();
     private ArrayList<Powerup> activePowerups = new ArrayList<Powerup>();
     private ArrayList<PowerupIcon> powerupIcons = new ArrayList<PowerupIcon>();
@@ -48,6 +48,7 @@ public class GameWorld extends World
         super(WORLD_WIDTH, WORLD_HEIGHT, 1);
         
         //seting background
+        bgImage.scale(WORLD_WIDTH, WORLD_HEIGHT);
         setBackground(bgImage);
         
         //initializing instance variables
@@ -73,7 +74,7 @@ public class GameWorld extends World
         
         handlePowerups();
         
-        // Start music, and prevent redundency
+        // Start music and prevent redundency
         if (!musicStarted) {
             bgMusic.playLoop();
             musicStarted = true;
@@ -127,6 +128,7 @@ public class GameWorld extends World
     private void handlePowerups() {
         // Decide whether or not to spawn a powerup
         if (Greenfoot.getRandomNumber(POWERUP_FREQUENCY) == 0) {
+            //picks a random powerup
             int rdnPowerup = Greenfoot.getRandomNumber(5);
             Powerup powerup;
             if (rdnPowerup == 0) powerup = new Damage(player);

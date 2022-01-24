@@ -4,11 +4,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The unlimited ammo powerup, grants the player unlimited ammo for a duration
  * 
  * @author (Jaylen Cheung) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class UnlimitedAmmo extends Powerup
 {
-    //declaring the unlimited ammo powerup's image variables
+    //declaring the unlimited ammo powerup's image variable
     private GreenfootImage image = new GreenfootImage("PowerupIcons/UnlimitedAmmo.png");
     
     //initializing constants

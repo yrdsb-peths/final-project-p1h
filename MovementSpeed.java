@@ -4,11 +4,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The movement speed powerup: increases the player's movement speed for a duration
  * 
  * @author (Jaylen Cheung) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class MovementSpeed extends Powerup
 {
-    //declaring the movement speed powerup's image variables
+    //declaring the movement speed powerup's image variable
     private GreenfootImage image = new GreenfootImage("PowerupIcons/MovementSpeed.png");
     
     //initializing constants

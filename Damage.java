@@ -4,15 +4,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The damage powerup: increases the player's damage for a duration
  * 
  * @author (Jaylen Cheung) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class Damage extends Powerup
 {
-    //declaring the damage powerup's image variables
+    //declaring the damage powerup's image variable
     private GreenfootImage image = new GreenfootImage("PowerupIcons/Damage.png");
     
     //initializing constants
-    public static final int DMG_BOOST = 2;
+    public static final int DMG_BOOST = 4;
     public static final Color DMG_BOOST_COLOR = Color.RED;
     
     /**

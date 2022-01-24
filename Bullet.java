@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The bullet that is fired from the player's weapon
  * 
  * @author (Edison Lim) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class Bullet extends SuperSmoothMover
 {
@@ -20,7 +20,6 @@ public class Bullet extends SuperSmoothMover
     Player player;
     
     //declaring instance variables
-    private Class targetClass = Enemy.class; //target class tracking (from Mr. Cohen)
     private int dmg;
     
     /**
@@ -40,19 +39,19 @@ public class Bullet extends SuperSmoothMover
     public void act() 
     {
         //updating the bullet's damage
-        player = getWorld().getObjects(Player.class).get(0); //(from Mr. Cohen)
+        player = getWorld().getObjects(Player.class).get(0);
         dmg = player.getDmg();
         move(SPEED);
         if(collisionDetection() || isAtEdge()) getWorld().removeObject(this); //removes bullet if when it hits an enemy or leaves the screen
     }
     
     /**
-     * Method to check if the bullet has collided with an enemy, and deals damage respectively (from Mr. Cohen)
+     * Method to check if the bullet has collided with an enemy, and deals damage respectively
      *
-     * @return true if the bullet as collided with an enemy, and false otherwise
+     * @return true if the bullet has collided with an enemy, and false otherwise
      */
     private boolean collisionDetection(){
-        Actor target = getOneIntersectingObject(targetClass);
+        Actor target = getOneIntersectingObject(Enemy.class);
         if(target != null){
             Enemy enemy = (Enemy) target;
             enemy.dealDmg(dmg);

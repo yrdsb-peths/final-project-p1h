@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Pair
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Pair\ here.\r\n\ \r\n\ @author\ (Vaughn\ Chan)\ \r\n\ @version\ (3.0\:\ 01/22/2022)\r\n
+comment0.text=\r\n\ The\ Pair\ Type\ class\r\n\ \r\n\ @author\ (Vaughn\ Chan)\ \r\n\ @version\ (3.0\:\ 01/24/2022)\r\n
 comment1.params=
 comment1.target=Pair()
 comment1.text=\r\n\ Pair\ Constructor\r\n\ \r\n\ For\ initializing\ object\ with\ empty\ variables\r\n

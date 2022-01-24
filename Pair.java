@@ -1,11 +1,12 @@
 /**
- * Write a description of class Pair here.
+ * The Pair Type class
  * 
  * @author (Vaughn Chan) 
- * @version (3.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class Pair<T1, T2>
 {
+    //declaring the first and second elements in the pair
     private T1 first;
     private T2 second;
 

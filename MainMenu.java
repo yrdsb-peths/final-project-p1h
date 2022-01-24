@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The main menu of the game
  * 
  * @author (Vaughn Chan) 
- * @version (3.0: 01/23/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class MainMenu extends World
 {
@@ -42,6 +42,7 @@ public class MainMenu extends World
         super(MENU_WIDTH, MENU_HEIGHT, 1); 
 
         //drawing background
+        bg.scale(MENU_WIDTH, MENU_HEIGHT);
         bg.setColor(MENU_TITLE_COLOR);
         bg.setFont(MENU_TITLE_FONT);
         bg.drawString(title, getWidth() / 8, getHeight() / 5);

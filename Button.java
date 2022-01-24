@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The button class
  * 
  * @author (Edison Lim) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class Button extends Actor
 {
@@ -43,7 +43,7 @@ public class Button extends Actor
     public void act() 
     {
         mouse = Greenfoot.getMouseInfo();
-        //changes the button label's color when the mouse is hovering over it (from Mr. Cohen)
+        //changes the button label's color when the mouse is hovering over it
         if(Greenfoot.mouseMoved(this)){
             hovering = true;
             if(!soundPlayed){
@@ -75,7 +75,7 @@ public class Button extends Actor
      *
      * @param backColor the color of the button
      * @param labelColor the color of the label
-     * @param hoverColor the hover color of the label
+     * @param hoverColor the color of the label when the mouse is hovering over the button
      */
     private void drawButton(Color backColor, Color labelColor, Color hoverColor){
         image.clear();

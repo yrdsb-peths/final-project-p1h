@@ -4,12 +4,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The enemy superclass
  * 
  * @author (Edison Lim) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class Enemy extends SuperSmoothMover
 {
     //declaring instance variables
     protected Actor target;
+    protected Player player;
     protected int score, currHP, dmg, speed, attackduration, currDuration = 0, attackdelay, currDelay = 0; //enemy stats
     protected boolean attacking = false, dmgDealt = false;
     //sprites
@@ -38,9 +39,12 @@ public class Enemy extends SuperSmoothMover
      */
     public void act() 
     {
+        //turn towards the player
+        target = getWorld().getObjects(Player.class).get(0);
+        player = (Player) target;
+        turnTowards(player.getX(), player.getY());
+        
         if(currHP <= 0){
-            target = getWorld().getObjects(Player.class).get(0); //(from Mr. Cohen)
-            Player player = (Player) target;
             player.setScore(score); //give points to player
             
             //adding blood splatter
@@ -59,9 +63,8 @@ public class Enemy extends SuperSmoothMover
             setImage(attackingSprites[attackingSpriteNum]);
             
             target = getOneIntersectingObject(Player.class);
-            //check if the enemy is at the animation frame that does dmg to the player
+            //check if the enemy is at the animation frame that deals dmg to the player, and deals damage if the player is still intersecting it
             if(target != null && !dmgDealt && attackingSpriteNum == dmgSpriteNum){
-                Player player = (Player) target;
                 player.dealDmg(dmg);
                 currDelay = attackdelay;
                 dmgDealt = true;
@@ -70,7 +73,7 @@ public class Enemy extends SuperSmoothMover
                 attackSoundsIndex++;
                 if(attackSoundsIndex >= attackSounds.length) attackSoundsIndex = 0;
             }
-            //checks if the enemy has finished its attack
+            //checks if the enemy has finished its attack, and reset attack variables if it did
             if(currDuration == attackduration){
                 attacking = false;
                 dmgDealt = false;
@@ -82,14 +85,11 @@ public class Enemy extends SuperSmoothMover
             target = getOneIntersectingObject(Player.class);
             //checks if the enemy can attack the player
             if(target != null && currDelay == 0){
+                //start the attack
                 attacking = true;
                 setImage(attackingSprites[attackingSpriteNum]);
             }
             else if(currDelay == 0){
-                //turn towards the player
-                target = getWorld().getObjects(Player.class).get(0); //(from Mr. Cohen)
-                Player player = (Player) target;
-                turnTowards(player.getX(), player.getY());
                 move(speed);
                 //setting moving animation
                 if(currMoveAct == moveAct){

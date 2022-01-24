@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The muzzle flash of the player's weapon, appears for a second when a bullet is fired
  * 
  * @author (Jaylen Cheung) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class MuzzleFlash extends SuperSmoothMover
 {
@@ -36,7 +36,7 @@ public class MuzzleFlash extends SuperSmoothMover
     public void act() 
     {
         //follow the rifle
-        player = getWorld().getObjects(Player.class).get(0); //(from Mr. Cohen)
+        player = getWorld().getObjects(Player.class).get(0);
         setLocation(player.getX(), player.getY());
         setRotation(player.getRotation());
         move(Player.PLAYER_WIDTH / 2 + MUZZLE_FLASH_WIDTH / 3);

@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The notification that pops up on the screen when the player has picked up a powerup
  * 
  * @author (Jaylen Cheung) 
- * @version (2.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class PowerupNotification extends Actor
 {   
@@ -15,7 +15,7 @@ public class PowerupNotification extends Actor
     public static final Font PU_NOTIF_FONT = new Font("Courier New", true, true, PU_NOTIF_HEIGHT * 2 / 3);
     
     //initializing constants
-    public static final int POPUP_TIME = 60;
+    public static final int POPUP_TIME = 60; //number of acts the powerup notification is displayed on the screen
     
     //declaring instance variables
     private int currTime = 0;

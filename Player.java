@@ -5,7 +5,7 @@ import java.util.List;
  * The player that the user controls
  * 
  * @author (Edison Lim) 
- * @version (3.0: 01/22/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class Player extends SuperSmoothMover
 {
@@ -20,7 +20,7 @@ public class Player extends SuperSmoothMover
     public static final int PLAYER_DMG = 4;
     public static final int PLAYER_MAG_SIZE = 15;
     public static final int PLAYER_SHOOT_CD = 10;
-    public static final int PLAYER_RELOAD_TIME = 60; //(number of acts)
+    public static final int PLAYER_RELOAD_TIME = 60; //number of acts it takes to reload the weapon
     
     //declaring actors
     private StatBar hpBar;
@@ -85,7 +85,7 @@ public class Player extends SuperSmoothMover
      *
      * @param world the current world the player is in
      */
-    public void addedToWorld(World world){ //(from Mr. Cohen)
+    public void addedToWorld(World world){
         //adding player hp bar, score display, and ammo display to the world
         world.addObject(hpBar, GameWorld.WORLD_WIDTH * 9 / 50, GameWorld.WORLD_HEIGHT / 16);
         world.addObject(scoreDisplay, GameWorld.WORLD_WIDTH / 6, GameWorld.WORLD_HEIGHT / 12);
@@ -124,7 +124,7 @@ public class Player extends SuperSmoothMover
             isMoving = true;
         }
         
-        //checks if the mouse is down (from "danpost" on Greenfoot)
+        //checks if the mouse is down
         if(Greenfoot.mousePressed(null)) mouseDown = true;
         else if(Greenfoot.mouseClicked(null)) mouseDown = false;
         
@@ -147,7 +147,7 @@ public class Player extends SuperSmoothMover
             
             //adds muzzle flash
             if(getWorld().getObjects(MuzzleFlash.class).size() > 0){
-                MuzzleFlash prevFlash = getWorld().getObjects(MuzzleFlash.class).get(0); //(from Mr. Cohen)
+                MuzzleFlash prevFlash = getWorld().getObjects(MuzzleFlash.class).get(0);
                 getWorld().removeObject(prevFlash);
             }
             MuzzleFlash muzzleFlash = new MuzzleFlash();
@@ -158,21 +158,20 @@ public class Player extends SuperSmoothMover
             muzzleFlash.move(PLAYER_HEIGHT * 3 / 10);
             muzzleFlash.setRotation(muzzleFlash.getRotation() - 90);
             
-            //playing rifle shot sound
             rifleSounds[rifleSoundsIndex].play();
             rifleSoundsIndex++;
             if(rifleSoundsIndex >= rifleSounds.length) rifleSoundsIndex = 0;
         }
         currShootCD--; //update shoot cooldown
         
-         //reloads weapon if ammo runs out or if user presses "r"
+        //starts to reload the weapon if the ammo runs out or if the user presses "r"
         if((ammo <= 0 || (Greenfoot.isKeyDown("r") && ammo < PLAYER_MAG_SIZE)) && !reloading){
             reloading = true;
             rifleReloadingSpriteNum = 0;
             GreenfootSound reloadSound = new GreenfootSound("PlayerSoundEffects/PlayerReload.wav");
             reloadSound.play();
         }
-        //reloads weapon
+        //updates reload timer and reloads the weapon when the timer hits 0
         if(reloading){
             reloadTimer--;
             if(reloadTimer == 0){

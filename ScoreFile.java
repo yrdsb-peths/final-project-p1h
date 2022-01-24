@@ -10,7 +10,7 @@ import java.io.IOException;
  * Singleton class for reading and writing to a score file.
  * 
  * @author (Vaughn Chan) 
- * @version (3.0: 01/23/2022)
+ * @version (3.0: 01/24/2022)
  */
 public class ScoreFile
 {
@@ -184,7 +184,6 @@ public class ScoreFile
     
     /**
      * Method to convert data from the arraylist into the file
-     *
      */
     public void parseDataToFile()
     {
