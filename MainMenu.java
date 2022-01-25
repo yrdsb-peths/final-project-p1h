@@ -30,7 +30,7 @@ public class MainMenu extends World
     private Button playButton, instructionsButton;
     
     //declaring instance variables
-    private static GreenfootSound bgMusic = new GreenfootSound("BackgroundMusic/MainMenuMusic.mp3");
+    private static GreenfootSound bgMusic = new GreenfootSound("BackgroundMusic/MainMenuMusic.wav");
     private static boolean musicStarted;
     
     /**
